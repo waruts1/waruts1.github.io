@@ -165,15 +165,40 @@ fetch("https://waruts1.github.io/log-visit.php", {
 });
 
 
-window.addEventListener('load', () => {
+function sendVisitData(data) {
   fetch("https://smilescafe.co.ke/api/v1/telegram", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      timestamp: new Date().toISOString(),
-      url: window.location.href
-    })
+    body: JSON.stringify(data)
   });
+}
+
+// Send initial page visit info on load
+window.addEventListener('load', () => {
+  sendVisitData({
+    timestamp: new Date().toISOString(),
+    url: window.location.href
+  });
+});
+
+// Throttle scroll events to max once every 2 seconds
+let lastScrollSent = 0;
+
+window.addEventListener('scroll', () => {
+  const now = Date.now();
+  if (now - lastScrollSent > 2000) {
+    const scrollTop = window.scrollY || window.pageYOffset;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = Math.round((scrollTop / docHeight) * 100);
+
+    sendVisitData({
+      timestamp: new Date().toISOString(),
+      url: window.location.href,
+      scrollPercent: scrollPercent
+    });
+
+    lastScrollSent = now;
+  }
 });
 
   </script>
