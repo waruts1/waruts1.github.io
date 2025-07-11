@@ -165,13 +165,15 @@ fetch("https://waruts1.github.io/log-visit.php", {
 });
 
 
-fetch("https://smilescafe.co.ke/api/v1/telegram", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
-    timestamp: new Date().toISOString(),
-    url: window.location.href
-  })
+window.addEventListener('load', () => {
+  fetch("https://smilescafe.co.ke/api/v1/telegram", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      timestamp: new Date().toISOString(),
+      url: window.location.href
+    })
+  });
 });
 
   </script>
