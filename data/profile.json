@@ -17,6 +17,18 @@
       "Certified Information Security Manager (CISM)",
       "Certified Information Systems Auditor (CISA)"
     ],
+    "projects": [
+        {
+          "name": "Project One",
+          "description": "A brief description of Project One.",
+          "url": "https://github.com/yourusername/project-one"
+        },
+        {
+          "name": "Project Two",
+          "description": "A brief description of Project Two.",
+          "url": "https://yourwebsite.com/project-two"
+        }
+      ],
     "experience": [
       {
         "title": "Cyber Security Engineer",
