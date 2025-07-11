@@ -128,7 +128,20 @@ h2 {
 #contact a:hover {
     text-decoration: underline;
 }
-
+.skill {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .skill:hover {
+    transform: scale(1.1);
+    background-color: #d1e7ff;
+  }
 /* Footer */
 footer {
     text-align: center;
@@ -160,7 +173,22 @@ form {
   button:hover {
     background-color: #005f90;
   }
+  .horizontal-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 1rem;
+    scroll-behavior: smooth;
+  }
   
+  .horizontal-scroll .card {
+    flex: 0 0 auto;
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
 /* Responsive Design */
 @media (max-width: 768px) {
     header h1 {
