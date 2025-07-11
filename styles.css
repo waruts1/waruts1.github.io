@@ -107,7 +107,7 @@ h2 {
 }
 
 .skill {
-    background-color: #007bff;
+    background-color: #333;
     color: #fff;
     padding: 10px;
     text-align: center;
@@ -132,7 +132,7 @@ h2 {
     display: inline-block;
     padding: 0.5rem 1rem;
     margin: 0.5rem;
-    background-color: #f11515;
+    background-color: #40a3ff;
     border-radius: 5px;
     font-size: 1rem;
     transition: transform 0.3s ease, background-color 0.3s ease;
@@ -188,6 +188,52 @@ form {
     border-radius: 8px;
     padding: 1rem;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  :root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --card-bg-color: #ffffff;
+    --link-color: #007bff;
+    --hover-link-color: #0056b3;
+  }
+  
+  [data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --card-bg-color: #1e1e1e;
+    --link-color: #80d4ff;
+    --hover-link-color: #40a3ff;
+  }
+  
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+  }
+  
+  .card {
+    background-color: var(--card-bg-color);
+  }
+  
+  nav a, #contact a {
+    color: var(--link-color);
+  }
+  
+  nav a:hover, #contact a:hover {
+    color: var(--hover-link-color);
+  }
+  .theme-toggle {
+    background-color: var(--link-color);
+    color: var(--text-color);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .theme-toggle:hover {
+    background-color: var(--hover-link-color);
   }
 /* Responsive Design */
 @media (max-width: 768px) {
