@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Waruts Portfolio</title>
+  <title>Collins Warutumo</title>
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
@@ -50,6 +50,23 @@
       <h2>Contact</h2>
       <p>Email: <a href="#" id="email-link"></a></p>
       <p>LinkedIn: <a id="linkedin-link" target="_blank"></a></p>
+      <section id="contact">
+        <h2>Contact</h2>
+        <form action="https://formspree.io/f/xzzgnjdy" method="POST">
+          <label for="name">Name</label><br>
+          <input type="text" id="name" name="name" required><br>
+      
+          <label for="email">Email</label><br>
+          <input type="email" id="email" name="_replyto" required><br>
+      
+          <label for="message">Message</label><br>
+          <textarea id="message" name="message" required></textarea><br>
+      
+          <button type="submit">Send Message</button>
+          <input type="text" name="_gotcha" style="display:none">
+        </form>
+      </section>
+      
     </section>
   </main>
 
