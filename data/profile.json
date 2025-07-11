@@ -39,14 +39,14 @@
     ],
     "projects": [
         {
-          "name": "Project One",
-          "description": "A brief description of Project One.",
-          "url": "https://github.com/yourusername/project-one"
+          "name": "The Actuarial Society of Kenya",
+          "description": "A project focused on enhancing the digital presence and functionality of the Actuarial Society of Kenya.",
+          "url": "https://www.actuarieskenya.org"
         },
         {
-          "name": "Project Two",
-          "description": "A brief description of Project Two.",
-          "url": "https://yourwebsite.com/project-two"
+          "name": "Smiles Cafe Payment and Customer Management System",
+          "description": "Funds Analysis and Customer Details Management System for Smiles Cafe.",
+          "url": "https://smilescafe.co.ke"
         }
       ],
     "experience": [

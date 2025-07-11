@@ -33,7 +33,7 @@
 
     <section id="projects">
       <h2>Projects</h2>
-      <div id="projects-container"></div>
+      <div id="projects-container" class="horizontal-scroll"></div>
     </section>
 
     <section id="skills">
@@ -127,6 +127,18 @@
         document.getElementById("copyright").textContent =
           `© ${new Date().getFullYear()} ${data.name}. All rights reserved.`;
       });
+
+      const projectsDiv = document.getElementById("projects-container");
+(data.projects || []).forEach(project => {
+  const div = document.createElement("div");
+  div.className = "card";
+  div.innerHTML = `
+    <h3>${project.name}</h3>
+    <p>${project.description}</p>
+    <a href="${project.url}" target="_blank">View Project</a>
+  `;
+  projectsDiv.appendChild(div);
+});
   </script>
 </body>
 </html>
