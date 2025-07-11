@@ -23,3 +23,7 @@
 /app/Config/core.php
 /app/Config/database.php
 /vendors/*
+/node_modules/*
+/.sass-cache
+/package-lock.json
+/package.json
