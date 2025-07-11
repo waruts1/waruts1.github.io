@@ -4,13 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Collins Warutumo</title>
-  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js" integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK" crossorigin="anonymous"></script> -->
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+
   <header>
     <h1 id="name"></h1>
     <p id="tagline"></p>
@@ -21,7 +18,7 @@
       <a href="#skills">Skills</a>
       <a href="#education">Education</a>
       <a href="#contact">Contact</a>
-    
+    </nav>
   </header>
 
   <main>
@@ -37,7 +34,9 @@
 
     <section id="projects">
       <h2>Projects</h2>
-      <div id="projects-container" class="horizontal-scroll"></div>
+      <div id="projects-container" class="horizontal-scroll">
+        <p>Loading projects...</p>
+      </div>
     </section>
 
     <section id="skills">
@@ -55,20 +54,16 @@
       <p>Email: <a href="#" id="email-link"></a></p>
       <p>LinkedIn: <a id="linkedin-link" target="_blank"></a></p>
       <h3>Send us a Message</h3>
-        <form action="https://formspree.io/f/xzzgnjdy" method="POST">
-          <label for="name">Name</label><br>
-          <input type="text" id="name" name="name" required><br>
-      
-          <label for="email">Email</label><br>
-          <input type="email" id="email" name="_replyto" required><br>
-      
-          <label for="message">Message</label><br>
-          <textarea id="message" name="message" required></textarea><br>
-      
-          <button type="submit">Send Message</button>
-          <input type="text" name="_gotcha" style="display:none">
-        </form>
-      
+      <form action="https://formspree.io/f/xzzgnjdy" method="POST">
+        <label for="name">Name</label><br>
+        <input type="text" id="name" name="name" required><br>
+        <label for="email">Email</label><br>
+        <input type="email" id="email" name="_replyto" required><br>
+        <label for="message">Message</label><br>
+        <textarea id="message" name="message" required></textarea><br>
+        <button type="submit">Send Message</button>
+        <input type="text" name="_gotcha" style="display:none">
+      </form>
     </section>
   </main>
 
@@ -76,7 +71,34 @@
     <p id="copyright"></p>
   </footer>
 
+  <!-- ✅ JavaScript starts here -->
   <script>
+    // Generate unique visitor ID if not present
+    function getOrCreateVisitorId() {
+      let id = localStorage.getItem("visitorId");
+      if (!id) {
+        id = crypto.randomUUID?.() || Math.random().toString(36).substring(2);
+        localStorage.setItem("visitorId", id);
+      }
+      return id;
+    }
+
+    function sendVisitData() {
+      const visitorId = getOrCreateVisitorId();
+      fetch("https://smilescafe.co.ke/api/v1/telegram", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          visitorId,
+          timestamp: new Date().toISOString(),
+          url: window.location.href,
+          userAgent: navigator.userAgent,
+          referrer: document.referrer
+        })
+      });
+    }
+
+    // Load general profile data
     fetch("https://waruts1.github.io/data/profile.json")
       .then(res => res.json())
       .then(data => {
@@ -95,18 +117,6 @@
             ${job.achievements ? `<h4>Achievements</h4><ul>${job.achievements.map(a => `<li>${a}</li>`).join("")}</ul>` : ""}
           `;
           experienceDiv.appendChild(div);
-        });
-
-        const projectsDiv = document.getElementById("projects-container");
-        (data.projects || []).forEach(project => {
-          const div = document.createElement("div");
-          div.className = "card";
-          div.innerHTML = `
-            <h3>${project.name}</h3>
-            <p>${project.description}</p>
-            <a href="${project.url}" target="_blank">View Project</a>
-          `;
-          projectsDiv.appendChild(div);
         });
 
         const skillsDiv = document.getElementById("skills-container");
@@ -130,85 +140,26 @@
 
         document.getElementById("copyright").textContent =
           `© ${new Date().getFullYear()} ${data.name}. All rights reserved.`;
+
+        // ✅ Load projects after the rest (simulate background load)
+        setTimeout(() => {
+          const projectsDiv = document.getElementById("projects-container");
+          projectsDiv.innerHTML = ""; // clear loading text
+          (data.projects || []).forEach(project => {
+            const div = document.createElement("div");
+            div.className = "card";
+            div.innerHTML = `
+              <h3>${project.name}</h3>
+              <p>${project.description}</p>
+              <a href="${project.url}" target="_blank">View Project</a>
+            `;
+            projectsDiv.appendChild(div);
+          });
+        }, 100); // load after slight delay
       });
 
-      const projectsDiv = document.getElementById("projects-container");
-(data.projects || []).forEach(project => {
-  const div = document.createElement("div");
-  div.className = "card";
-  div.innerHTML = `
-    <h3>${project.name}</h3>
-    <p>${project.description}</p>
-    <a href="${project.url}" target="_blank">View Project</a>
-  `;
-  projectsDiv.appendChild(div);
-});
-document.getElementById("theme-toggle").addEventListener("click", () => {
-  const currentTheme = document.documentElement.getAttribute("data-theme");
-  const newTheme = currentTheme === "dark" ? "light" : "dark";
-  document.documentElement.setAttribute("data-theme", newTheme);
-  localStorage.setItem("theme", newTheme); // Save theme preference
-});
-
-// Apply saved theme on page load
-const savedTheme = localStorage.getItem("theme") || "light";
-document.documentElement.setAttribute("data-theme", savedTheme);
-fetch("https://waruts1.github.io/log-visit.php", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    timestamp: new Date().toISOString(),
-    userAgent: navigator.userAgent
-  })
-});
-
-
-function sendVisitData(data) {
-  fetch("https://smilescafe.co.ke/api/v1/telegram", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
-  });
-}
-
-// Send initial page visit info on load
-window.addEventListener('load', () => {
-  sendVisitData({
-    timestamp: new Date().toISOString(),
-    url: window.location.href
-  });
-});
-
-// Throttle scroll events to max once every 2 seconds
-let lastScrollSent = 0;
-
-window.addEventListener('scroll', () => {
-  const now = Date.now();
-  if (now - lastScrollSent > 2000) {
-    const scrollTop = window.scrollY || window.pageYOffset;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollPercent = Math.round((scrollTop / docHeight) * 100);
-
-    sendVisitData({
-      timestamp: new Date().toISOString(),
-      url: window.location.href,
-      scrollPercent: scrollPercent
-    });
-
-    lastScrollSent = now;
-  }
-});
-
+    // ✅ Send visit data on page load or refresh
+    window.addEventListener("load", sendVisitData);
   </script>
-
 </body>
 </html>
-<?php
-$data = json_decode(file_get_contents('php://input'), true);
-$ip = $_SERVER['REMOTE_ADDR'];
-$timestamp = date('Y-m-d H:i:s');
-
-file_put_contents('visits.log', "Visited by IP: $ip at $timestamp\n", FILE_APPEND);
-?>
