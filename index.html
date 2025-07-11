@@ -58,7 +58,7 @@
   </footer>
 
   <script>
-    fetch("data/profile.json")
+    fetch("https://waruts1.github.io/data/profile.json")
       .then(res => res.json())
       .then(data => {
         document.getElementById("name").textContent = data.name;
