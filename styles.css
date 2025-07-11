@@ -140,7 +140,7 @@ h2 {
   
   .skill:hover {
     transform: scale(1.1);
-    background-color: #d1e7ff;
+    background-color: #333;
   }
 /* Footer */
 footer {
