@@ -131,8 +131,16 @@
             ]
         }
     ],
-    "education": {
-        "degree": "Cybersecurity & Software Engineering",
+    "education": [
+        {
+         "degree": "Cybersecurity & Software Engineering",
         "institution": "Strathmore University"
-    }
+        },
+        {
+            "degree": "Diploma in Information Technology",
+            "institution": "Kenyatta University",
+            "dates": "2009 - 2010"
+        }
+    ]
+      
 }
