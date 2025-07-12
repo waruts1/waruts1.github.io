@@ -132,8 +132,15 @@
       }
     ],
     "education": {
+        [{
       "degree": "Cybersecurity & Software Engineering",
       "institution": "Strathmore University"
+    },
+    {
+  "degree": "ISACA and Ec-Council",
+      "institution": "Audit, Security and Governance"
+}
+    ]
     }
   }
   
