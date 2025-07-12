@@ -41,12 +41,14 @@
         {
             "name": "The Actuarial Society of Kenya",
             "description": "A project focused on enhancing the digital presence and functionality of the Actuarial Society of Kenya.",
-            "url": "https://www.actuarieskenya.or.ke"
+            "url": "https://www.actuarieskenya.or.ke",
+              "tech": ["React", "Tailwind CSS", "Node.js"]
         },
         {
             "name": "Smiles Cafe Payment and Customer Management System",
             "description": "Funds Analysis and Customer Details Management System for Smiles Cafe.",
-            "url": "https://smilescafe.co.ke"
+            "url": "https://smilescafe.co.ke",
+            "tech": ["React", "Node.js", "Express"]
         }
     ],
     "experience": [
