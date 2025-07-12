@@ -1,159 +1,190 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Collins Warutumo</title>
-    <link rel="icon" href="/94432219.jpg" type="image/x-icon" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" defer></script>
-  </head>
-  <body class="bg-white text-gray-800 font-sans max-w-5xl mx-auto px-4 py-8">
-    <header class="text-center mb-12">
-      <h1 id="name" class="text-4xl font-bold mb-2"></h1>
-      <p id="tagline" class="text-lg text-gray-600 mb-4"></p>
-      <nav class="flex justify-center flex-wrap gap-4 mt-4">
-        <a href="#about" class="text-blue-600 hover:underline">About</a>
-        <a href="#experience" class="text-blue-600 hover:underline">Experience</a>
-        <a href="#projects" class="text-blue-600 hover:underline">Projects</a>
-        <a href="#skills" class="text-blue-600 hover:underline">Skills</a>
-        <a href="#education" class="text-blue-600 hover:underline">Education</a>
-        <a href="#contact" class="text-blue-600 hover:underline">Contact</a>
-      </nav>
-    </header>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collins Warutumo</title>
 
-    <main>
-      <section id="about" class="mb-12">
-        <h2 class="text-2xl font-semibold text-blue-700 border-b-2 border-blue-500 inline-block mb-4">About Me</h2>
-        <p id="about-text" class="text-gray-700"></p>
-      </section>
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: "#f9fafb",
+            border: "#e5e7eb",
+            primary: "#2563eb",
+            "primary-foreground": "#ffffff",
+            "muted-foreground": "#6b7280"
+          },
+          boxShadow: {
+            card: "0 2px 8px rgba(0,0,0,0.08)",
+            "card-hover": "0 4px 16px rgba(0,0,0,0.12)",
+          },
+          backgroundImage: {
+            'hero-gradient': 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+            'section-gradient': 'linear-gradient(to top, #f3f4f6, #ffffff)',
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="icon" href="/94432219.jpg" type="image/x-icon" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body class="bg-background text-gray-900 font-sans">
 
-      <section id="experience" class="mb-12">
-        <h2 class="text-2xl font-semibold text-blue-700 border-b-2 border-blue-500 inline-block mb-4">Experience</h2>
-        <div id="experience-container" class="space-y-6"></div>
-      </section>
+  <header class="text-center py-20 bg-hero-gradient text-white">
+    <h1 id="name" class="text-5xl font-bold mb-4"></h1>
+    <p id="tagline" class="text-xl text-white/90 mb-4"></p>
+    <nav class="flex justify-center gap-6 text-white/80">
+      <a href="#about" class="hover:text-white transition">About</a>
+      <a href="#experience" class="hover:text-white transition">Experience</a>
+      <a href="#projects" class="hover:text-white transition">Projects</a>
+      <a href="#skills" class="hover:text-white transition">Skills</a>
+      <a href="#education" class="hover:text-white transition">Education</a>
+      <a href="#contact" class="hover:text-white transition">Contact</a>
+    </nav>
+  </header>
 
-      <section id="projects" class="mb-12">
-        <h2 class="text-2xl font-semibold text-blue-700 border-b-2 border-blue-500 inline-block mb-4">Projects</h2>
-        <div id="projects-container" class="flex overflow-x-auto gap-4 pb-4">
-          <p>Loading projects...</p>
-        </div>
-      </section>
+  <main class="max-w-4xl mx-auto px-4">
 
-      <section id="skills" class="mb-12">
-        <h2 class="text-2xl font-semibold text-blue-700 border-b-2 border-blue-500 inline-block mb-4">Skills</h2>
-        <div id="skills-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"></div>
-      </section>
+    <section id="about" class="mt-12 mb-16">
+      <h2 class="text-3xl font-bold mb-6 text-center">About Me</h2>
+      <div class="bg-white shadow-card hover:shadow-card-hover rounded-xl p-6 transition-all">
+        <p id="about-text" class="text-muted-foreground leading-relaxed"></p>
+      </div>
+    </section>
 
-      <section id="education" class="mb-12">
-        <h2 class="text-2xl font-semibold text-blue-700 border-b-2 border-blue-500 inline-block mb-4">Education</h2>
-        <div class="bg-gray-100 rounded-lg shadow p-4" id="education-container"></div>
-      </section>
+    <section id="experience" class="mb-16">
+      <h2 class="text-3xl font-bold mb-6 text-center">Experience</h2>
+      <div id="experience-container" class="space-y-6"></div>
+    </section>
 
-      <section id="contact" class="mb-12">
-        <h2 class="text-2xl font-semibold text-blue-700 border-b-2 border-blue-500 inline-block mb-4">Contact</h2>
-        <p>Email: <a href="#" id="email-link" class="text-blue-600 hover:underline"></a></p>
-        <p>LinkedIn: <a id="linkedin-link" target="_blank" class="text-blue-600 hover:underline"></a></p>
-        <h3 class="text-xl font-semibold mt-4">Send us a Message</h3>
-        <form action="https://formspree.io/f/xzzgnjdy" method="POST" class="mt-4 space-y-4 max-w-md">
-          <input type="text" id="name" name="name" placeholder="Your Name" required class="w-full border p-2 rounded" />
-          <input type="email" id="email" name="_replyto" placeholder="Your Email" required class="w-full border p-2 rounded" />
-          <textarea id="message" name="message" placeholder="Message" required class="w-full border p-2 rounded"></textarea>
-          <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Send Message</button>
+    <section id="projects" class="mb-16">
+      <h2 class="text-3xl font-bold mb-6 text-center">Projects</h2>
+      <div id="projects-container" class="grid md:grid-cols-2 gap-6"></div>
+    </section>
+
+    <section id="skills" class="mb-16">
+      <h2 class="text-3xl font-bold mb-6 text-center">Skills</h2>
+      <div class="bg-white rounded-xl p-6 shadow-card hover:shadow-card-hover">
+        <div id="skills-container" class="flex flex-wrap gap-3 justify-center"></div>
+      </div>
+    </section>
+
+    <section id="education" class="mb-16">
+      <h2 class="text-3xl font-bold mb-6 text-center">Education</h2>
+      <div id="education-container" class="bg-white rounded-xl p-6 shadow-card hover:shadow-card-hover"></div>
+    </section>
+
+    <section id="contact" class="mb-16">
+      <h2 class="text-3xl font-bold mb-6 text-center">Contact</h2>
+      <div class="bg-white rounded-xl p-6 shadow-card hover:shadow-card-hover">
+        <p>Email: <a href="#" id="email-link" class="text-primary"></a></p>
+        <p>LinkedIn: <a id="linkedin-link" target="_blank" class="text-primary"></a></p>
+        <form action="https://formspree.io/f/xzzgnjdy" method="POST" class="space-y-4 mt-6">
+          <input type="text" id="name" name="name" required placeholder="Name" class="w-full border border-border rounded px-4 py-2" />
+          <input type="email" id="email" name="_replyto" required placeholder="Email" class="w-full border border-border rounded px-4 py-2" />
+          <textarea id="message" name="message" required placeholder="Message" class="w-full border border-border rounded px-4 py-2"></textarea>
+          <button type="submit" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary/90">Send Message</button>
           <input type="text" name="_gotcha" style="display:none">
         </form>
-      </section>
-    </main>
+      </div>
+    </section>
 
-    <footer class="text-center text-sm text-gray-500 py-4 border-t mt-8">
-      <p id="copyright"></p>
-    </footer>
+  </main>
 
-    <script>
-      function getOrCreateVisitorId() {
-        let id = localStorage.getItem("visitorId");
-        if (!id) {
-          id = crypto.randomUUID?.() || Math.random().toString(36).substring(2);
-          localStorage.setItem("visitorId", id);
-        }
-        return id;
+  <footer class="bg-section-gradient border-t border-border py-8 text-center">
+    <p id="copyright" class="text-muted-foreground text-sm"></p>
+  </footer>
+
+  <script>
+    // Visitor ID + tracking
+    function getOrCreateVisitorId() {
+      let id = localStorage.getItem("visitorId");
+      if (!id) {
+        id = crypto.randomUUID?.() || Math.random().toString(36).substring(2);
+        localStorage.setItem("visitorId", id);
       }
+      return id;
+    }
+    function sendVisitData() {
+      const visitorId = getOrCreateVisitorId();
+      fetch("https://smilescafe.co.ke/api/v1/telegram", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          visitorId,
+          timestamp: new Date().toISOString(),
+          url: document.referrer || window.location.href,
+          pageTitle: document.title,
+          userAgent: navigator.userAgent,
+          referrer: document.referrer
+        })
+      });
+    }
+    window.addEventListener("load", sendVisitData);
 
-      function sendVisitData() {
-        const visitorId = getOrCreateVisitorId();
-        fetch("https://smilescafe.co.ke/api/v1/telegram", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            visitorId,
-            timestamp: new Date().toISOString(),
-            url: document.referrer || window.location.href,
-            pageTitle: document.title,
-            userAgent: navigator.userAgent,
-            referrer: document.referrer
-          })
-        });
-      }
+    // Profile Data Fetch
+    fetch("https://waruts1.github.io/data/profile.json")
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("name").textContent = data.name;
+        document.getElementById("tagline").textContent = data.tagline;
+        document.getElementById("about-text").textContent = data.about;
 
-      fetch("https://waruts1.github.io/data/profile.json")
-        .then(res => res.json())
-        .then(data => {
-          document.getElementById("name").textContent = data.name;
-          document.getElementById("tagline").textContent = data.tagline;
-          document.getElementById("about-text").textContent = data.about;
-
-          const experienceDiv = document.getElementById("experience-container");
-          data.experience.forEach((job, index) => {
-            const div = document.createElement("div");
-            div.className = `rounded-lg shadow p-4 ${index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}`;
-            div.innerHTML = `
-              <h3 class="text-xl font-semibold">${job.title}</h3>
-              <p class="text-sm text-gray-600 italic">${job.company} | ${job.dates}</p>
-              <ul class="list-disc list-inside mt-2 text-gray-700">${job.responsibilities.map(r => `<li>${r}</li>`).join("")}</ul>
-              ${job.achievements ? `<h4 class="font-medium mt-3">Achievements</h4><ul class="list-disc list-inside text-gray-700">${job.achievements.map(a => `<li>${a}</li>`).join("")}</ul>` : ""}
-            `;
-            experienceDiv.appendChild(div);
-          });
-
-          const skillsDiv = document.getElementById("skills-container");
-          data.skills.forEach(skill => {
-            const span = document.createElement("span");
-            span.className = "bg-blue-500 text-white text-sm py-2 px-3 rounded-full text-center";
-            span.textContent = skill;
-            skillsDiv.appendChild(span);
-          });
-
-          const eduDiv = document.getElementById("education-container");
-          eduDiv.innerHTML = `
-            <h3 class="text-xl font-semibold">${data.education.degree}</h3>
-            <p class="text-sm text-gray-600 italic">${data.education.institution}</p>
+        const experienceDiv = document.getElementById("experience-container");
+        data.experience.forEach(job => {
+          const div = document.createElement("div");
+          div.className = "bg-white shadow-card hover:shadow-card-hover rounded-xl p-6";
+          div.innerHTML = `
+            <h3 class="text-xl font-semibold mb-2">${job.title}</h3>
+            <p class="text-primary font-medium mb-2">${job.company} | ${job.dates}</p>
+            <ul class="list-disc ml-5 text-muted-foreground">${job.responsibilities.map(r => `<li>${r}</li>`).join("")}</ul>
+            ${job.achievements ? `<h4 class="mt-4 font-medium">Achievements</h4><ul class="list-disc ml-5 text-muted-foreground">${job.achievements.map(a => `<li>${a}</li>`).join("")}</ul>` : ""}
           `;
-
-          document.getElementById("email-link").textContent = data.contact.email;
-          document.getElementById("email-link").href = `mailto:${data.contact.email}`;
-          document.getElementById("linkedin-link").textContent = data.contact.linkedin;
-          document.getElementById("linkedin-link").href = data.contact.linkedin;
-
-          document.getElementById("copyright").textContent =
-            `© ${new Date().getFullYear()} ${data.name}. All rights reserved.`;
-
-          setTimeout(() => {
-            const projectsDiv = document.getElementById("projects-container");
-            projectsDiv.innerHTML = "";
-            (data.projects || []).forEach(project => {
-              const div = document.createElement("div");
-              div.className = "min-w-[300px] bg-white rounded-lg shadow p-4 flex-shrink-0";
-              div.innerHTML = `
-                <h3 class="text-xl font-semibold">${project.name}</h3>
-                <p class="text-gray-700">${project.description}</p>
-                <a href="${project.url}" target="_blank" class="text-blue-600 hover:underline">View Project</a>
-              `;
-              projectsDiv.appendChild(div);
-            });
-          }, 100);
+          experienceDiv.appendChild(div);
         });
 
-      window.addEventListener("load", sendVisitData);
-    </script>
-  </body>
+        const projectsDiv = document.getElementById("projects-container");
+        (data.projects || []).forEach(project => {
+          const div = document.createElement("div");
+          div.className = "bg-white shadow-card hover:shadow-card-hover rounded-xl p-6";
+          div.innerHTML = `
+            <h3 class="text-xl font-semibold mb-2">${project.name}</h3>
+            <p class="text-muted-foreground mb-4">${project.description}</p>
+            <a href="${project.url}" class="text-primary hover:underline" target="_blank">View Project</a>
+          `;
+          projectsDiv.appendChild(div);
+        });
+
+        const skillsDiv = document.getElementById("skills-container");
+        data.skills.forEach(skill => {
+          const span = document.createElement("span");
+          span.className = "px-4 py-2 bg-primary/10 text-primary rounded-full text-sm";
+          span.textContent = skill;
+          skillsDiv.appendChild(span);
+        });
+
+        const eduDiv = document.getElementById("education-container");
+        eduDiv.innerHTML = `
+          <h3 class="text-xl font-semibold mb-2">${data.education.degree}</h3>
+          <p class="text-primary font-medium">${data.education.institution}</p>
+        `;
+
+        document.getElementById("email-link").textContent = data.contact.email;
+        document.getElementById("email-link").href = `mailto:${data.contact.email}`;
+        document.getElementById("linkedin-link").textContent = data.contact.linkedin;
+        document.getElementById("linkedin-link").href = data.contact.linkedin;
+
+        document.getElementById("copyright").textContent =
+          `© ${new Date().getFullYear()} ${data.name}. All rights reserved.`;
+      });
+  </script>
+</body>
 </html>
