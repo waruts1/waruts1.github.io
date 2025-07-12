@@ -233,18 +233,29 @@
           skillsDiv.appendChild(span);
         });
 
-        const eduDiv = document.getElementById("education-container");
-        eduDiv.innerHTML = ''; // Clear existing content
+const eduDiv = document.getElementById("education-container");
+eduDiv.innerHTML = ""; // clear existing content first
 
-        data.education.forEach(edu => {
-          const div = document.createElement("div");
-          div.className = "mb-4";
-          div.innerHTML = `
-    <h3 class="text-xl font-semibold mb-1">${edu.degree}</h3>
-    <p class="text-primary font-medium">${edu.institution}</p>
-    ${edu.year ? `<p class="text-muted-foreground text-sm">${edu.year}</p>` : ''}
+(data.education || []).forEach((edu) => {
+  const div = document.createElement("div");
+  div.className = "flex items-start gap-4 mb-4";
+
+  div.innerHTML = `
+    <div class="mt-2">
+      <svg class="h-5 w-5 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M12 14l9-5-9-5-9 5 9 5z" />
+        <path d="M12 14l6.16-3.422A12.083 12.083 0 0112 21.5a12.083 12.083 0 01-6.16-10.922L12 14z" />
+      </svg>
+    </div>
+    <div>
+      <h3 class="text-xl font-semibold mb-1">${edu.degree}</h3>
+      <p class="text-primary font-medium">${edu.institution}</p>
+    </div>
   `;
-          eduDiv.appendChild(div);
+
+  eduDiv.appendChild(div);
+
+
         });
         document.getElementById("email-link").textContent = data.contact.email;
         document.getElementById("email-link").href = `mailto:${data.contact.email}`;
