@@ -50,7 +50,7 @@
             "url": "https://smilescafe.co.ke",
             "tech": ["React", "Node.js", "Express"]
         },
-         {
+        {
             "name": "Telegram FastBuddy Bot",
             "description": "Healthy Living Intermittent Fasting Bot",
             "url": "https://t.me/i_fast_bot",
