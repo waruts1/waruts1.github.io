@@ -50,17 +50,20 @@
       },
       {
          "name":"Cafe Payment and Customer Management System",
-         "description":"Funds Analysis and Customer Details Management System for Smiles Cafe.",
+         "description":"Funds Analysis and Customer Details Management System for Cafe.",
          "url":"https://smilescafe.co.ke",
          "tech":[
-            "React",
-            "Node.js",
-            "Express"
+            "Vue",
+            "Laravel",
+            "Vuex",
+            "Vite",
+            "SQL",
+            "Pusher"
          ]
       },
        {
          "name":"Telegram FastBuddy Bot",
-         "description":"Healthy Living Intermittent Fasting Bot",
+         "description":"Healthy Living Intermittent Fasting Bot, Track Fast and Shares Knowledges about Fasting",
          "url":"https://t.me/i_fast_bot",
          "github":"https://github.com/waruts1/fastbuddy",
          "tech":[
