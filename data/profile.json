@@ -40,7 +40,7 @@
    "projects":[
       {
          "name":"The Actuarial Society of Kenya",
-         "description":"A project focused on enhancing the digital presence and functionality of the Actuarial Society of Kenya.",
+         "description":"A project focused on managing events and CPDs of the members of the Actuarial Society of Kenya.",
          "url":"https://www.actuarieskenya.or.ke",
          "tech":[
             "React",
