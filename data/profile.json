@@ -1,153 +1,164 @@
 {
-    "name": "Collins Warutumo",
-    "tagline": "Cybersecurity Engineer | Full Stack Developer",
-    "about": "Certified Cybersecurity & IS Audit Professional with hands-on experience in full stack development, security audits, and process automation.",
-    "location": "Nairobi County, Kenya",
-    "contact": {
-        "email": "collinswarutumo@gmail.com",
-        "linkedin": "https://www.linkedin.com/in/waruts"
-    },
-    "skills": [
-        "AWS",
-        "Vulnerability Management",
-        "Internal Controls",
-        "Software Development",
-        "API Development",
-        "Information Security",
-        "Cybersecurity",
-        "Workflow Automation",
-        "Process Automation",
-        "Information Security Audits",
-        "Risk Management",
-        "Governance",
-        "Digital Forensics",
-        "Penetration Testing",
-        "Incident Response",
-        "Security Operations",
-        "Network Security",
-        "Data Protection",
-        "Compliance",
-        "Ethical Hacking",
-        "Api Development",
-        "Full Stack Development",
-        "CI/CD"
-    ],
-    "certifications": [
-        "Ethical Security Certification",
-        "Certified Information Security Manager (CISM)",
-        "Certified Information Systems Auditor (CISA)"
-    ],
-    "projects": [
-        {
-            "name": "The Actuarial Society of Kenya",
-            "description": "A project focused on enhancing the digital presence and functionality of the Actuarial Society of Kenya.",
-            "url": "https://www.actuarieskenya.or.ke",
-              "tech": ["React", "Tailwind CSS", "Node.js"]
-        },
-        {
-            "name": "Smiles Cafe Payment and Customer Management System",
-            "description": "Funds Analysis and Customer Details Management System for Smiles Cafe.",
-            "url": "https://smilescafe.co.ke",
-            "tech": ["React", "Node.js", "Express"]
-        },
-        {
-            "name": "Telegram FastBuddy Bot",
-            "description": "Healthy Living Intermittent Fasting Bot",
-            "url": "https://t.me/i_fast_bot",
-            "tech": ["Flask", "SQL", "Telegram"]
-        }    
-    ],
-    "experience": [
-        {
-            "title": "Cyber Security Engineer",
-            "company": "",
-            "location": "Nairobi County, Kenya",
-            "dates": "January 2025 – Present",
-            "responsibilities": [
-                "Conducting information security audits",
-                "Performing risk and vulnerability analysis",
-                "Ensuring compliance and governance"
-            ]
-        },
-        {
-            "title": "Full Stack Developer",
-            "company": "",
-            "location": "Nairobi County, Kenya",
-            "dates": "July 2021 – June 2025",
-            "responsibilities": [
-                "Developed, tested, deployed & documented APIs",
-                "Integrated to core business systems",
-                "Performed continuous API audits"
-            ],
-            "achievements": [
-                "Developed reporting capabilities streamlining leadership decisions",
-                "Built APIs for product ordering journey, increasing revenue",
-                "Developed secure customer verification APIs"
-            ]
-        },
-        {
-            "title": "Process Automation Engineer",
-            "company": "",
-            "location": "Nairobi County, Kenya",
-            "dates": "November 2020 – October 2021",
-            "responsibilities": [
-                "Orchestrated, designed & tested workflows",
-                "Performed continuous audits for workflows"
-            ],
-            "achievements": [
-                "Shipped order workflows for Gen AI prompts and SaaS products"
-            ]
-        },
-        {
-            "title": "Full Stack Developer",
-            "company": "@iLabAfrica",
-            "location": "Nairobi County, Kenya",
-            "dates": "August 2018 – October 2020",
-            "responsibilities": [
-                "Delivered full stack features with WordPress, Django, Laravel, and Vue.js",
-                "Designed Figma prototypes for rapid development"
-            ],
-            "achievements": [
-                "Shipped events membership CMS",
-                "Designed auction site",
-                "Implemented auth for IMLU Website",
-                "QA for KAM Member Portal"
-            ]
-        },
-        {
-            "title": "Cyber Security Engineer",
-            "company": "",
-            "location": "Nairobi County, Kenya",
-            "dates": "May 2016 – July 2018",
-            "responsibilities": [
-                "Implemented automated security tests",
-                "Conducted Information Security Research",
-                "Performed IS audits",
-                "Implemented Information Governance"
-            ],
-            "achievements": [
-                "Research on Digital Forensics Chain of Custody"
-            ]
-        },
-        {
-            "title": "ERP Support Engineer",
-            "company": "Kenya Power",
-            "location": "Nakuru, Kenya",
-            "dates": "January 2015 – December 2015",
-            "responsibilities": [
-                "SAP ERP & Computer Hardware Configuration"
-            ]
-        }
-    ],
-    "education": [
-        {
-         "degree": "Cybersecurity & Software Engineering",
-        "institution": "Strathmore University"
-        },
-        {
-            "degree": "Security Information & Audit",
-            "institution": "ISACA"
-        }
-    ]
-      
+   "name":"Collins Warutumo",
+   "tagline":"Cybersecurity Engineer | Full Stack Developer",
+   "about":"Certified Cybersecurity & IS Audit Professional with hands-on experience in full stack development, security audits, and process automation.",
+   "location":"Nairobi County, Kenya",
+   "contact":{
+      "email":"collinswarutumo@gmail.com",
+      "linkedin":"https://www.linkedin.com/in/waruts"
+   },
+   "skills":[
+      "AWS",
+      "Vulnerability Management",
+      "Internal Controls",
+      "Software Development",
+      "API Development",
+      "Information Security",
+      "Cybersecurity",
+      "Workflow Automation",
+      "Process Automation",
+      "Information Security Audits",
+      "Risk Management",
+      "Governance",
+      "Digital Forensics",
+      "Penetration Testing",
+      "Incident Response",
+      "Security Operations",
+      "Network Security",
+      "Data Protection",
+      "Compliance",
+      "Ethical Hacking",
+      "Api Development",
+      "Full Stack Development",
+      "CI/CD"
+   ],
+   "certifications":[
+      "Ethical Security Certification",
+      "Certified Information Security Manager (CISM)",
+      "Certified Information Systems Auditor (CISA)"
+   ],
+   "projects":[
+      {
+         "name":"The Actuarial Society of Kenya",
+         "description":"A project focused on enhancing the digital presence and functionality of the Actuarial Society of Kenya.",
+         "url":"https://www.actuarieskenya.or.ke",
+         "tech":[
+            "React",
+            "Tailwind CSS",
+            "Node.js"
+         ]
+      },
+      {
+         "name":"Smiles Cafe Payment and Customer Management System",
+         "description":"Funds Analysis and Customer Details Management System for Smiles Cafe.",
+         "url":"https://smilescafe.co.ke",
+         "tech":[
+            "React",
+            "Node.js",
+            "Express"
+         ]
+      },
+      {
+         "name":"Telegram FastBuddy Bot",
+         "description":"Healthy Living Intermittent Fasting Bot",
+         "url":"https://t.me/i_fast_bot",
+         "tech":[
+            "Flask",
+            "SQL",
+            "Telegram"
+         ]
+      }
+   ],
+   "experience":[
+      {
+         "title":"Cyber Security Engineer",
+         "company":"",
+         "location":"Nairobi County, Kenya",
+         "dates":"January 2025 – Present",
+         "responsibilities":[
+            "Conducting information security audits",
+            "Performing risk and vulnerability analysis",
+            "Ensuring compliance and governance"
+         ]
+      },
+      {
+         "title":"Full Stack Developer",
+         "company":"",
+         "location":"Nairobi County, Kenya",
+         "dates":"July 2021 – June 2025",
+         "responsibilities":[
+            "Developed, tested, deployed & documented APIs",
+            "Integrated to core business systems",
+            "Performed continuous API audits"
+         ],
+         "achievements":[
+            "Developed reporting capabilities streamlining leadership decisions",
+            "Built APIs for product ordering journey, increasing revenue",
+            "Developed secure customer verification APIs"
+         ]
+      },
+      {
+         "title":"Process Automation Engineer",
+         "company":"",
+         "location":"Nairobi County, Kenya",
+         "dates":"November 2020 – October 2021",
+         "responsibilities":[
+            "Orchestrated, designed & tested workflows",
+            "Performed continuous audits for workflows"
+         ],
+         "achievements":[
+            "Shipped order workflows for Gen AI prompts and SaaS products"
+         ]
+      },
+      {
+         "title":"Full Stack Developer",
+         "company":"@iLabAfrica",
+         "location":"Nairobi County, Kenya",
+         "dates":"August 2018 – October 2020",
+         "responsibilities":[
+            "Delivered full stack features with WordPress, Django, Laravel, and Vue.js",
+            "Designed Figma prototypes for rapid development"
+         ],
+         "achievements":[
+            "Shipped events membership CMS",
+            "Designed auction site",
+            "Implemented auth for IMLU Website",
+            "QA for KAM Member Portal"
+         ]
+      },
+      {
+         "title":"Cyber Security Engineer",
+         "company":"",
+         "location":"Nairobi County, Kenya",
+         "dates":"May 2016 – July 2018",
+         "responsibilities":[
+            "Implemented automated security tests",
+            "Conducted Information Security Research",
+            "Performed IS audits",
+            "Implemented Information Governance"
+         ],
+         "achievements":[
+            "Research on Digital Forensics Chain of Custody"
+         ]
+      },
+      {
+         "title":"ERP Support Engineer",
+         "company":"Kenya Power",
+         "location":"Nakuru, Kenya",
+         "dates":"January 2015 – December 2015",
+         "responsibilities":[
+            "SAP ERP & Computer Hardware Configuration"
+         ]
+      }
+   ],
+   "education":[
+      {
+         "degree":"Cybersecurity & Software Engineering",
+         "institution":"Strathmore University"
+      },
+      {
+         "degree":"Security Information & Audit",
+         "institution":"ISACA"
+      }
+   ]
 }
