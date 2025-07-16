@@ -71,6 +71,17 @@
             "SQL",
             "Telegram"
          ]
+      },
+         {
+         "name":"Telegram FastBuddy Bot",
+         "description":"Healthy Living Intermittent Fasting Bot, Track Fast and Shares Knowledges about Fasting",
+         "url":"https://t.me/i_fast_bot",
+         "github":"https://github.com/waruts1/fastbuddy",
+         "tech":[
+            "Flask",
+            "SQL",
+            "Telegram"
+         ]
       }   
    ],
    "experience":[
