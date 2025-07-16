@@ -49,8 +49,13 @@
             "description": "Funds Analysis and Customer Details Management System for Smiles Cafe.",
             "url": "https://smilescafe.co.ke",
             "tech": ["React", "Node.js", "Express"]
-        }
-    ],
+        },
+         {
+            "name": "Telegram FastBuddy Bot",
+            "description": "Healthy Living Intermittent Fasting Bot",
+            "url": "https://t.me/i_fast_bot",
+            "tech": ["Flask", "SQL", "Telegram"]
+        },    ],
     "experience": [
         {
             "title": "Cyber Security Engineer",
