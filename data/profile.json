@@ -73,10 +73,10 @@
          ]
       },
          {
-         "name":"Telegram FastBuddy Bot",
-         "description":"Healthy Living Intermittent Fasting Bot, Track Fast and Shares Knowledges about Fasting",
-         "url":"https://t.me/i_fast_bot",
-         "github":"https://github.com/waruts1/fastbuddy",
+         "name":"Jiji Vehicle Dataset",
+         "description":"An analysis of Vehicles Based on Price, Make , Model and Year of Manufacture",
+         "url":"",
+         "github":"https://github.com/waruts1/streamlit-jiji-vehicles-visualization",
          "tech":[
             "Flask",
             "SQL",
