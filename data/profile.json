@@ -55,7 +55,8 @@
             "description": "Healthy Living Intermittent Fasting Bot",
             "url": "https://t.me/i_fast_bot",
             "tech": ["Flask", "SQL", "Telegram"]
-        },    ],
+        }    
+    ],
     "experience": [
         {
             "title": "Cyber Security Engineer",
