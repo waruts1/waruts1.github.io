@@ -94,7 +94,26 @@
             "Conducting information security audits",
             "Performing risk and vulnerability analysis",
             "Ensuring compliance and governance"
-         ]
+         ],
+      "skills":[
+      "AWS",
+      "Vulnerability Management",
+      "Internal Controls",
+      "Information Security",
+      "Cybersecurity",
+      "Information Security Audits",
+      "Risk Management",
+      "Governance",
+      "Digital Forensics",
+      "Penetration Testing",
+      "Incident Response",
+      "Security Operations",
+      "Network Security",
+      "Data Protection",
+      "Compliance",
+      "Ethical Hacking",
+      "CI/CD"
+   ],
       },
       {
          "title":"Full Stack Developer",
@@ -110,7 +129,32 @@
             "Developed reporting capabilities streamlining leadership decisions",
             "Built APIs for product ordering journey, increasing revenue",
             "Developed secure customer verification APIs"
-         ]
+         ],
+            "skills":[
+      "AWS",
+      "Vulnerability Management",
+      "Internal Controls",
+      "Software Development",
+      "API Development",
+      "Information Security",
+      "Cybersecurity",
+      "Workflow Automation",
+      "Process Automation",
+      "Information Security Audits",
+      "Risk Management",
+      "Governance",
+      "Digital Forensics",
+      "Penetration Testing",
+      "Incident Response",
+      "Security Operations",
+      "Network Security",
+      "Data Protection",
+      "Compliance",
+      "Ethical Hacking",
+      "Api Development",
+      "Full Stack Development",
+      "CI/CD"
+   ],
       },
       {
          "title":"Process Automation Engineer",
@@ -139,7 +183,32 @@
             "Designed auction site",
             "Implemented auth for IMLU Website",
             "QA for KAM Member Portal"
-         ]
+         ],
+            "skills":[
+      "AWS",
+      "Vulnerability Management",
+      "Internal Controls",
+      "Software Development",
+      "API Development",
+      "Information Security",
+      "Cybersecurity",
+      "Workflow Automation",
+      "Process Automation",
+      "Information Security Audits",
+      "Risk Management",
+      "Governance",
+      "Digital Forensics",
+      "Penetration Testing",
+      "Incident Response",
+      "Security Operations",
+      "Network Security",
+      "Data Protection",
+      "Compliance",
+      "Ethical Hacking",
+      "Api Development",
+      "Full Stack Development",
+      "CI/CD"
+   ],
       },
       {
          "title":"Cyber Security Engineer",
@@ -154,7 +223,32 @@
          ],
          "achievements":[
             "Research on Digital Forensics Chain of Custody"
-         ]
+         ],
+            "skills":[
+      "AWS",
+      "Vulnerability Management",
+      "Internal Controls",
+      "Software Development",
+      "API Development",
+      "Information Security",
+      "Cybersecurity",
+      "Workflow Automation",
+      "Process Automation",
+      "Information Security Audits",
+      "Risk Management",
+      "Governance",
+      "Digital Forensics",
+      "Penetration Testing",
+      "Incident Response",
+      "Security Operations",
+      "Network Security",
+      "Data Protection",
+      "Compliance",
+      "Ethical Hacking",
+      "Api Development",
+      "Full Stack Development",
+      "CI/CD"
+   ],
       },
       {
          "title":"ERP Support Engineer",
@@ -163,7 +257,32 @@
          "dates":"January 2015 – December 2015",
          "responsibilities":[
             "SAP ERP & Computer Hardware Configuration"
-         ]
+         ],
+            "skills":[
+      "AWS",
+      "Vulnerability Management",
+      "Internal Controls",
+      "Software Development",
+      "API Development",
+      "Information Security",
+      "Cybersecurity",
+      "Workflow Automation",
+      "Process Automation",
+      "Information Security Audits",
+      "Risk Management",
+      "Governance",
+      "Digital Forensics",
+      "Penetration Testing",
+      "Incident Response",
+      "Security Operations",
+      "Network Security",
+      "Data Protection",
+      "Compliance",
+      "Ethical Hacking",
+      "Api Development",
+      "Full Stack Development",
+      "CI/CD"
+   ],
       }
    ],
    "education":[
