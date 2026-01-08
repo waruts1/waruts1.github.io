@@ -43,25 +43,25 @@
          "description":"A project focused on managing events and CPDs of the members of the Actuarial Society of Kenya.",
          "url":"https://www.actuarieskenya.or.ke",
          "tech":[
-            "Node.js",
+            "Laravel",
             "WordPress",
             "MySQL"
          ]
       },
             {
          "name":"Digital Forensics Chain of Custody System",
-         "description":"Diseertation study for Preservation of Digital Evidence.",
+         "description":"Dissertation study for Preservation of Digital Evidence.",
          "url":"https://opac.library.strathmore.edu/bib/314908",
          "tech":[
             "Laravel"
          ]
       },
                   {
-         "name":"Digital Forensics Chain of Custody System",
-         "description":"Diseertation study for Preservation of Digital Evidence.",
+         "name":"Order Orchestration and Workflow System",
+         "description":"Gen AI Order Orchestration and Workflow.",
          "url":"https://business.safaricom.co.ke/marketplace",
          "tech":[
-            "Temporal","Spring boot","PostgreSQL"
+            "Temporal","Spring boot","PostgreSQL", "AWS","Jenkins", "SonarQube"
          ]
       },
       {
@@ -96,7 +96,7 @@
          "tech":[
             "Flask",
             "SQL",
-            "Telegram"
+            "Jupiter Notebook"
          ]
       }   
    ],
