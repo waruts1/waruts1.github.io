@@ -180,7 +180,7 @@
     window.addEventListener("load", sendVisitData);
 
     // Profile Data Fetch
-    fetch("https://waruts1.github.io/data/profile.json")
+   fetch("https://waruts1.github.io/data/profile.json")
       .then(res => res.json())
       .then(data => {
         document.getElementById("name").textContent = data.name;
@@ -194,8 +194,9 @@
           div.innerHTML = `
             <h3 class="text-xl font-semibold mb-2">${job.title}</h3>
             <p class="text-primary font-medium mb-2">${job.company} | ${job.dates}</p>
-            <ul class="list-disc ml-5 text-muted-foreground">${job.responsibilities.map(r => `<li>${r}</li>`).join("")}</ul>
+            <ul class="list-disc ml-5 text-muted-foreground">${(job.responsibilities || []).map(r => `<li>${r}</li>`).join("")}</ul>
             ${job.achievements ? `<h4 class="mt-4 font-medium">Achievements</h4><ul class="list-disc ml-5 text-muted-foreground">${job.achievements.map(a => `<li>${a}</li>`).join("")}</ul>` : ""}
+            ${job.skills ? `<h4 class="mt-4 font-medium">Skills</h4><div class="flex flex-wrap gap-2 mt-2">${job.skills.map(s => '<span class="text-sm py-1 px-3 bg-primary/10 text-primary rounded'> + s + '</span>').join('')}</div>` : ""}
           `;
           experienceDiv.appendChild(div);
         });
