@@ -11,6 +11,7 @@
 
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           colors: {
@@ -32,6 +33,18 @@
       }
     };
   </script>
+  <style>
+    /* Dark mode quick overrides for elements using utility classes */
+    /* Only override backgrounds for white cards — do not force text color here (avoid overriding children colors) */
+    .dark .bg-white { background-color: #111827 !important; }
+    .dark .bg-background { background-color: #0b1220 !important; }
+    .dark .text-muted-foreground { color: #9ca3af !important; }
+    .dark .text-gray-900 { color: #e5e7eb !important; }
+    .dark h1, .dark h2, .dark h3 { color: #ffffff !important; }
+    .dark .border-border { border-color: #374151 !important; }
+    .dark .bg-section-gradient { background-image: linear-gradient(to top, #0b0f13, #0b1220) !important; }
+    .dark .bg-hero-gradient { background-image: linear-gradient(135deg, #0f172a 0%, #0b1120 100%) !important; }
+  </style>
   <link rel="icon" href="/94432219.jpg" type="image/x-icon" />
   <style>
     html {
@@ -42,7 +55,13 @@
 
 <body class="bg-background text-gray-900 font-sans">
 
-  <header class="text-center py-20 bg-hero-gradient text-white">
+  <header class="relative text-center py-20 bg-hero-gradient text-white">
+    <button id="themeToggle" aria-label="Toggle theme" class="absolute left-4 top-4 inline-flex items-center justify-center p-2 rounded bg-white/10 hover:bg-white/20 transition">
+      <!-- initial icon replaced by JS -->
+      <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+      </svg>
+    </button>
     <h1 id="name" class="text-5xl font-bold mb-4"></h1>
     <p id="tagline" class="text-xl text-white/90 mb-4"></p>
     <nav class="flex justify-center gap-6 text-white/80">
@@ -55,7 +74,7 @@
     </nav>
   </header>
 
-  <main class="max-w-4xl mx-auto px-4">
+  <main class="w-full mx-auto px-4">
 
     <section id="about" class="mt-12 mb-16">
       <h2 class="text-3xl font-bold mb-6 text-center">About Me</h2>
@@ -73,7 +92,8 @@
   <h2 class="text-3xl font-bold mb-6 text-center">Featured Projects</h2>
   <div
     id="projects-container"
-    class="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory px-1 pb-4"
+    class="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pl-0 pr-4 md:pl-0 md:pr-[8vw] pb-4"
+    role="list"
   ></div>
 </section>
 
@@ -129,7 +149,7 @@
           </button>
 
           <h3 class="text-xl font-semibold mb-4">Send a Message</h3>
-          <form action="https://formspree.io/f/xzzgnjdy" method="POST" class="space-y-4">
+          <form id="contactForm" action="https://formspree.io/f/xzzgnjdy" method="POST" class="space-y-4">
             <input type="text" name="name" required placeholder="Your Name" class="w-full border rounded px-4 py-2" />
             <input type="email" name="_replyto" required placeholder="Your Email"
               class="w-full border rounded px-4 py-2" />
@@ -179,6 +199,37 @@
     }
     window.addEventListener("load", sendVisitData);
 
+    // Theme toggle (dark/light) - stores preference in localStorage and respects OS preference
+    (function setupThemeToggle() {
+      const sunSVG = '<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M7.05 16.95l-1.414 1.414M18.364 18.364l-1.414-1.414M7.05 7.05L5.636 5.636"/></svg>';
+      const moonSVG = '<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>';
+
+      const toggle = document.getElementById('themeToggle');
+      if (!toggle) return;
+
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const stored = localStorage.getItem('site-theme');
+      const initial = stored ? stored : (prefersDark ? 'dark' : 'light');
+
+      function applyTheme(t) {
+        if (t === 'dark') {
+          document.documentElement.classList.add('dark');
+          toggle.innerHTML = sunSVG;
+          localStorage.setItem('site-theme', 'dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+          toggle.innerHTML = moonSVG;
+          localStorage.setItem('site-theme', 'light');
+        }
+      }
+
+      applyTheme(initial);
+      toggle.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.contains('dark');
+        applyTheme(isDark ? 'light' : 'dark');
+      });
+    })();
+
     // Profile Data Fetch
    fetch("https://waruts1.github.io/data/profile.json")
       .then(res => res.json())
@@ -190,38 +241,89 @@
         const experienceDiv = document.getElementById("experience-container");
         data.experience.forEach(job => {
           const div = document.createElement("div");
-          div.className = "bg-white shadow-card hover:shadow-card-hover rounded-xl p-6";
-          div.innerHTML = `
-            <h3 class="text-xl font-semibold mb-2">${job.title}</h3>
-            <p class="text-primary font-medium mb-2">${job.company} | ${job.dates}</p>
-            <ul class="list-disc ml-5 text-muted-foreground">${(job.responsibilities || []).map(r => `<li>${r}</li>`).join("")}</ul>
-            ${job.achievements ? `<h4 class="mt-4 font-medium">Achievements</h4><ul class="list-disc ml-5 text-muted-foreground">${job.achievements.map(a => `<li>${a}</li>`).join("")}</ul>` : ""}
-            ${job.skills ? `<h4 class="mt-4 font-medium">Skills</h4><div class="flex flex-wrap gap-2 mt-2">${job.skills.map(s => '<span class="text-sm py-1 px-3 bg-primary/10 text-primary rounded'> + s + '</span>').join('')}</div>` : ""}
-          `;
+          div.className = "experience-card bg-white shadow-card hover:shadow-card-hover rounded-xl p-6";
+
+          // Title and company/dates
+          const title = document.createElement('h3');
+          title.className = 'text-xl font-semibold mb-2';
+          title.textContent = job.title || '';
+          div.appendChild(title);
+
+          const meta = document.createElement('p');
+          meta.className = 'text-primary font-medium mb-2';
+          const companyText = job.company ? job.company : '';
+          meta.textContent = companyText + (companyText ? ' | ' : '') + (job.dates || '');
+          div.appendChild(meta);
+
+          // Responsibilities
+          const respUl = document.createElement('ul');
+          respUl.className = 'list-disc ml-5 text-muted-foreground';
+          (job.responsibilities || []).forEach(r => {
+            const li = document.createElement('li');
+            li.textContent = r;
+            respUl.appendChild(li);
+          });
+          div.appendChild(respUl);
+
+          // Achievements (if any)
+          if (Array.isArray(job.achievements) && job.achievements.length) {
+            const achH4 = document.createElement('h4');
+            achH4.className = 'mt-4 font-medium';
+            achH4.textContent = 'Achievements';
+            div.appendChild(achH4);
+
+            const achUl = document.createElement('ul');
+            achUl.className = 'list-disc ml-5 text-muted-foreground';
+            job.achievements.forEach(a => {
+              const li = document.createElement('li');
+              li.textContent = a;
+              achUl.appendChild(li);
+            });
+            div.appendChild(achUl);
+          }
+
+          // Skills as badge spans (only if array)
+          if (Array.isArray(job.skills) && job.skills.length) {
+            const skillsH4 = document.createElement('h4');
+            skillsH4.className = 'mt-4 font-medium';
+            skillsH4.textContent = 'Skills';
+            div.appendChild(skillsH4);
+
+            const skillsContainer = document.createElement('div');
+            skillsContainer.className = 'flex flex-wrap gap-2 mt-2';
+            job.skills.forEach(s => {
+              const span = document.createElement('span');
+              span.className = 'text-sm py-1 px-3 bg-primary/10 text-primary rounded hover:bg-primary hover:text-primary-foreground transition-all duration-200';
+              span.textContent = s;
+              skillsContainer.appendChild(span);
+            });
+            div.appendChild(skillsContainer);
+          }
+
           experienceDiv.appendChild(div);
         });
 
        const projectsDiv = document.getElementById("projects-container");
 (data.projects || []).forEach(project => {
   const div = document.createElement("div");
-  div.className = "bg-white shadow-card hover:shadow-card-hover rounded-xl p-6 min-w-[300px] snap-start flex-shrink-0";
+  div.className = "project-card bg-white shadow-card hover:shadow-card-hover rounded-xl p-3 flex-shrink-0 w-full md:w-[62vw] max-w-[900px] snap-center";
 
   const techBadges = (project.tech || [])
     .map(
       tech =>
-        `<span class="inline-block bg-primary/10 text-primary text-xs px-2 py-1 rounded mr-2 mb-2">${tech}</span>`
+        `<span class="inline-block bg-primary/10 text-primary text-xs px-2 py-0.5 rounded mr-2 mb-2">${tech}</span>`
     )
     .join("");
 
   div.innerHTML = `
     <h3 class="text-xl font-semibold mb-2">${project.name}</h3>
-    <p class="text-muted-foreground mb-4">${project.description}</p>
-    <div class="flex flex-wrap mb-4">${techBadges}</div>
-    <div class="flex gap-2">
+    <p class="text-muted-foreground mb-3">${project.description}</p>
+    <div class="flex flex-wrap mb-3">${techBadges}</div>
+    <div class="flex gap-3">
  <a 
   href="${project.github || '#'}" 
   target="_blank" 
-  class="flex-1 inline-flex items-center justify-center border border-border px-3 py-2 rounded text-sm text-foreground bg-white transition-all duration-200 ease-in-out hover:bg-muted hover:scale-[1.02] hover:shadow-md"
+  class="flex-1 inline-flex items-center justify-center border border-border px-2 py-1 rounded text-sm text-foreground bg-white transition-all duration-200 ease-in-out hover:bg-muted hover:scale-[1.02] hover:shadow-md"
 >
   <svg class="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
     <path d="M12 .5C5.5.5 0 6 0 12.3c0 5.2 3.4 9.6 8.2 11.2.6.1.8-.2.8-.5v-2c-3.3.7-4-1.5-4-1.5-.5-1.3-1.1-1.6-1.1-1.6-.9-.7.1-.7.1-.7 1 .1 1.5 1.1 1.5 1.1.9 1.5 2.4 1.1 3 .8.1-.6.4-1.1.7-1.4-2.6-.3-5.2-1.4-5.2-6.1 0-1.3.4-2.4 1.1-3.3-.1-.3-.5-1.6.1-3.3 0 0 .9-.3 3.4 1.2a11.6 11.6 0 0 1 6.3 0c2.5-1.5 3.4-1.2 3.4-1.2.6 1.7.2 3 .1 3.3.7.9 1.1 2 1.1 3.3 0 4.8-2.7 5.8-5.2 6.1.4.4.8 1 .8 2v3c0 .3.2.6.8.5A12 12 0 0 0 24 12.3C24 6 18.5.5 12 .5z"/>
@@ -229,9 +331,9 @@
   Code
 </a>
 
-      <a href="${project.url}" target="_blank" class="flex-1 inline-flex items-center justify-center bg-primary text-white px-3 py-2 rounded text-sm hover:bg-primary/90">
+      <a href="${project.url}" target="_blank" class="flex-1 inline-flex items-center justify-center bg-primary text-white px-2 py-1 rounded text-sm hover:bg-primary/90">
         <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 3h7v7m-1.5-5.5L10 17m-4 0h5v5"/></svg>
-        Demo
+        Visit
       </a>
     </div>
   `;
@@ -253,8 +355,8 @@ const eduDiv = document.getElementById("education-container");
 eduDiv.innerHTML = ""; // clear existing content first
 
 (data.education || []).forEach((edu) => {
-  const div = document.createElement("div");
-  div.className = "flex items-start gap-4 mb-4";
+  const div = document.createElement('div');
+  div.className = 'flex items-start gap-4 mb-4';
 
   div.innerHTML = `
     <div class="mt-2">
@@ -271,8 +373,102 @@ eduDiv.innerHTML = ""; // clear existing content first
 
   eduDiv.appendChild(div);
 
+});
 
+      // Reveal-on-scroll helper
+      function setupRevealOnScroll(selector = '.reveal-on-scroll', delayStep = 80) {
+        const els = document.querySelectorAll(selector);
+        if (!els.length) return;
+
+        // Respect user preference for reduced motion
+        const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (!('IntersectionObserver' in window) || reduce) {
+          // Reveal immediately without animation
+          els.forEach(el => {
+            el.classList.remove('opacity-0', 'translate-y-6', 'scale-95');
+            el.classList.add('opacity-100', 'translate-y-0', 'scale-100');
+          });
+          return;
+        }
+
+        const io = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const el = entry.target;
+              // remove hidden state and add visible transitions
+              el.classList.remove('opacity-0', 'translate-y-6', 'scale-95');
+              el.classList.add('opacity-100', 'translate-y-0', 'scale-100', 'transition-all', 'duration-700', 'ease-out');
+              // cleanup transitionDelay after animation
+              setTimeout(() => { el.style.transitionDelay = ''; }, 1000 + (parseInt(el.dataset.revealDelay || '0')));
+              observer.unobserve(el);
+            }
+          });
+        }, { threshold: 0.12 });
+
+        els.forEach((el, i) => {
+          // set initial hidden + slight scale for a nicer entrance
+          el.classList.add('opacity-0', 'translate-y-6', 'scale-95');
+          const delay = i * delayStep; // ms
+          el.dataset.revealDelay = String(delay);
+          el.style.transitionDelay = `${delay}ms`;
+          io.observe(el);
         });
+      }
+
+      // Initialize reveal for experience and project cards
+      setupRevealOnScroll('.experience-card');
+      setupRevealOnScroll('.project-card');
+    
+      // Modal open/close behaviour
+      const openModalBtn = document.getElementById('openModal');
+      const closeModalBtn = document.getElementById('closeModal');
+      const contactModal = document.getElementById('contactModal');
+      openModalBtn?.addEventListener('click', () => {
+        contactModal.classList.remove('hidden');
+        contactModal.classList.add('flex');
+      });
+      closeModalBtn?.addEventListener('click', () => {
+        contactModal.classList.add('hidden');
+        contactModal.classList.remove('flex');
+      });
+      // close when clicking backdrop
+      contactModal?.addEventListener('click', (e) => {
+        if (e.target === contactModal) {
+          contactModal.classList.add('hidden');
+          contactModal.classList.remove('flex');
+        }
+      });
+
+      // Contact form submit via fetch to Formspree (keeps user on page)
+      const contactForm = document.getElementById('contactForm');
+      contactForm?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const form = e.currentTarget;
+        const formData = new FormData(form);
+        const payload = Object.fromEntries(formData);
+        try {
+          const res = await fetch(form.action, {
+            method: form.method || 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          if (res.ok) {
+            // success - close modal and show a toast/alert
+            contactModal.classList.add('hidden');
+            contactModal.classList.remove('flex');
+            alert('Message sent — I will get back to you shortly. Thank you!');
+            form.reset();
+          } else {
+            const data = await res.json().catch(() => ({}));
+            alert('There was an error sending your message. Please try again later.');
+            console.error('Contact form error', res.status, data);
+          }
+        } catch (err) {
+          console.error('Contact submit failed', err);
+          alert('Network error — please check your connection and try again.');
+        }
+      });
         document.getElementById("email-link").textContent = data.contact.email;
         document.getElementById("email-link").href = `mailto:${data.contact.email}`;
         document.getElementById("linkedin-link").textContent = data.contact.linkedin;

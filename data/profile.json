@@ -48,6 +48,14 @@
             "Node.js"
          ]
       },
+            {
+         "name":"Digital Forensics Chain of Custody System",
+         "description":"Diseertation study for Preservation of Digital Evidence.",
+         "url":"https://opac.library.strathmore.edu/bib/314908",
+         "tech":[
+            "Laravel"
+         ]
+      },
       {
          "name":"Cafe Payment and Customer Management System",
          "description":"Funds Analysis and Customer Details Management System for Cafe.",
