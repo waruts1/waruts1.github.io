@@ -369,16 +369,7 @@
   }
 });
 
-// Debug: report counts
-try {
-  const projectsDebug = document.getElementById('projects-debug');
-  const total = (data.projects || []).length;
-  const rendered = projectsDiv.children.length;
-  console.log('Projects: total=', total, 'rendered=', rendered);
-  if (projectsDebug) projectsDebug.textContent = `Showing ${rendered} of ${total} projects`;
-} catch (e) {
-  console.debug('projects debug update failed', e);
-}
+// (debug logging removed)
 
 
 

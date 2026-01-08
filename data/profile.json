@@ -88,6 +88,15 @@
             "Telegram"
          ]
       },
+             {
+         "name":"OTP Verification Service",
+         "description":"Reusable OTP Verification Service for User Authentication",
+         "url":"https://business.safaricom.co.ke/track-order",
+         "tech":[
+            "Springboot",
+            "Microservices"
+         ]
+      },
          {
          "name":"Jiji Vehicle Dataset",
          "description":"An analysis of Vehicles Based on Price, Make , Model and Year of Manufacture",
