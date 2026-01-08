@@ -85,11 +85,27 @@
 
     <section id="experience" class="mb-16 scroll-mt-20">
       <h2 class="text-3xl font-bold mb-6 text-center">Experience</h2>
+      <div class="mb-4 flex justify-center">
+        <label for="profileFilter" class="sr-only">Filter profile</label>
+        <select id="profileFilter" class="border rounded px-3 py-2 bg-white text-gray-900 dark:bg-slate-800 dark:text-gray-100 border-border dark:border-slate-600 focus:outline-none focus:ring-2 focus:ring-primary/30">
+          <option value="all">Show: All</option>
+          <option value="cyber">Show: Cyber</option>
+          <option value="software">Show: Software</option>
+        </select>
+      </div>
       <div id="experience-container" class="space-y-6"></div>
     </section>
 
 <section id="projects" class="mb-16 scroll-mt-20">
   <h2 class="text-3xl font-bold mb-6 text-center">Featured Projects</h2>
+  <div class="mb-4 flex justify-center">
+    <label for="projectFilter" class="sr-only">Filter projects</label>
+    <select id="projectFilter" class="border rounded px-3 py-2 bg-white text-gray-900 dark:bg-slate-800 dark:text-gray-100 border-border dark:border-slate-600 focus:outline-none focus:ring-2 focus:ring-primary/30">
+      <option value="all">Show: All</option>
+      <option value="cyber">Show: Cyber</option>
+      <option value="software">Show: Software</option>
+    </select>
+  </div>
   <div
     id="projects-container"
     class="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pl-0 pr-4 md:pl-0 md:pr-[8vw] pb-4"
@@ -238,136 +254,188 @@
         document.getElementById("tagline").textContent = data.tagline;
         document.getElementById("about-text").textContent = data.about;
 
+        // Experience rendering with profile filter support.
         const experienceDiv = document.getElementById("experience-container");
-        data.experience.forEach(job => {
-          const div = document.createElement("div");
-          div.className = "experience-card bg-white shadow-card hover:shadow-card-hover rounded-xl p-6";
 
-          // Title and company/dates
-          const title = document.createElement('h3');
-          title.className = 'text-xl font-semibold mb-2';
-          title.textContent = job.title || '';
-          div.appendChild(title);
+        // Simple keyword list to detect 'cyber' related roles from job.skills
+        const cyberKeywords = [
+          'security', 'cyber', 'infosec', 'information security', 'penetration', 'forensic', 'incident', 'threat', 'siem', 'SOC', 'vulnerability', 'compliance'
+        ];
+        // Keywords for software-related skills (moved out so skills rendering can reuse)
+        const softwareKeywords = ['developer', 'engineer', 'development', 'full stack', 'frontend', 'backend', 'javascript', 'python', 'java', 'react', 'node', 'api', 'ci/cd', 'ci', 'cd'];
 
-          const meta = document.createElement('p');
-          meta.className = 'text-primary font-medium mb-2';
-          const companyText = job.company ? job.company : '';
-          meta.textContent = companyText + (companyText ? ' | ' : '') + (job.dates || '');
-          div.appendChild(meta);
-
-          // Responsibilities
-          const respUl = document.createElement('ul');
-          respUl.className = 'list-disc ml-5 text-muted-foreground';
-          (job.responsibilities || []).forEach(r => {
-            const li = document.createElement('li');
-            li.textContent = r;
-            respUl.appendChild(li);
+        function isCyber(job) {
+          if (!job || !Array.isArray(job.skills)) return false;
+          return job.skills.some(s => {
+            if (!s) return false;
+            const token = String(s).toLowerCase();
+            return cyberKeywords.some(k => token.includes(k));
           });
-          div.appendChild(respUl);
+        }
 
-          // Achievements (if any)
-          if (Array.isArray(job.achievements) && job.achievements.length) {
-            const achH4 = document.createElement('h4');
-            achH4.className = 'mt-4 font-medium';
-            achH4.textContent = 'Achievements';
-            div.appendChild(achH4);
+        function isSoftware(job) {
+          if (!job || !Array.isArray(job.skills)) return false;
+          return job.skills.some(s => {
+            if (!s) return false;
+            const token = String(s).toLowerCase();
+            return softwareKeywords.some(k => token.includes(k));
+          });
+        }
 
-            const achUl = document.createElement('ul');
-            achUl.className = 'list-disc ml-5 text-muted-foreground';
-            job.achievements.forEach(a => {
+        function renderExperiences(filter = 'all') {
+          experienceDiv.innerHTML = '';
+          const toRender = (data.experience || []).filter(job => {
+            if (filter === 'all') return true;
+            if (filter === 'cyber') return isCyber(job);
+            if (filter === 'software') return isSoftware(job) && !isCyber(job);
+            return true;
+          });
+
+          toRender.forEach(job => {
+            const div = document.createElement("div");
+            div.className = "experience-card bg-white shadow-card hover:shadow-card-hover rounded-xl p-6";
+
+            // Title and company/dates
+            const title = document.createElement('h3');
+            title.className = 'text-xl font-semibold mb-2';
+            title.textContent = job.title || '';
+            div.appendChild(title);
+
+            const meta = document.createElement('p');
+            meta.className = 'text-primary font-medium mb-2';
+            const companyText = job.company ? job.company : '';
+            meta.textContent = companyText + (companyText ? ' | ' : '') + (job.dates || '');
+            div.appendChild(meta);
+
+            // Responsibilities
+            const respUl = document.createElement('ul');
+            respUl.className = 'list-disc ml-5 text-muted-foreground';
+            (job.responsibilities || []).forEach(r => {
               const li = document.createElement('li');
-              li.textContent = a;
-              achUl.appendChild(li);
+              li.textContent = r;
+              respUl.appendChild(li);
             });
-            div.appendChild(achUl);
-          }
+            div.appendChild(respUl);
 
-          // Skills as badge spans (only if array)
-          if (Array.isArray(job.skills) && job.skills.length) {
-            const skillsH4 = document.createElement('h4');
-            skillsH4.className = 'mt-4 font-medium';
-            skillsH4.textContent = 'Skills';
-            div.appendChild(skillsH4);
+            // Achievements (if any)
+            if (Array.isArray(job.achievements) && job.achievements.length) {
+              const achH4 = document.createElement('h4');
+              achH4.className = 'mt-4 font-medium';
+              achH4.textContent = 'Achievements';
+              div.appendChild(achH4);
 
-            const skillsContainer = document.createElement('div');
-            skillsContainer.className = 'flex flex-wrap gap-2 mt-2';
-            job.skills.forEach(s => {
-              const span = document.createElement('span');
-              span.className = 'text-sm py-1 px-3 bg-primary/10 text-primary rounded hover:bg-primary hover:text-primary-foreground transition-all duration-200';
-              span.textContent = s;
-              skillsContainer.appendChild(span);
-            });
-            div.appendChild(skillsContainer);
-          }
+              const achUl = document.createElement('ul');
+              achUl.className = 'list-disc ml-5 text-muted-foreground';
+              job.achievements.forEach(a => {
+                const li = document.createElement('li');
+                li.textContent = a;
+                achUl.appendChild(li);
+              });
+              div.appendChild(achUl);
+            }
 
-          experienceDiv.appendChild(div);
+            // Skills as badge spans (only if array)
+            if (Array.isArray(job.skills) && job.skills.length) {
+              const skillsH4 = document.createElement('h4');
+              skillsH4.className = 'mt-4 font-medium';
+              skillsH4.textContent = 'Skills';
+              div.appendChild(skillsH4);
+
+              const skillsContainer = document.createElement('div');
+              skillsContainer.className = 'flex flex-wrap gap-2 mt-2';
+              job.skills.forEach(s => {
+                const span = document.createElement('span');
+                span.className = 'text-sm py-1 px-3 bg-primary/10 text-primary rounded hover:bg-primary hover:text-primary-foreground transition-all duration-200';
+                span.textContent = s;
+                skillsContainer.appendChild(span);
+              });
+              div.appendChild(skillsContainer);
+            }
+
+            experienceDiv.appendChild(div);
+          });
+
+          // Re-initialize reveal-on-scroll for newly added items
+          setupRevealOnScroll('.experience-card');
+        }
+
+        // initial render
+        const profileSelect = document.getElementById('profileFilter');
+        profileSelect?.addEventListener('change', (e) => {
+          renderExperiences(e.target.value);
+          renderSkills(e.target.value);
         });
+        // render default (respect any pre-selected value)
+        const initialProfile = profileSelect?.value || 'all';
+        renderExperiences(initialProfile);
 
-       const projectsDiv = document.getElementById("projects-container");
-(data.projects || []).forEach((project, idx) => {
-  try {
-    const div = document.createElement("div");
-    // base classes; if a screenshot is provided we'll add bg-cover/bg-center and an overlay
-    div.className = "project-card bg-white shadow-card hover:shadow-card-hover rounded-xl p-3 flex-shrink-0 w-full md:w-[62vw] max-w-[900px] snap-center relative overflow-hidden";
+        const projectsDiv = document.getElementById("projects-container");
 
-    const techBadges = (project.tech || [])
-      .map(
-        tech =>
-          `<span class="inline-block bg-primary/10 text-primary text-xs px-2 py-0.5 rounded mr-2 mb-2">${tech}</span>`
-      )
-      .join("");
-    // If a screenshot image is provided in the data, use it as a card background
-    if (project.screenshot) {
-      // set background image and add a subtle dark overlay for legibility
-      div.style.backgroundImage = `url(${project.screenshot})`;
-      div.style.backgroundSize = 'cover';
-      div.style.backgroundPosition = 'center';
-      // add gradient overlay element
-      const overlay = document.createElement('div');
-      overlay.className = 'absolute inset-0 bg-gradient-to-t from-black/60 to-black/10 pointer-events-none';
-      overlay.setAttribute('aria-hidden', 'true');
-      div.appendChild(overlay);
-    }
+        function renderProjects(filter = 'all') {
+          projectsDiv.innerHTML = '';
+          const list = (data.projects || []).filter(p => {
+            if (filter === 'all') return true;
+            return String((p.category || 'software')).toLowerCase() === String(filter).toLowerCase();
+          });
 
-    // Main content sits above the background/overlay
-    const githubBtn = project.github ? `
-      <a 
-       href="${project.github}" 
-       target="_blank" 
-       rel="noopener noreferrer"
-       class="flex-1 inline-flex items-center justify-center border border-border px-2 py-1 rounded text-sm ${project.screenshot ? 'bg-white/90 text-foreground' : 'text-foreground bg-white'} transition-all duration-200 ease-in-out hover:bg-muted hover:scale-[1.02] hover:shadow-md"
-     >
-       <svg class="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-         <path d="M12 .5C5.5.5 0 6 0 12.3c0 5.2 3.4 9.6 8.2 11.2.6.1.8-.2.8-.5v-2c-3.3.7-4-1.5-4-1.5-.5-1.3-1.1-1.6-1.1-1.6-.9-.7.1-.7.1-.7 1 .1 1.5 1.1 1.5 1.1.9 1.5 2.4 1.1 3 .8.1-.6.4-1.1.7-1.4-2.6-.3-5.2-1.4-5.2-6.1 0-1.3.4-2.4 1.1-3.3-.1-.3-.5-1.6.1-3.3 0 0 .9-.3 3.4 1.2a11.6 11.6 0 0 1 6.3 0c2.5-1.5 3.4-1.2 3.4-1.2.6 1.7.2 3 .1 3.3.7.9 1.1 2 1.1 3.3 0 4.8-2.7 5.8-5.2 6.1.4.4.8 1 .8 2v3c0 .3.2.6.8.5A12 12 0 0 0 24 12.3C24 6 18.5.5 12 .5z"/>
-       </svg>
-       Code
-     </a>
-    ` : '';
+          list.forEach((project, idx) => {
+            try {
+              const div = document.createElement("div");
+              div.className = "project-card bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/10 dark:border-slate-700/20 shadow-card hover:shadow-card-hover rounded-xl p-3 flex-shrink-0 w-full md:w-[62vw] max-w-[900px] snap-center relative overflow-hidden transition-transform duration-300 motion-safe:transform-gpu hover:-translate-y-2 hover:scale-[1.02] motion-reduce:transition-none focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2";
 
-    const visitBtn = project.url ? `
-      <a href="${project.url}" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center ${project.screenshot ? 'bg-primary/90 text-white' : 'bg-primary text-white'} px-2 py-1 rounded text-sm hover:bg-primary/90">
-        <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 3h7v7m-1.5-5.5L10 17m-4 0h5v5"/></svg>
-        Visit
-      </a>
-    ` : '';
+              const techBadges = (project.tech || [])
+                .map(
+                  tech => `<span class="inline-block bg-primary/10 text-primary text-xs px-2 py-0.5 rounded mr-2 mb-2">${tech}</span>`
+                )
+                .join("");
 
-    div.innerHTML += `
-      <div class="relative z-10">
-        <h3 class="text-xl font-semibold mb-2 ${project.screenshot ? 'text-white' : ''}">${project.name || 'Untitled Project'}</h3>
-        <p class="${project.screenshot ? 'text-white/90' : 'text-muted-foreground'} mb-3">${project.description || ''}</p>
-        <div class="flex flex-wrap mb-3">${techBadges}</div>
-        <div class="flex gap-3">
-          ${githubBtn}
-          ${visitBtn}
-        </div>
-      </div>
-    `;
+              if (project.screenshot) {
+                div.style.backgroundImage = `url(${project.screenshot})`;
+                div.style.backgroundSize = 'cover';
+                div.style.backgroundPosition = 'center';
+                const overlay = document.createElement('div');
+                overlay.className = 'absolute inset-0 bg-gradient-to-t from-black/60 to-black/12 pointer-events-none';
+                overlay.setAttribute('aria-hidden', 'true');
+                div.appendChild(overlay);
+              }
 
-    projectsDiv.appendChild(div);
-  } catch (err) {
-    console.error('Project render failed at index', idx, project, err);
-  }
-});
+              const githubBtn = project.github ? `
+                <a href="${project.github}" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center border border-border px-2 py-1 rounded text-sm ${project.screenshot ? 'bg-white/90 text-foreground' : 'text-foreground bg-white'} transition-all duration-200 ease-in-out hover:bg-muted hover:scale-[1.02] hover:shadow-md">
+                  <svg class="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.5.5 0 6 0 12.3c0 5.2 3.4 9.6 8.2 11.2.6.1.8-.2.8-.5v-2c-3.3.7-4-1.5-4-1.5-.5-1.3-1.1-1.6-1.1-1.6-.9-.7.1-.7.1-.7 1 .1 1.5 1.1 1.5 1.1.9 1.5 2.4 1.1 3 .8.1-.6.4-1.1.7-1.4-2.6-.3-5.2-1.4-5.2-6.1 0-1.3.4-2.4 1.1-3.3-.1-.3-.5-1.6.1-3.3 0 0 .9-.3 3.4 1.2a11.6 11.6 0 0 1 6.3 0c2.5-1.5 3.4-1.2 3.4-1.2.6 1.7.2 3 .1 3.3.7.9 1.1 2 1.1 3.3 0 4.8-2.7 5.8-5.2 6.1.4.4.8 1 .8 2v3c0 .3.2.6.8.5A12 12 0 0 0 24 12.3C24 6 18.5.5 12 .5z"/></svg>
+                  Code
+                </a>
+              ` : '';
+
+              const visitBtn = project.url ? `
+                <a href="${project.url}" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center ${project.screenshot ? 'bg-primary/90 text-white' : 'bg-primary text-white'} px-2 py-1 rounded text-sm hover:bg-primary/90">
+                  <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 3h7v7m-1.5-5.5L10 17m-4 0h5v5"/></svg>
+                  Visit
+                </a>
+              ` : '';
+
+              div.innerHTML += `
+                <div class="relative z-10">
+                  <h3 class="text-xl font-semibold mb-2 ${project.screenshot ? 'text-white' : ''}">${project.name || 'Untitled Project'}</h3>
+                  <p class="${project.screenshot ? 'text-white/90' : 'text-muted-foreground'} mb-3">${project.description || ''}</p>
+                  <div class="flex flex-wrap mb-3">${techBadges}</div>
+                  <div class="flex gap-3">${githubBtn}${visitBtn}</div>
+                </div>
+              `;
+
+              projectsDiv.appendChild(div);
+            } catch (err) {
+              console.error('Project render failed at index', idx, project, err);
+            }
+          });
+
+          // re-init reveal for new project cards
+          setupRevealOnScroll('.project-card');
+        }
+
+        // wire filter
+        const projectSelect = document.getElementById('projectFilter');
+        projectSelect?.addEventListener('change', (e) => renderProjects(e.target.value));
+        renderProjects(projectSelect?.value || 'all');
 
 // (debug logging removed)
 
