@@ -1,136 +1,264 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Collins Warutumo</title>
+  <title>Collins Warutumo | Cybersecurity Engineer &amp; Full Stack Developer</title>
+  <meta name="description"
+    content="Portfolio of Collins Warutumo, a cybersecurity engineer and full stack developer focused on secure systems, audits, automation, and product delivery." />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@500;700&amp;display=swap"
+    rel="stylesheet" />
 
-  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/heroicons@2.0.16/dist/24/outline/heroicons.min.js" defer></script>
-
   <script>
     tailwind.config = {
-      darkMode: 'class',
+      darkMode: "class",
       theme: {
         extend: {
           colors: {
-            background: "#f9fafb",
-            border: "#e5e7eb",
-            primary: "#2563eb",
+            background: "#f7efe5",
+            border: "#d7d4cf",
+            primary: "#0f766e",
             "primary-foreground": "#ffffff",
-            "muted-foreground": "#6b7280"
+            "muted-foreground": "#5b6473",
+            accent: "#ea580c"
           },
           boxShadow: {
-            card: "0 2px 8px rgba(0,0,0,0.08)",
-            "card-hover": "0 4px 16px rgba(0,0,0,0.12)",
+            card: "0 18px 48px rgba(15, 23, 42, 0.10)",
+            "card-hover": "0 24px 56px rgba(15, 23, 42, 0.16)"
+          },
+          fontFamily: {
+            sans: ['"Manrope"', "sans-serif"],
+            display: ['"Space Grotesk"', "sans-serif"]
           },
           backgroundImage: {
-            'hero-gradient': 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
-            'section-gradient': 'linear-gradient(to top, #f3f4f6, #ffffff)',
+            "hero-gradient": "linear-gradient(135deg, #0f172a 0%, #0f766e 55%, #1d4ed8 100%)",
+            "section-gradient": "linear-gradient(180deg, rgba(255,255,255,0.82), rgba(255,255,255,0.62))"
           }
         }
       }
     };
   </script>
+  <link rel="icon" href="./94432219.jpg" type="image/jpeg" />
   <style>
-    /* Dark mode quick overrides for elements using utility classes */
-    /* Only override backgrounds for white cards — do not force text color here (avoid overriding children colors) */
-    .dark .bg-white { background-color: #111827 !important; }
-    .dark .bg-background { background-color: #0b1220 !important; }
-    .dark .text-muted-foreground { color: #9ca3af !important; }
-    .dark .text-gray-900 { color: #e5e7eb !important; }
-    .dark h1, .dark h2, .dark h3 { color: #ffffff !important; }
-    .dark .border-border { border-color: #374151 !important; }
-    .dark .bg-section-gradient { background-image: linear-gradient(to top, #0b0f13, #0b1220) !important; }
-    .dark .bg-hero-gradient { background-image: linear-gradient(135deg, #0f172a 0%, #0b1120 100%) !important; }
-  </style>
-  <link rel="icon" href="/94432219.jpg" type="image/x-icon" />
-  <style>
-    html {
-      scroll-behavior: smooth;
+    html { scroll-behavior: smooth; }
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(15, 118, 110, 0.14), transparent 28%),
+        radial-gradient(circle at top right, rgba(234, 88, 12, 0.12), transparent 24%),
+        linear-gradient(180deg, #fffdf9 0%, #f7efe5 48%, #f5f3ef 100%);
     }
+    .glass-panel {
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(18px);
+    }
+    .surface-card {
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.78));
+      backdrop-filter: blur(16px);
+    }
+    .section-kicker {
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #0f766e;
+    }
+    .focus-chip {
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 0.5rem 0.85rem;
+    }
+    .stat-card {
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(16px);
+    }
+    .filter-pill {
+      appearance: none;
+      border-radius: 999px;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      background: rgba(255, 255, 255, 0.88);
+      color: #0f172a;
+      font-weight: 700;
+      padding: 0.8rem 1rem;
+    }
+    .metric-card {
+      border-top: 1px solid rgba(15, 23, 42, 0.08);
+      padding-top: 1rem;
+    }
+    .metric-card:first-child { border-top: 0; padding-top: 0; }
+    .dark body {
+      background:
+        radial-gradient(circle at top left, rgba(45, 212, 191, 0.10), transparent 28%),
+        radial-gradient(circle at top right, rgba(251, 146, 60, 0.10), transparent 22%),
+        linear-gradient(180deg, #07111f 0%, #0b1728 48%, #091320 100%);
+    }
+    .dark .bg-white { background-color: #0f172a !important; }
+    .dark .surface-card { background: linear-gradient(180deg, rgba(15, 23, 42, 0.90), rgba(15, 23, 42, 0.82)); border-color: rgba(148, 163, 184, 0.16); }
+    .dark .text-muted-foreground { color: #94a3b8 !important; }
+    .dark .text-gray-900, .dark h1, .dark h2, .dark h3, .dark h4 { color: #f8fafc !important; }
+    .dark .border-border { border-color: rgba(148, 163, 184, 0.18) !important; }
+    .dark .bg-section-gradient { background-image: linear-gradient(180deg, rgba(15,23,42,0.88), rgba(15,23,42,0.74)) !important; }
+    .dark .bg-hero-gradient { background-image: linear-gradient(135deg, #020617 0%, #0f172a 45%, #115e59 100%) !important; }
+    .dark .filter-pill { background: rgba(15, 23, 42, 0.88); color: #f8fafc; border-color: rgba(148, 163, 184, 0.18); }
+    .dark .focus-chip, .dark .stat-card { background: rgba(15, 23, 42, 0.26); border-color: rgba(148, 163, 184, 0.18); }
   </style>
 </head>
 
-<body class="bg-background text-gray-900 font-sans">
+<body class="bg-background text-gray-900 font-sans antialiased">
 
-  <header class="relative text-center py-20 bg-hero-gradient text-white">
-    <button id="themeToggle" aria-label="Toggle theme" class="absolute left-4 top-4 inline-flex items-center justify-center p-2 rounded bg-white/10 hover:bg-white/20 transition">
-      <!-- initial icon replaced by JS -->
-      <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
-      </svg>
-    </button>
-    <h1 id="name" class="text-5xl font-bold mb-4"></h1>
-    <p id="tagline" class="text-xl text-white/90 mb-4"></p>
-    <nav class="flex justify-center gap-6 text-white/80">
-      <a href="#about" class="hover:text-white transition">About</a>
-      <a href="#experience" class="hover:text-white transition">Experience</a>
-      <a href="#projects" class="hover:text-white transition">Projects</a>
-      <a href="#skills" class="hover:text-white transition">Skills</a>
-      <a href="#education" class="hover:text-white transition">Education</a>
-      <a href="#contact" class="hover:text-white transition">Contact</a>
-    </nav>
+  <header id="top" class="relative overflow-hidden bg-hero-gradient text-white">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.14),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.12),transparent_18%)]"></div>
+    <div class="relative mx-auto max-w-6xl px-4 py-8">
+      <div class="glass-panel mb-12 flex items-center justify-between rounded-full px-4 py-3">
+        <a href="#top" class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/15 font-display text-sm font-bold tracking-[0.2em] text-white">CW</a>
+        <nav class="hidden items-center gap-5 text-sm font-semibold text-white/80 md:flex">
+          <a href="#about" class="hover:text-white transition">About</a>
+          <a href="#experience" class="hover:text-white transition">Experience</a>
+          <a href="#projects" class="hover:text-white transition">Projects</a>
+          <a href="#skills" class="hover:text-white transition">Skills</a>
+          <a href="#credentials" class="hover:text-white transition">Credentials</a>
+          <a href="#contact" class="hover:text-white transition">Contact</a>
+        </nav>
+        <button id="themeToggle" aria-label="Toggle theme" class="inline-flex items-center justify-center rounded-full bg-white/10 p-3 hover:bg-white/20 transition">
+          <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="grid gap-10 pb-16 lg:grid-cols-[1.2fr,0.8fr] lg:items-center">
+        <div>
+          <p class="section-kicker text-white/80">Portfolio • Security • Engineering</p>
+          <h1 id="name" class="mt-4 font-display text-5xl font-bold tracking-tight sm:text-6xl"></h1>
+          <p id="tagline" class="mt-4 max-w-2xl text-xl text-white/90 sm:text-2xl"></p>
+          <p id="hero-summary" class="mt-5 max-w-2xl text-base leading-8 text-white/80"></p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#projects" class="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-bold text-slate-950 hover:bg-slate-100 transition">View Projects</a>
+            <a href="#contact" class="inline-flex items-center justify-center rounded-full border border-white/25 px-6 py-3 text-sm font-bold text-white hover:bg-white/10 transition">Let's Talk</a>
+          </div>
+          <div id="hero-stats" class="mt-10 grid gap-4 sm:grid-cols-3"></div>
+        </div>
+
+        <div class="glass-panel rounded-[2rem] p-6 shadow-card">
+          <div class="flex items-center gap-4">
+            <img src="./94432219.jpg" alt="Portrait of Collins Warutumo" class="h-20 w-20 rounded-2xl object-cover ring-4 ring-white/20" />
+            <div>
+              <p class="section-kicker text-white/70">Based in</p>
+              <p id="location" class="mt-2 text-2xl font-display font-semibold"></p>
+              <p class="mt-2 text-sm leading-6 text-white/75">Building secure systems, practical audits, and delivery-focused engineering.</p>
+            </div>
+          </div>
+          <div class="mt-8">
+            <p id="focus-label" class="section-kicker text-white/70">Primary focus</p>
+            <div id="focus-areas" class="mt-3 flex flex-wrap gap-2"></div>
+          </div>
+          <div class="mt-8">
+            <p id="credentials-label" class="section-kicker text-white/70">Credentials</p>
+            <div id="hero-certifications" class="mt-3 space-y-3 text-sm text-white/85"></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <main class="w-full mx-auto px-4">
+  <main id="main-content" class="mx-auto w-full max-w-6xl px-4 py-12">
 
-    <section id="about" class="mt-12 mb-16">
-      <h2 class="text-3xl font-bold mb-6 text-center">About Me</h2>
-      <div class="bg-white shadow-card hover:shadow-card-hover rounded-xl p-6 transition-all">
-        <p id="about-text" class="text-muted-foreground leading-relaxed"></p>
+    <section id="about" class="mb-16 grid gap-6 lg:grid-cols-[1.1fr,0.9fr]">
+      <div class="surface-card rounded-[1.75rem] p-6 shadow-card hover:shadow-card-hover transition-all">
+        <p class="section-kicker">About</p>
+        <h2 class="mt-4 font-display text-4xl font-bold tracking-tight">A portfolio shaped by cybersecurity, audits, and product delivery</h2>
+        <p id="about-text" class="mt-5 text-lg leading-8 text-muted-foreground"></p>
+      </div>
+      <div class="surface-card rounded-[1.75rem] p-6 shadow-card hover:shadow-card-hover transition-all">
+        <p class="section-kicker">Why Teams Call Me In</p>
+        <div id="value-points" class="mt-5 space-y-4"></div>
       </div>
     </section>
 
     <section id="experience" class="mb-16 scroll-mt-20">
-      <h2 class="text-3xl font-bold mb-6 text-center">Experience</h2>
+      <div class="mb-6 text-center">
+        <p class="section-kicker">Experience</p>
+        <h2 class="mt-3 font-display text-4xl font-bold tracking-tight">Roles across cybersecurity, automation, and engineering</h2>
+        <p class="mt-3 text-muted-foreground">Use the filter to switch between the security and engineering sides of the portfolio.</p>
+      </div>
       <div class="mb-4 flex justify-center">
         <label for="profileFilter" class="sr-only">Filter profile</label>
-        <select id="profileFilter" class="border rounded px-3 py-2 bg-white text-gray-900 dark:bg-slate-800 dark:text-gray-100 border-border dark:border-slate-600 focus:outline-none focus:ring-2 focus:ring-primary/30">
-          <option value="all">Show: All</option>
-          <option value="cyber">Show: Cyber</option>
-          <option value="software">Show: Software</option>
+        <select id="profileFilter" class="filter-pill focus:outline-none focus:ring-2 focus:ring-primary/30">
+          <option value="all">Focus: All</option>
+          <option value="cyber">Focus: Cyber</option>
+          <option value="software">Focus: Software</option>
         </select>
       </div>
       <div id="experience-container" class="space-y-6"></div>
     </section>
 
 <section id="projects" class="mb-16 scroll-mt-20">
-  <h2 class="text-3xl font-bold mb-6 text-center">Featured Projects</h2>
+  <div class="mb-6 text-center">
+    <p class="section-kicker">Projects</p>
+    <h2 class="mt-3 font-display text-4xl font-bold tracking-tight">Selected work across product delivery and cybersecurity</h2>
+    <p class="mt-3 text-muted-foreground">The project section now uses a tighter grid so visitors can compare work faster.</p>
+  </div>
   <div class="mb-4 flex justify-center">
     <label for="projectFilter" class="sr-only">Filter projects</label>
-    <select id="projectFilter" class="border rounded px-3 py-2 bg-white text-gray-900 dark:bg-slate-800 dark:text-gray-100 border-border dark:border-slate-600 focus:outline-none focus:ring-2 focus:ring-primary/30">
-      <option value="all">Show: All</option>
-      <option value="cyber">Show: Cyber</option>
-      <option value="software">Show: Software</option>
+    <select id="projectFilter" class="filter-pill focus:outline-none focus:ring-2 focus:ring-primary/30">
+      <option value="all">Focus: All</option>
+      <option value="cyber">Focus: Cyber</option>
+      <option value="software">Focus: Software</option>
     </select>
   </div>
   <div
     id="projects-container"
-    class="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pl-0 pr-4 md:pl-0 md:pr-[8vw] pb-4"
+    class="grid gap-6 md:grid-cols-2"
     role="list"
   ></div>
 </section>
 
 
     <section id="skills" class="mb-16 scroll-mt-20">
-      <h2 class="text-3xl font-bold mb-6 text-center">Skills</h2>
-      <div class="bg-white rounded-xl p-6 shadow-card hover:shadow-card-hover">
-        <div id="skills-container" class="flex flex-wrap gap-3 justify-center"></div>
+      <div class="mb-6 text-center">
+        <p class="section-kicker">Skills</p>
+        <h2 class="mt-3 font-display text-4xl font-bold tracking-tight">Capability clusters instead of a flat list</h2>
+        <p class="mt-3 text-muted-foreground">Skills are grouped so the shape of the portfolio is easier to understand at a glance.</p>
+      </div>
+      <div class="surface-card rounded-[1.75rem] p-6 shadow-card hover:shadow-card-hover">
+        <div id="skills-container" class="grid gap-4 md:grid-cols-2"></div>
       </div>
     </section>
 
-    <section id="education" class="mb-16 scroll-mt-20">
-      <h2 class="text-3xl font-bold mb-6 text-center">Education</h2>
-      <div id="education-container" class="bg-white rounded-xl p-6 shadow-card hover:shadow-card-hover"></div>
+    <section id="credentials" class="mb-16 scroll-mt-20">
+      <div class="mb-6 text-center">
+        <p class="section-kicker">Credentials</p>
+        <h2 class="mt-3 font-display text-4xl font-bold tracking-tight">Education and certifications that back the work</h2>
+      </div>
+      <div class="grid gap-6 lg:grid-cols-2">
+        <div class="surface-card rounded-[1.75rem] p-6 shadow-card hover:shadow-card-hover">
+          <h3 class="font-display text-2xl font-semibold">Certifications</h3>
+          <div id="certifications-container" class="mt-5 space-y-4"></div>
+        </div>
+        <div class="surface-card rounded-[1.75rem] p-6 shadow-card hover:shadow-card-hover">
+          <h3 class="font-display text-2xl font-semibold">Education</h3>
+          <div id="education-container" class="mt-5 space-y-4"></div>
+        </div>
+      </div>
     </section>
 
     <section id="contact" class="mb-16">
-      <h2 class="text-3xl font-bold mb-6 text-center">Contact</h2>
+      <div class="mb-6 text-center">
+        <p class="section-kicker">Contact</p>
+        <h2 class="mt-3 font-display text-4xl font-bold tracking-tight">Open to practical collaborations and thoughtful conversations</h2>
+      </div>
 
       <!-- Contact Card -->
-      <div class="bg-white rounded-xl p-6 shadow hover:shadow-lg text-center">
+      <div class="surface-card rounded-[1.75rem] p-6 text-center shadow-card hover:shadow-card-hover">
         <p class="mb-2 flex justify-center items-center gap-2">
           <!-- Heroicon Mail -->
           <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
@@ -149,14 +277,14 @@
         </p>
 
         <!-- Trigger Modal -->
-        <button id="openModal" class="mt-4 bg-primary text-white px-6 py-2 rounded hover:bg-primary/90 transition">
+        <button id="openModal" class="mt-4 rounded-full bg-primary px-6 py-3 text-white hover:bg-primary/90 transition">
           Contact Me
         </button>
       </div>
 
       <!-- Modal -->
       <div id="contactModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
-        <div class="bg-white rounded-lg p-6 w-full max-w-md relative shadow-lg">
+        <div class="surface-card rounded-[1.5rem] p-6 w-full max-w-md relative shadow-card">
           <!-- Close button -->
           <button id="closeModal" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
@@ -174,6 +302,7 @@
             <button type="submit" class="w-full bg-primary text-white px-4 py-2 rounded hover:bg-primary/90 transition">
               Send Message
             </button>
+            <p id="formStatus" class="text-sm text-muted-foreground" aria-live="polite"></p>
             <input type="text" name="_gotcha" style="display:none">
           </form>
         </div>
@@ -187,394 +316,854 @@
     <p id="copyright" class="text-muted-foreground text-sm"></p>
   </footer>
 
-  <script>
-
-    // Visitor ID + tracking
-    function getOrCreateVisitorId() {
-      let id = localStorage.getItem("visitorId");
-      if (!id) {
-        id = crypto.randomUUID?.() || Math.random().toString(36).substring(2);
-        localStorage.setItem("visitorId", id);
+  <script id="profile-data" type="application/json">
+{
+   "name":"Collins Warutumo",
+   "tagline":"Cybersecurity Engineer | Full Stack Developer",
+   "about":"Certified cybersecurity and IS audit professional with hands-on experience in full stack development, security audits, and process automation.",
+   "location":"Nairobi County, Kenya",
+   "contact":{
+      "email":"collinswarutumo@gmail.com",
+      "linkedin":"https://www.linkedin.com/in/waruts"
+   },
+   "skills":[
+      "AWS",
+      "Vulnerability Management",
+      "Internal Controls",
+      "Software Development",
+      "API Development",
+      "Information Security",
+      "Cybersecurity",
+      "Workflow Automation",
+      "Process Automation",
+      "Information Security Audits",
+      "Risk Management",
+      "Governance",
+      "Digital Forensics",
+      "Penetration Testing",
+      "Incident Response",
+      "Security Operations",
+      "Network Security",
+      "Data Protection",
+      "Compliance",
+      "Ethical Hacking",
+      "API Development",
+      "Full Stack Development",
+      "CI/CD"
+   ],
+   "certifications":[
+      "Ethical Security Certification",
+      "Certified Information Security Manager (CISM)",
+      "Certified Information Systems Auditor (CISA)"
+   ],
+   "projects":[
+      {
+         "name":"The Actuarial Society of Kenya",
+         "description":"A project focused on managing events and CPDs of the members of the Actuarial Society of Kenya.",
+         "url":"https://www.actuarieskenya.or.ke",
+         "category":"software",
+         "tech":[
+            "Laravel",
+            "WordPress",
+            "MySQL"
+         ]
+      },
+      {
+         "name":"Digital Forensics Chain of Custody System",
+         "description":"Dissertation study for Preservation of Digital Evidence.",
+         "url":"https://opac.library.strathmore.edu/bib/314908",
+         "category":"cyber",
+         "tech":[
+            "Laravel"
+         ]
+      },
+      {
+         "name":"Order Orchestration and Workflow System",
+         "description":"Gen AI order orchestration and process automation workflow.",
+         "url":"https://business.safaricom.co.ke/marketplace",
+         "category":"software",
+         "tech":[
+            "Temporal",
+            "Spring Boot",
+            "PostgreSQL",
+            "AWS",
+            "Jenkins",
+            "SonarQube"
+         ]
+      },
+      {
+         "name":"Cafe Payment and Customer Management System",
+         "description":"Funds Analysis and Customer Details Management System for Cafe.",
+         "url":"https://smilescafe.co.ke",
+         "category":"software",
+         "tech":[
+            "Vue",
+            "Laravel",
+            "Vuex",
+            "Vite",
+            "SQL",
+            "Pusher"
+         ]
+      },
+      {
+         "name":"Telegram FastBuddy Bot",
+         "description":"Healthy living intermittent fasting bot that tracks fasts and shares guidance about fasting.",
+         "url":"https://t.me/i_fast_bot",
+         "github":"https://github.com/waruts1/fastbuddy",
+         "category":"software",
+         "tech":[
+            "Flask",
+            "SQL",
+            "Telegram"
+         ]
+      },
+      {
+         "name":"OTP Verification Service",
+         "description":"Reusable OTP Verification Service for User Authentication",
+         "url":"https://business.safaricom.co.ke/track-order",
+         "category":"cyber",
+         "tech":[
+            "Spring Boot",
+            "Microservices"
+         ]
+      },
+      {
+         "name":"Jiji Vehicle Dataset",
+         "description":"An analysis of Vehicles Based on Price, Make , Model and Year of Manufacture",
+         "url":"",
+         "github":"https://github.com/waruts1/streamlit-jiji-vehicles-visualization",
+         "category":"software",
+         "tech":[
+            "Flask",
+            "SQL",
+            "Jupyter Notebook"
+         ]
       }
+   ],
+   "experience":[
+      {
+         "title":"Cyber Security Engineer",
+         "company":"",
+         "location":"Nairobi County, Kenya",
+         "dates":"January 2026 – Present",
+         "responsibilities":[
+            "Conducting information security audits",
+            "Performing risk and vulnerability analysis",
+            "Ensuring compliance and governance"
+         ],
+         "skills":[
+            "Information Security",
+            "Vulnerability Management",
+            "Incident Response",
+            "Digital Forensics",
+            "Penetration Testing",
+            "Security Operations",
+            "Network Security",
+            "Risk Management",
+            "Compliance & Governance",
+            "Cloud Security (AWS)",
+            "Automation (CI/CD)"
+         ]
+      },
+      {
+         "title":"Full Stack Developer",
+         "company":"",
+         "location":"Nairobi County, Kenya",
+         "dates":"July 2021 – Dec 2025",
+         "responsibilities":[
+            "Developed, tested, deployed & documented APIs",
+            "Integrated to core business systems",
+            "Performed continuous API audits"
+         ],
+         "achievements":[
+            "Developed reporting capabilities streamlining leadership decisions",
+            "Built APIs for product ordering journey, increasing revenue",
+            "Developed secure customer verification APIs"
+         ],
+         "skills":[
+            "Full Stack Development",
+            "API Development (REST)",
+            "Node.js / Express",
+            "Vue.js / React",
+            "Laravel",
+            "SQL & Data Modeling",
+            "Authentication & Authorization",
+            "Testing & Documentation",
+            "CI/CD",
+            "Cloud (AWS)",
+            "Workflow Automation"
+         ]
+      },
+      {
+         "title":"Process Automation Engineer",
+         "company":"",
+         "location":"Nairobi County, Kenya",
+         "dates":"November 2020 – October 2021",
+         "responsibilities":[
+            "Orchestrated, designed & tested workflows",
+            "Performed continuous audits for workflows"
+         ],
+         "achievements":[
+            "Shipped order workflows for Gen AI prompts and SaaS products"
+         ],
+         "skills":[
+            "Workflow Automation",
+            "Process Orchestration",
+            "API Integration",
+            "Scripting (Python)",
+            "Orchestration Tools",
+            "Testing & Auditing",
+            "CI/CD"
+         ]
+      },
+      {
+         "title":"Full Stack Developer",
+         "company":"@iLabAfrica",
+         "location":"Nairobi County, Kenya",
+         "dates":"August 2018 – October 2020",
+         "responsibilities":[
+            "Delivered full stack features with WordPress, Django, Laravel, and Vue.js",
+            "Designed Figma prototypes for rapid development"
+         ],
+         "achievements":[
+            "Shipped events membership CMS",
+            "Designed auction site",
+            "Implemented auth for IMLU Website",
+            "QA for KAM Member Portal"
+         ],
+         "skills":[
+            "Full Stack Development",
+            "WordPress",
+            "Django",
+            "Laravel",
+            "Vue.js",
+            "Figma (Prototyping)",
+            "Frontend Development (HTML/CSS/JS)",
+            "Backend Development",
+            "Authentication",
+            "SQL",
+            "QA & Testing"
+         ]
+      },
+      {
+         "title":"Cyber Security Engineer",
+         "company":"",
+         "location":"Nairobi County, Kenya",
+         "dates":"May 2016 – July 2018",
+         "responsibilities":[
+            "Implemented automated security tests",
+            "Conducted Information Security Research",
+            "Performed IS audits",
+            "Implemented Information Governance"
+         ],
+         "achievements":[
+            "Research on Digital Forensics Chain of Custody"
+         ],
+         "skills":[
+            "Information Security",
+            "Security Testing",
+            "Automated Security Tests",
+            "Information Governance",
+            "IS Audits",
+            "Digital Forensics",
+            "Risk Management",
+            "Incident Response",
+            "Compliance"
+         ]
+      },
+      {
+         "title":"ERP Support Engineer",
+         "company":"Kenya Power",
+         "location":"Nakuru, Kenya",
+         "dates":"January 2015 – December 2015",
+         "responsibilities":[
+            "SAP ERP & Computer Hardware Configuration"
+         ],
+         "skills":[
+            "SAP ERP",
+            "ERP Support & Configuration",
+            "System Troubleshooting",
+            "Hardware Configuration",
+            "User Training & Support",
+            "SQL (Basic)"
+         ]
+      }
+   ],
+   "education":[
+      {
+         "degree":"Cybersecurity & Software Engineering",
+         "institution":"Strathmore University"
+      },
+      {
+         "degree":"Security Information & Audit",
+         "institution":"ISACA"
+      }
+   ]
+}
+  </script>
+
+  <script>
+    const cyberKeywords = [
+      "security", "cyber", "infosec", "audit", "risk", "forensic",
+      "incident", "threat", "vulnerability", "compliance", "governance", "network"
+    ];
+    const softwareKeywords = [
+      "developer", "engineer", "development", "full stack", "frontend", "backend",
+      "javascript", "python", "java", "react", "node", "api", "laravel", "vue", "sql"
+    ];
+    const automationKeywords = ["automation", "workflow", "orchestration", "ci/cd", "ci", "cd", "aws"];
+
+    const allowedFocuses = new Set(["cyber", "software"]);
+    let profileData = null;
+
+    function getOrCreateVisitorId() {
+      const existing = localStorage.getItem("visitorId");
+      if (existing) return existing;
+      const id = crypto.randomUUID?.() || Math.random().toString(36).slice(2);
+      localStorage.setItem("visitorId", id);
       return id;
     }
+
     function sendVisitData() {
-      const visitorId = getOrCreateVisitorId();
-      fetch("https://smilescafe.co.ke/api/v1/telegram", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          visitorId,
+      try {
+        const payload = {
+          visitorId: getOrCreateVisitorId(),
           timestamp: new Date().toISOString(),
-          url: document.referrer || window.location.href,
+          url: window.location.href,
           pageTitle: document.title,
           userAgent: navigator.userAgent,
           referrer: document.referrer
-        })
-      });
+        };
+
+        if (navigator.sendBeacon) {
+          const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
+          if (navigator.sendBeacon("https://smilescafe.co.ke/api/v1/telegram", blob)) return;
+        }
+
+        fetch("https://smilescafe.co.ke/api/v1/telegram", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+          keepalive: true
+        }).catch(() => {});
+      } catch (error) {
+        console.debug("Visit tracking skipped", error);
+      }
     }
-    window.addEventListener("load", sendVisitData);
 
-    // Theme toggle (dark/light) - stores preference in localStorage and respects OS preference
-    (function setupThemeToggle() {
-      const sunSVG = '<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M7.05 16.95l-1.414 1.414M18.364 18.364l-1.414-1.414M7.05 7.05L5.636 5.636"/></svg>';
+    function setupThemeToggle() {
+      const sunSVG = '<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364-1.414 1.414M7.05 16.95l-1.414 1.414M18.364 18.364l-1.414-1.414M7.05 7.05 5.636 5.636"/></svg>';
       const moonSVG = '<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>';
-
-      const toggle = document.getElementById('themeToggle');
+      const toggle = document.getElementById("themeToggle");
       if (!toggle) return;
 
-      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const stored = localStorage.getItem('site-theme');
-      const initial = stored ? stored : (prefersDark ? 'dark' : 'light');
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const initial = localStorage.getItem("site-theme") || (prefersDark ? "dark" : "light");
 
-      function applyTheme(t) {
-        if (t === 'dark') {
-          document.documentElement.classList.add('dark');
-          toggle.innerHTML = sunSVG;
-          localStorage.setItem('site-theme', 'dark');
-        } else {
-          document.documentElement.classList.remove('dark');
-          toggle.innerHTML = moonSVG;
-          localStorage.setItem('site-theme', 'light');
-        }
+      function applyTheme(theme) {
+        const dark = theme === "dark";
+        document.documentElement.classList.toggle("dark", dark);
+        toggle.innerHTML = dark ? sunSVG : moonSVG;
+        localStorage.setItem("site-theme", theme);
       }
 
       applyTheme(initial);
-      toggle.addEventListener('click', () => {
-        const isDark = document.documentElement.classList.contains('dark');
-        applyTheme(isDark ? 'light' : 'dark');
+      toggle.addEventListener("click", () => {
+        applyTheme(document.documentElement.classList.contains("dark") ? "light" : "dark");
       });
-    })();
+    }
 
-    // Profile Data Fetch
-   fetch("https://waruts1.github.io/data/profile.json")
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById("name").textContent = data.name;
-        document.getElementById("tagline").textContent = data.tagline;
-        document.getElementById("about-text").textContent = data.about;
+    function hasKeyword(values, keywords) {
+      return (values || []).some((value) => {
+        const token = String(value || "").toLowerCase();
+        return keywords.some((keyword) => token.includes(keyword));
+      });
+    }
 
-        // Experience rendering with profile filter support.
-        const experienceDiv = document.getElementById("experience-container");
+    function isCyber(item) {
+      return hasKeyword(item.skills || [], cyberKeywords);
+    }
 
-        // Simple keyword list to detect 'cyber' related roles from job.skills
-        const cyberKeywords = [
-          'security', 'cyber', 'infosec', 'information security', 'penetration', 'forensic', 'incident', 'threat', 'siem', 'SOC', 'vulnerability', 'compliance'
-        ];
-        // Keywords for software-related skills (moved out so skills rendering can reuse)
-        const softwareKeywords = ['developer', 'engineer', 'development', 'full stack', 'frontend', 'backend', 'javascript', 'python', 'java', 'react', 'node', 'api', 'ci/cd', 'ci', 'cd'];
+    function isSoftware(item) {
+      return hasKeyword(item.skills || [], softwareKeywords);
+    }
 
-        function isCyber(job) {
-          if (!job || !Array.isArray(job.skills)) return false;
-          return job.skills.some(s => {
-            if (!s) return false;
-            const token = String(s).toLowerCase();
-            return cyberKeywords.some(k => token.includes(k));
-          });
+    function isAutomation(item) {
+      return hasKeyword(item.skills || [], automationKeywords);
+    }
+
+    function createBadge(text, className) {
+      const span = document.createElement("span");
+      span.className = className;
+      span.textContent = text;
+      return span;
+    }
+
+    function createBulletList(title, items) {
+      const wrapper = document.createElement("div");
+      wrapper.className = "mt-5";
+
+      const heading = document.createElement("h4");
+      heading.className = "section-kicker";
+      heading.textContent = title;
+      wrapper.appendChild(heading);
+
+      const list = document.createElement("ul");
+      list.className = "mt-3 space-y-2 text-sm leading-7 text-muted-foreground";
+      items.forEach((item) => {
+        const row = document.createElement("li");
+        row.className = "flex gap-3";
+        row.innerHTML = '<span class="mt-2 h-2 w-2 rounded-full bg-primary"></span><span></span>';
+        row.lastElementChild.textContent = item;
+        list.appendChild(row);
+      });
+      wrapper.appendChild(list);
+      return wrapper;
+    }
+
+    function getYearsOfExperience(experience) {
+      const years = (experience || [])
+        .map((entry) => String(entry.dates || "").match(/(19|20)\d{2}/))
+        .filter(Boolean)
+        .map((match) => Number(match[0]));
+      return years.length ? new Date().getFullYear() - Math.min(...years) : 0;
+    }
+
+    function getFocusFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      const value = params.get("focus");
+      return allowedFocuses.has(value) ? value : "all";
+    }
+
+    function syncFocusUrl(focus) {
+      const url = new URL(window.location.href);
+      if (allowedFocuses.has(focus)) {
+        url.searchParams.set("focus", focus);
+      } else {
+        url.searchParams.delete("focus");
+      }
+      history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
+    }
+
+    function renderHero(data) {
+      document.title = `${data.name} | ${data.tagline}`;
+      document.getElementById("name").textContent = data.name;
+      document.getElementById("tagline").textContent = data.tagline;
+      document.getElementById("hero-summary").textContent = data.about;
+      document.getElementById("about-text").textContent = data.about;
+      document.getElementById("location").textContent = data.location || "Nairobi County, Kenya";
+
+      const stats = [
+        { value: `${getYearsOfExperience(data.experience)}+`, label: "Years across delivery roles" },
+        { value: `${(data.projects || []).length}`, label: "Featured projects" },
+        { value: `${(data.certifications || []).length}`, label: "Security credentials" }
+      ];
+      const statsDiv = document.getElementById("hero-stats");
+      statsDiv.innerHTML = "";
+      stats.forEach((stat) => {
+        const card = document.createElement("div");
+        card.className = "stat-card rounded-[1.4rem] p-4";
+        card.innerHTML = `<p class="font-display text-3xl font-bold">${stat.value}</p><p class="mt-2 text-sm text-white/80">${stat.label}</p>`;
+        statsDiv.appendChild(card);
+      });
+
+      const valuePoints = [
+        {
+          title: "Security with delivery context",
+          body: "Audits, risk reviews, and controls are grounded in practical experience shipping products and APIs."
+        },
+        {
+          title: "Hands-on engineering range",
+          body: "Comfortable moving between full stack delivery, systems integration, and workflow orchestration."
+        },
+        {
+          title: "Practical automation mindset",
+          body: "Looks for safe ways to reduce manual work without weakening governance or visibility."
         }
+      ];
+      const valueDiv = document.getElementById("value-points");
+      valueDiv.innerHTML = "";
+      valuePoints.forEach((point) => {
+        const card = document.createElement("div");
+        card.className = "metric-card";
+        card.innerHTML = `<h3 class="font-display text-xl font-semibold">${point.title}</h3><p class="mt-2 text-sm leading-7 text-muted-foreground">${point.body}</p>`;
+        valueDiv.appendChild(card);
+      });
 
-        function isSoftware(job) {
-          if (!job || !Array.isArray(job.skills)) return false;
-          return job.skills.some(s => {
-            if (!s) return false;
-            const token = String(s).toLowerCase();
-            return softwareKeywords.some(k => token.includes(k));
-          });
-        }
+      document.getElementById("email-link").textContent = data.contact.email;
+      document.getElementById("email-link").href = `mailto:${data.contact.email}`;
+      document.getElementById("linkedin-link").textContent = data.contact.linkedin.replace(/^https?:\/\/(www\.)?/, "");
+      document.getElementById("linkedin-link").href = data.contact.linkedin;
+      document.getElementById("copyright").textContent = `© ${new Date().getFullYear()} ${data.name}. All rights reserved.`;
+    }
 
-        function renderExperiences(filter = 'all') {
-          experienceDiv.innerHTML = '';
-          const toRender = (data.experience || []).filter(job => {
-            if (filter === 'all') return true;
-            if (filter === 'cyber') return isCyber(job);
-            if (filter === 'software') return isSoftware(job) && !isCyber(job);
-            return true;
-          });
-
-          toRender.forEach(job => {
-            const div = document.createElement("div");
-            div.className = "experience-card bg-white shadow-card hover:shadow-card-hover rounded-xl p-6";
-
-            // Title and company/dates
-            const title = document.createElement('h3');
-            title.className = 'text-xl font-semibold mb-2';
-            title.textContent = job.title || '';
-            div.appendChild(title);
-
-            const meta = document.createElement('p');
-            meta.className = 'text-primary font-medium mb-2';
-            const companyText = job.company ? job.company : '';
-            meta.textContent = companyText + (companyText ? ' | ' : '') + (job.dates || '');
-            div.appendChild(meta);
-
-            // Responsibilities
-            const respUl = document.createElement('ul');
-            respUl.className = 'list-disc ml-5 text-muted-foreground';
-            (job.responsibilities || []).forEach(r => {
-              const li = document.createElement('li');
-              li.textContent = r;
-              respUl.appendChild(li);
-            });
-            div.appendChild(respUl);
-
-            // Achievements (if any)
-            if (Array.isArray(job.achievements) && job.achievements.length) {
-              const achH4 = document.createElement('h4');
-              achH4.className = 'mt-4 font-medium';
-              achH4.textContent = 'Achievements';
-              div.appendChild(achH4);
-
-              const achUl = document.createElement('ul');
-              achUl.className = 'list-disc ml-5 text-muted-foreground';
-              job.achievements.forEach(a => {
-                const li = document.createElement('li');
-                li.textContent = a;
-                achUl.appendChild(li);
-              });
-              div.appendChild(achUl);
-            }
-
-            // Skills as badge spans (only if array)
-            if (Array.isArray(job.skills) && job.skills.length) {
-              const skillsH4 = document.createElement('h4');
-              skillsH4.className = 'mt-4 font-medium';
-              skillsH4.textContent = 'Skills';
-              div.appendChild(skillsH4);
-
-              const skillsContainer = document.createElement('div');
-              skillsContainer.className = 'flex flex-wrap gap-2 mt-2';
-              job.skills.forEach(s => {
-                const span = document.createElement('span');
-                span.className = 'text-sm py-1 px-3 bg-primary/10 text-primary rounded hover:bg-primary hover:text-primary-foreground transition-all duration-200';
-                span.textContent = s;
-                skillsContainer.appendChild(span);
-              });
-              div.appendChild(skillsContainer);
-            }
-
-            experienceDiv.appendChild(div);
-          });
-
-          // Re-initialize reveal-on-scroll for newly added items
-          setupRevealOnScroll('.experience-card');
-        }
-
-        // initial render
-        const profileSelect = document.getElementById('profileFilter');
-        profileSelect?.addEventListener('change', (e) => {
-          renderExperiences(e.target.value);
-          renderSkills(e.target.value);
-        });
-        // render default (respect any pre-selected value)
-        const initialProfile = profileSelect?.value || 'all';
-        renderExperiences(initialProfile);
-
-        const projectsDiv = document.getElementById("projects-container");
-
-        function renderProjects(filter = 'all') {
-          projectsDiv.innerHTML = '';
-          const list = (data.projects || []).filter(p => {
-            if (filter === 'all') return true;
-            return String((p.category || 'software')).toLowerCase() === String(filter).toLowerCase();
-          });
-
-          list.forEach((project, idx) => {
-            try {
-              const div = document.createElement("div");
-              div.className = "project-card bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/10 dark:border-slate-700/20 shadow-card hover:shadow-card-hover rounded-xl p-3 flex-shrink-0 w-full md:w-[62vw] max-w-[900px] snap-center relative overflow-hidden transition-transform duration-300 motion-safe:transform-gpu hover:-translate-y-2 hover:scale-[1.02] motion-reduce:transition-none focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2";
-
-              const techBadges = (project.tech || [])
-                .map(
-                  tech => `<span class="inline-block bg-primary/10 text-primary text-xs px-2 py-0.5 rounded mr-2 mb-2">${tech}</span>`
-                )
-                .join("");
-
-              if (project.screenshot) {
-                div.style.backgroundImage = `url(${project.screenshot})`;
-                div.style.backgroundSize = 'cover';
-                div.style.backgroundPosition = 'center';
-                const overlay = document.createElement('div');
-                overlay.className = 'absolute inset-0 bg-gradient-to-t from-black/60 to-black/12 pointer-events-none';
-                overlay.setAttribute('aria-hidden', 'true');
-                div.appendChild(overlay);
-              }
-
-              const githubBtn = project.github ? `
-                <a href="${project.github}" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center border border-border px-2 py-1 rounded text-sm ${project.screenshot ? 'bg-white/90 text-foreground' : 'text-foreground bg-white'} transition-all duration-200 ease-in-out hover:bg-muted hover:scale-[1.02] hover:shadow-md">
-                  <svg class="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.5.5 0 6 0 12.3c0 5.2 3.4 9.6 8.2 11.2.6.1.8-.2.8-.5v-2c-3.3.7-4-1.5-4-1.5-.5-1.3-1.1-1.6-1.1-1.6-.9-.7.1-.7.1-.7 1 .1 1.5 1.1 1.5 1.1.9 1.5 2.4 1.1 3 .8.1-.6.4-1.1.7-1.4-2.6-.3-5.2-1.4-5.2-6.1 0-1.3.4-2.4 1.1-3.3-.1-.3-.5-1.6.1-3.3 0 0 .9-.3 3.4 1.2a11.6 11.6 0 0 1 6.3 0c2.5-1.5 3.4-1.2 3.4-1.2.6 1.7.2 3 .1 3.3.7.9 1.1 2 1.1 3.3 0 4.8-2.7 5.8-5.2 6.1.4.4.8 1 .8 2v3c0 .3.2.6.8.5A12 12 0 0 0 24 12.3C24 6 18.5.5 12 .5z"/></svg>
-                  Code
-                </a>
-              ` : '';
-
-              const visitBtn = project.url ? `
-                <a href="${project.url}" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center ${project.screenshot ? 'bg-primary/90 text-white' : 'bg-primary text-white'} px-2 py-1 rounded text-sm hover:bg-primary/90">
-                  <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 3h7v7m-1.5-5.5L10 17m-4 0h5v5"/></svg>
-                  Visit
-                </a>
-              ` : '';
-
-              div.innerHTML += `
-                <div class="relative z-10">
-                  <h3 class="text-xl font-semibold mb-2 ${project.screenshot ? 'text-white' : ''}">${project.name || 'Untitled Project'}</h3>
-                  <p class="${project.screenshot ? 'text-white/90' : 'text-muted-foreground'} mb-3">${project.description || ''}</p>
-                  <div class="flex flex-wrap mb-3">${techBadges}</div>
-                  <div class="flex gap-3">${githubBtn}${visitBtn}</div>
-                </div>
-              `;
-
-              projectsDiv.appendChild(div);
-            } catch (err) {
-              console.error('Project render failed at index', idx, project, err);
-            }
-          });
-
-          // re-init reveal for new project cards
-          setupRevealOnScroll('.project-card');
-        }
-
-        // wire filter
-        const projectSelect = document.getElementById('projectFilter');
-        projectSelect?.addEventListener('change', (e) => renderProjects(e.target.value));
-        renderProjects(projectSelect?.value || 'all');
-
-// (debug logging removed)
-
-
-
-        const skillsDiv = document.getElementById("skills-container");
-        data.skills.forEach(skill => {
-          const span = document.createElement("span");
-          span.className = "text-sm py-2 px-4 bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300";
-          span.textContent = skill;
-          skillsDiv.appendChild(span);
-        });
-
-const eduDiv = document.getElementById("education-container");
-eduDiv.innerHTML = ""; // clear existing content first
-
-(data.education || []).forEach((edu) => {
-  const div = document.createElement('div');
-  div.className = 'flex items-start gap-4 mb-4';
-
-  div.innerHTML = `
-    <div class="mt-2">
-      <svg class="h-5 w-5 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path d="M12 14l9-5-9-5-9 5 9 5z" />
-        <path d="M12 14l6.16-3.422A12.083 12.083 0 0112 21.5a12.083 12.083 0 01-6.16-10.922L12 14z" />
-      </svg>
-    </div>
-    <div>
-      <h3 class="text-xl font-semibold mb-1">${edu.degree}</h3>
-      <p class="text-primary font-medium">${edu.institution}</p>
-    </div>
-  `;
-
-  eduDiv.appendChild(div);
-
-});
-
-      // Reveal-on-scroll helper
-      function setupRevealOnScroll(selector = '.reveal-on-scroll', delayStep = 80) {
-        const els = document.querySelectorAll(selector);
-        if (!els.length) return;
-
-        // Respect user preference for reduced motion
-        const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-        if (!('IntersectionObserver' in window) || reduce) {
-          // Reveal immediately without animation
-          els.forEach(el => {
-            el.classList.remove('opacity-0', 'translate-y-6', 'scale-95');
-            el.classList.add('opacity-100', 'translate-y-0', 'scale-100');
-          });
-          return;
-        }
-
-        const io = new IntersectionObserver((entries, observer) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const el = entry.target;
-              // remove hidden state and add visible transitions
-              el.classList.remove('opacity-0', 'translate-y-6', 'scale-95');
-              el.classList.add('opacity-100', 'translate-y-0', 'scale-100', 'transition-all', 'duration-700', 'ease-out');
-              // cleanup transitionDelay after animation
-              setTimeout(() => { el.style.transitionDelay = ''; }, 1000 + (parseInt(el.dataset.revealDelay || '0')));
-              observer.unobserve(el);
-            }
-          });
-        }, { threshold: 0.12 });
-
-        els.forEach((el, i) => {
-          // set initial hidden + slight scale for a nicer entrance
-          el.classList.add('opacity-0', 'translate-y-6', 'scale-95');
-          const delay = i * delayStep; // ms
-          el.dataset.revealDelay = String(delay);
-          el.style.transitionDelay = `${delay}ms`;
-          io.observe(el);
-        });
+    function getHeroPanelContent(focus = "all") {
+      if (focus === "cyber") {
+        return {
+          focusLabel: "Security focus",
+          focusItems: [
+            "Security Audits",
+            "Vulnerability Management",
+            "Incident Response",
+            "Risk & Compliance"
+          ],
+          credentialsLabel: "Security credentials",
+          credentials: (profileData.certifications || []).slice(0, 3).map((item) => ({ title: item }))
+        };
       }
 
-      // Initialize reveal for experience and project cards
-      setupRevealOnScroll('.experience-card');
-      setupRevealOnScroll('.project-card');
-    
-      // Modal open/close behaviour
-      const openModalBtn = document.getElementById('openModal');
-      const closeModalBtn = document.getElementById('closeModal');
-      const contactModal = document.getElementById('contactModal');
-      openModalBtn?.addEventListener('click', () => {
-        contactModal.classList.remove('hidden');
-        contactModal.classList.add('flex');
-      });
-      closeModalBtn?.addEventListener('click', () => {
-        contactModal.classList.add('hidden');
-        contactModal.classList.remove('flex');
-      });
-      // close when clicking backdrop
-      contactModal?.addEventListener('click', (e) => {
-        if (e.target === contactModal) {
-          contactModal.classList.add('hidden');
-          contactModal.classList.remove('flex');
-        }
+      if (focus === "software") {
+        const softwareRoles = (profileData.experience || [])
+          .filter((job) => isSoftware(job) || isAutomation(job))
+          .slice(0, 3)
+          .map((job) => ({
+            title: job.title,
+            detail: job.dates
+          }));
+
+        return {
+          focusLabel: "Engineering focus",
+          focusItems: [
+            "Full Stack Delivery",
+            "API Development",
+            "Workflow Automation",
+            "Cloud & CI/CD"
+          ],
+          credentialsLabel: "Engineering proof",
+          credentials: softwareRoles
+        };
+      }
+
+      return {
+        focusLabel: "Primary focus",
+        focusItems: [
+          "Security Audits",
+          "Secure API Delivery",
+          "Workflow Automation",
+          "Risk & Compliance"
+        ],
+        credentialsLabel: "Credentials",
+        credentials: (profileData.certifications || []).slice(0, 3).map((item) => ({ title: item }))
+      };
+    }
+
+    function renderHeroPanel(focus = "all") {
+      const content = getHeroPanelContent(focus);
+      document.getElementById("focus-label").textContent = content.focusLabel;
+      document.getElementById("credentials-label").textContent = content.credentialsLabel;
+
+      const focusAreas = document.getElementById("focus-areas");
+      focusAreas.innerHTML = "";
+      content.focusItems.forEach((item) => {
+        focusAreas.appendChild(createBadge(item, "focus-chip text-sm font-semibold text-white"));
       });
 
-      // Contact form submit via fetch to Formspree (keeps user on page)
-      const contactForm = document.getElementById('contactForm');
-      contactForm?.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const form = e.currentTarget;
-        const formData = new FormData(form);
-        const payload = Object.fromEntries(formData);
+      const heroCerts = document.getElementById("hero-certifications");
+      heroCerts.innerHTML = "";
+      content.credentials.forEach((entry) => {
+        const row = document.createElement("div");
+        row.className = "flex items-start gap-3";
+        row.innerHTML = '<span class="mt-2 h-2.5 w-2.5 rounded-full bg-white/80"></span><span></span>';
+
+        const contentWrap = row.lastElementChild;
+        contentWrap.innerHTML = `<span class="font-semibold"></span>`;
+        contentWrap.firstElementChild.textContent = entry.title;
+
+        if (entry.detail) {
+          const detail = document.createElement("div");
+          detail.className = "mt-1 text-xs uppercase tracking-[0.18em] text-white/60";
+          detail.textContent = entry.detail;
+          contentWrap.appendChild(detail);
+        }
+
+        heroCerts.appendChild(row);
+      });
+    }
+
+    function renderExperiences(filter = "all") {
+      const experienceDiv = document.getElementById("experience-container");
+      const items = (profileData.experience || []).filter((job) => {
+        if (filter === "all") return true;
+        if (filter === "cyber") return isCyber(job);
+        if (filter === "software") return isSoftware(job) || isAutomation(job);
+        return true;
+      });
+
+      experienceDiv.innerHTML = "";
+      items.forEach((job) => {
+        const card = document.createElement("article");
+        card.className = "experience-card surface-card rounded-[1.75rem] p-6 shadow-card hover:shadow-card-hover transition-all";
+
+        const label = isCyber(job) ? "Security" : (isAutomation(job) ? "Automation" : "Engineering");
+        const meta = [job.company, job.location, job.dates].filter(Boolean).join(" • ");
+
+        card.appendChild(createBadge(label, "inline-flex rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.24em] text-primary"));
+
+        const title = document.createElement("h3");
+        title.className = "mt-4 font-display text-2xl font-semibold";
+        title.textContent = job.title || "";
+        card.appendChild(title);
+
+        const metaLine = document.createElement("p");
+        metaLine.className = "mt-2 text-sm font-semibold uppercase tracking-[0.16em] text-muted-foreground";
+        metaLine.textContent = meta;
+        card.appendChild(metaLine);
+
+        card.appendChild(createBulletList("Responsibilities", job.responsibilities || []));
+
+        if (Array.isArray(job.achievements) && job.achievements.length) {
+          card.appendChild(createBulletList("Highlights", job.achievements));
+        }
+
+        if (Array.isArray(job.skills) && job.skills.length) {
+          const skillsWrap = document.createElement("div");
+          skillsWrap.className = "mt-5 flex flex-wrap gap-2";
+          job.skills.forEach((skill) => {
+            skillsWrap.appendChild(createBadge(skill, "inline-flex rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary"));
+          });
+          card.appendChild(skillsWrap);
+        }
+
+        experienceDiv.appendChild(card);
+      });
+    }
+
+    function renderProjects(filter = "all") {
+      const projectsDiv = document.getElementById("projects-container");
+      const items = (profileData.projects || []).filter((project) => {
+        if (filter === "all") return true;
+        return String(project.category || "software").toLowerCase() === filter;
+      });
+
+      projectsDiv.innerHTML = "";
+      items.forEach((project) => {
+        const card = document.createElement("article");
+        card.className = "surface-card rounded-[1.75rem] p-6 shadow-card hover:shadow-card-hover transition-all";
+
+        const topRow = document.createElement("div");
+        topRow.className = "flex flex-wrap items-center justify-between gap-3";
+        topRow.appendChild(createBadge(String(project.category || "software").toUpperCase(), "inline-flex rounded-full bg-primary/10 px-3 py-1 text-xs font-bold tracking-[0.24em] text-primary"));
+
+        const links = document.createElement("div");
+        links.className = "flex flex-wrap gap-2";
+        if (project.github) {
+          const codeLink = document.createElement("a");
+          codeLink.className = "inline-flex items-center justify-center rounded-full border border-border px-4 py-2 text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition";
+          codeLink.href = project.github;
+          codeLink.target = "_blank";
+          codeLink.rel = "noopener noreferrer";
+          codeLink.textContent = "Code";
+          links.appendChild(codeLink);
+        }
+        if (project.url) {
+          const visitLink = document.createElement("a");
+          visitLink.className = "inline-flex items-center justify-center rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary/90 transition";
+          visitLink.href = project.url;
+          visitLink.target = "_blank";
+          visitLink.rel = "noopener noreferrer";
+          visitLink.textContent = "Visit";
+          links.appendChild(visitLink);
+        }
+        topRow.appendChild(links);
+        card.appendChild(topRow);
+
+        const title = document.createElement("h3");
+        title.className = "mt-5 font-display text-2xl font-semibold";
+        title.textContent = project.name || "Untitled project";
+        card.appendChild(title);
+
+        const description = document.createElement("p");
+        description.className = "mt-3 text-sm leading-7 text-muted-foreground";
+        description.textContent = project.description || "";
+        card.appendChild(description);
+
+        const techWrap = document.createElement("div");
+        techWrap.className = "mt-5 flex flex-wrap gap-2";
+        (project.tech || []).forEach((tech) => {
+          techWrap.appendChild(createBadge(tech, "inline-flex rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary"));
+        });
+        card.appendChild(techWrap);
+        projectsDiv.appendChild(card);
+      });
+    }
+
+    function renderSkills(filter = "all") {
+      const groups = [
+        {
+          title: "Security & Assurance",
+          description: "Controls, reviews, testing, and response capabilities for reducing risk and building trust.",
+          keywords: cyberKeywords
+        },
+        {
+          title: "Engineering & APIs",
+          description: "Product and integration work across full stack delivery, APIs, and application development.",
+          keywords: softwareKeywords
+        },
+        {
+          title: "Cloud, CI/CD & Automation",
+          description: "Delivery pipelines, orchestration, and workflow thinking that keep systems moving safely.",
+          keywords: automationKeywords
+        },
+        {
+          title: "Governance & Risk",
+          description: "Audit-oriented practices that connect compliance, governance, and operational discipline.",
+          keywords: ["audit", "risk", "governance", "compliance", "controls"]
+        }
+      ];
+
+      const visibleGroups = groups
+        .map((group) => ({
+          ...group,
+          items: (profileData.skills || []).filter((skill) => hasKeyword([skill], group.keywords))
+        }))
+        .filter((group) => group.items.length)
+        .filter((group) => {
+          if (filter === "cyber") return group.title !== "Engineering & APIs";
+          if (filter === "software") return group.title !== "Security & Assurance" && group.title !== "Governance & Risk";
+          return true;
+        });
+
+      const skillsDiv = document.getElementById("skills-container");
+      skillsDiv.innerHTML = "";
+      visibleGroups.forEach((group) => {
+        const card = document.createElement("article");
+        card.className = "surface-card rounded-[1.5rem] p-5 shadow-card";
+        card.innerHTML = `<h3 class="font-display text-2xl font-semibold">${group.title}</h3><p class="mt-2 text-sm leading-7 text-muted-foreground">${group.description}</p>`;
+
+        const badgeWrap = document.createElement("div");
+        badgeWrap.className = "mt-5 flex flex-wrap gap-2";
+        group.items.forEach((item) => {
+          badgeWrap.appendChild(createBadge(item, "inline-flex rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary"));
+        });
+        card.appendChild(badgeWrap);
+        skillsDiv.appendChild(card);
+      });
+    }
+
+    function renderCertifications() {
+      const container = document.getElementById("certifications-container");
+      container.innerHTML = "";
+      (profileData.certifications || []).forEach((certification) => {
+        const card = document.createElement("div");
+        card.className = "surface-card rounded-[1.25rem] p-4 shadow-card";
+        card.innerHTML = `<p class="section-kicker">Credential</p><p class="mt-2 text-base font-semibold">${certification}</p>`;
+        container.appendChild(card);
+      });
+    }
+
+    function renderEducation() {
+      const container = document.getElementById("education-container");
+      container.innerHTML = "";
+      (profileData.education || []).forEach((edu) => {
+        const card = document.createElement("div");
+        card.className = "surface-card rounded-[1.25rem] p-4 shadow-card";
+        card.innerHTML = `<p class="section-kicker">${edu.institution}</p><p class="mt-2 text-base font-semibold">${edu.degree}</p>`;
+        container.appendChild(card);
+      });
+    }
+
+    function setupModal() {
+      const openModalBtn = document.getElementById("openModal");
+      const closeModalBtn = document.getElementById("closeModal");
+      const contactModal = document.getElementById("contactModal");
+      const contactForm = document.getElementById("contactForm");
+      const formStatus = document.getElementById("formStatus");
+
+      function openModal() {
+        contactModal?.classList.remove("hidden");
+        contactModal?.classList.add("flex");
+      }
+
+      function closeModal() {
+        contactModal?.classList.add("hidden");
+        contactModal?.classList.remove("flex");
+      }
+
+      openModalBtn?.addEventListener("click", openModal);
+      closeModalBtn?.addEventListener("click", closeModal);
+      contactModal?.addEventListener("click", (event) => {
+        if (event.target === contactModal) closeModal();
+      });
+
+      contactForm?.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        const payload = Object.fromEntries(new FormData(form).entries());
+        formStatus.textContent = "Sending your message...";
+
         try {
-          const res = await fetch(form.action, {
-            method: form.method || 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          const response = await fetch(form.action, {
+            method: form.method || "POST",
+            headers: { "Content-Type": "application/json", "Accept": "application/json" },
             body: JSON.stringify(payload)
           });
-          if (res.ok) {
-            // success - close modal and show a toast/alert
-            contactModal.classList.add('hidden');
-            contactModal.classList.remove('flex');
-            alert('Message sent — I will get back to you shortly. Thank you!');
-            form.reset();
-          } else {
-            const data = await res.json().catch(() => ({}));
-            alert('There was an error sending your message. Please try again later.');
-            console.error('Contact form error', res.status, data);
-          }
-        } catch (err) {
-          console.error('Contact submit failed', err);
-          alert('Network error — please check your connection and try again.');
+
+          if (!response.ok) throw new Error("Message send failed");
+
+          form.reset();
+          formStatus.textContent = "Message sent successfully. Thank you for reaching out.";
+          window.setTimeout(() => {
+            formStatus.textContent = "";
+            closeModal();
+          }, 1200);
+        } catch (error) {
+          console.error("Contact submit failed", error);
+          formStatus.textContent = "There was a problem sending the message. Please try again.";
         }
       });
-        document.getElementById("email-link").textContent = data.contact.email;
-        document.getElementById("email-link").href = `mailto:${data.contact.email}`;
-        document.getElementById("linkedin-link").textContent = data.contact.linkedin;
-        document.getElementById("linkedin-link").href = data.contact.linkedin;
+    }
 
-        document.getElementById("copyright").textContent =
-          `© ${new Date().getFullYear()} ${data.name}. All rights reserved.`;
+    function applyGlobalFocus(focus, syncUrl = true) {
+      const value = allowedFocuses.has(focus) ? focus : "all";
+      const profileSelect = document.getElementById("profileFilter");
+      const projectSelect = document.getElementById("projectFilter");
+
+      if (profileSelect) profileSelect.value = value;
+      if (projectSelect) projectSelect.value = value;
+
+      renderHeroPanel(value);
+      renderExperiences(value);
+      renderProjects(value);
+      renderSkills(value);
+
+      if (syncUrl) {
+        syncFocusUrl(value);
+      }
+    }
+
+    function loadProfile() {
+      const rawData = document.getElementById("profile-data")?.textContent?.trim();
+      if (!rawData) throw new Error("Embedded profile data is missing");
+      profileData = JSON.parse(rawData);
+      renderHero(profileData);
+      renderCertifications();
+      renderEducation();
+      applyGlobalFocus(getFocusFromUrl(), false);
+    }
+
+    window.addEventListener("load", () => {
+      sendVisitData();
+      setupThemeToggle();
+      setupModal();
+
+      const profileSelect = document.getElementById("profileFilter");
+      const projectSelect = document.getElementById("projectFilter");
+
+      profileSelect?.addEventListener("change", (event) => {
+        applyGlobalFocus(event.target.value);
       });
+
+      projectSelect?.addEventListener("change", (event) => {
+        applyGlobalFocus(event.target.value);
+      });
+
+      try {
+        loadProfile();
+      } catch (error) {
+        console.error(error);
+        document.getElementById("hero-summary").textContent = "The portfolio content could not be loaded right now. Please refresh and try again.";
+      }
+    });
   </script>
 </body>
 
