@@ -226,8 +226,6 @@
     <section id="skills" class="mb-16 scroll-mt-20">
       <div class="mb-6 text-center">
         <p class="section-kicker">Skills</p>
-        <h2 class="mt-3 font-display text-4xl font-bold tracking-tight">Capability clusters instead of a flat list</h2>
-        <p class="mt-3 text-muted-foreground">Skills are grouped so the shape of the portfolio is easier to understand at a glance.</p>
       </div>
       <div class="surface-card rounded-[1.75rem] p-6 shadow-card hover:shadow-card-hover">
         <div id="skills-container" class="grid gap-4 md:grid-cols-2"></div>
@@ -293,17 +291,15 @@
           </button>
 
           <h3 class="text-xl font-semibold mb-4">Send a Message</h3>
-          <form id="contactForm" action="https://formspree.io/f/xzzgnjdy" method="POST" class="space-y-4">
+          <form id="contactForm" action="./contact.php" method="POST" class="space-y-4">
             <input type="text" name="name" required placeholder="Your Name" class="w-full border rounded px-4 py-2" />
-            <input type="email" name="_replyto" required placeholder="Your Email"
-              class="w-full border rounded px-4 py-2" />
-            <textarea name="message" required placeholder="Your Message"
-              class="w-full border rounded px-4 py-2"></textarea>
+            <input type="email" name="_replyto" required placeholder="Your Email" class="w-full border rounded px-4 py-2" />
+            <textarea name="message" required placeholder="Your Message" class="w-full border rounded px-4 py-2"></textarea>
+            <input type="text" name="_gotcha" autocomplete="off" tabindex="-1" class="hidden" />
             <button type="submit" class="w-full bg-primary text-white px-4 py-2 rounded hover:bg-primary/90 transition">
               Send Message
             </button>
             <p id="formStatus" class="text-sm text-muted-foreground" aria-live="polite"></p>
-            <input type="text" name="_gotcha" style="display:none">
           </form>
         </div>
       </div>
@@ -316,291 +312,7 @@
     <p id="copyright" class="text-muted-foreground text-sm"></p>
   </footer>
 
-  <script id="profile-data" type="application/json">
-{
-   "name":"Collins Warutumo",
-   "tagline":"Cybersecurity Engineer | Full Stack Developer",
-   "about":"Certified cybersecurity and IS audit professional with hands-on experience in full stack development, security audits, and process automation.",
-   "location":"Nairobi County, Kenya",
-   "contact":{
-      "email":"collinswarutumo@gmail.com",
-      "linkedin":"https://www.linkedin.com/in/waruts"
-   },
-   "skills":[
-      "AWS",
-      "Vulnerability Management",
-      "Internal Controls",
-      "Software Development",
-      "API Development",
-      "Information Security",
-      "Cybersecurity",
-      "Workflow Automation",
-      "Process Automation",
-      "Information Security Audits",
-      "Risk Management",
-      "Governance",
-      "Digital Forensics",
-      "Penetration Testing",
-      "Incident Response",
-      "Security Operations",
-      "Network Security",
-      "Data Protection",
-      "Compliance",
-      "Ethical Hacking",
-      "API Development",
-      "Full Stack Development",
-      "CI/CD"
-   ],
-   "certifications":[
-      "Ethical Security Certification",
-      "Certified Information Security Manager (CISM)",
-      "Certified Information Systems Auditor (CISA)"
-   ],
-   "projects":[
-      {
-         "name":"The Actuarial Society of Kenya",
-         "description":"A project focused on managing events and CPDs of the members of the Actuarial Society of Kenya.",
-         "url":"https://www.actuarieskenya.or.ke",
-         "category":"software",
-         "tech":[
-            "Laravel",
-            "WordPress",
-            "MySQL"
-         ]
-      },
-      {
-         "name":"Digital Forensics Chain of Custody System",
-         "description":"Dissertation study for Preservation of Digital Evidence.",
-         "url":"https://opac.library.strathmore.edu/bib/314908",
-         "category":"cyber",
-         "tech":[
-            "Laravel"
-         ]
-      },
-      {
-         "name":"Order Orchestration and Workflow System",
-         "description":"Gen AI order orchestration and process automation workflow.",
-         "url":"https://business.safaricom.co.ke/marketplace",
-         "category":"software",
-         "tech":[
-            "Temporal",
-            "Spring Boot",
-            "PostgreSQL",
-            "AWS",
-            "Jenkins",
-            "SonarQube"
-         ]
-      },
-      {
-         "name":"Cafe Payment and Customer Management System",
-         "description":"Funds Analysis and Customer Details Management System for Cafe.",
-         "url":"https://smilescafe.co.ke",
-         "category":"software",
-         "tech":[
-            "Vue",
-            "Laravel",
-            "Vuex",
-            "Vite",
-            "SQL",
-            "Pusher"
-         ]
-      },
-      {
-         "name":"Telegram FastBuddy Bot",
-         "description":"Healthy living intermittent fasting bot that tracks fasts and shares guidance about fasting.",
-         "url":"https://t.me/i_fast_bot",
-         "github":"https://github.com/waruts1/fastbuddy",
-         "category":"software",
-         "tech":[
-            "Flask",
-            "SQL",
-            "Telegram"
-         ]
-      },
-      {
-         "name":"OTP Verification Service",
-         "description":"Reusable OTP Verification Service for User Authentication",
-         "url":"https://business.safaricom.co.ke/track-order",
-         "category":"cyber",
-         "tech":[
-            "Spring Boot",
-            "Microservices"
-         ]
-      },
-      {
-         "name":"Jiji Vehicle Dataset",
-         "description":"An analysis of Vehicles Based on Price, Make , Model and Year of Manufacture",
-         "url":"",
-         "github":"https://github.com/waruts1/streamlit-jiji-vehicles-visualization",
-         "category":"software",
-         "tech":[
-            "Flask",
-            "SQL",
-            "Jupyter Notebook"
-         ]
-      }
-   ],
-   "experience":[
-      {
-         "title":"Cyber Security Engineer",
-         "company":"",
-         "location":"Nairobi County, Kenya",
-         "dates":"January 2026 – Present",
-         "responsibilities":[
-            "Conducting information security audits",
-            "Performing risk and vulnerability analysis",
-            "Ensuring compliance and governance"
-         ],
-         "skills":[
-            "Information Security",
-            "Vulnerability Management",
-            "Incident Response",
-            "Digital Forensics",
-            "Penetration Testing",
-            "Security Operations",
-            "Network Security",
-            "Risk Management",
-            "Compliance & Governance",
-            "Cloud Security (AWS)",
-            "Automation (CI/CD)"
-         ]
-      },
-      {
-         "title":"Full Stack Developer",
-         "company":"",
-         "location":"Nairobi County, Kenya",
-         "dates":"July 2021 – Dec 2025",
-         "responsibilities":[
-            "Developed, tested, deployed & documented APIs",
-            "Integrated to core business systems",
-            "Performed continuous API audits"
-         ],
-         "achievements":[
-            "Developed reporting capabilities streamlining leadership decisions",
-            "Built APIs for product ordering journey, increasing revenue",
-            "Developed secure customer verification APIs"
-         ],
-         "skills":[
-            "Full Stack Development",
-            "API Development (REST)",
-            "Node.js / Express",
-            "Vue.js / React",
-            "Laravel",
-            "SQL & Data Modeling",
-            "Authentication & Authorization",
-            "Testing & Documentation",
-            "CI/CD",
-            "Cloud (AWS)",
-            "Workflow Automation"
-         ]
-      },
-      {
-         "title":"Process Automation Engineer",
-         "company":"",
-         "location":"Nairobi County, Kenya",
-         "dates":"November 2020 – October 2021",
-         "responsibilities":[
-            "Orchestrated, designed & tested workflows",
-            "Performed continuous audits for workflows"
-         ],
-         "achievements":[
-            "Shipped order workflows for Gen AI prompts and SaaS products"
-         ],
-         "skills":[
-            "Workflow Automation",
-            "Process Orchestration",
-            "API Integration",
-            "Scripting (Python)",
-            "Orchestration Tools",
-            "Testing & Auditing",
-            "CI/CD"
-         ]
-      },
-      {
-         "title":"Full Stack Developer",
-         "company":"@iLabAfrica",
-         "location":"Nairobi County, Kenya",
-         "dates":"August 2018 – October 2020",
-         "responsibilities":[
-            "Delivered full stack features with WordPress, Django, Laravel, and Vue.js",
-            "Designed Figma prototypes for rapid development"
-         ],
-         "achievements":[
-            "Shipped events membership CMS",
-            "Designed auction site",
-            "Implemented auth for IMLU Website",
-            "QA for KAM Member Portal"
-         ],
-         "skills":[
-            "Full Stack Development",
-            "WordPress",
-            "Django",
-            "Laravel",
-            "Vue.js",
-            "Figma (Prototyping)",
-            "Frontend Development (HTML/CSS/JS)",
-            "Backend Development",
-            "Authentication",
-            "SQL",
-            "QA & Testing"
-         ]
-      },
-      {
-         "title":"Cyber Security Engineer",
-         "company":"",
-         "location":"Nairobi County, Kenya",
-         "dates":"May 2016 – July 2018",
-         "responsibilities":[
-            "Implemented automated security tests",
-            "Conducted Information Security Research",
-            "Performed IS audits",
-            "Implemented Information Governance"
-         ],
-         "achievements":[
-            "Research on Digital Forensics Chain of Custody"
-         ],
-         "skills":[
-            "Information Security",
-            "Security Testing",
-            "Automated Security Tests",
-            "Information Governance",
-            "IS Audits",
-            "Digital Forensics",
-            "Risk Management",
-            "Incident Response",
-            "Compliance"
-         ]
-      },
-      {
-         "title":"ERP Support Engineer",
-         "company":"Kenya Power",
-         "location":"Nakuru, Kenya",
-         "dates":"January 2015 – December 2015",
-         "responsibilities":[
-            "SAP ERP & Computer Hardware Configuration"
-         ],
-         "skills":[
-            "SAP ERP",
-            "ERP Support & Configuration",
-            "System Troubleshooting",
-            "Hardware Configuration",
-            "User Training & Support",
-            "SQL (Basic)"
-         ]
-      }
-   ],
-   "education":[
-      {
-         "degree":"Cybersecurity & Software Engineering",
-         "institution":"Strathmore University"
-      },
-      {
-         "degree":"Security Information & Audit",
-         "institution":"ISACA"
-      }
-   ]
-}
-  </script>
+  <script src="./profile.data.js"></script>
 
   <script>
     const cyberKeywords = [
@@ -1098,10 +810,16 @@
             body: JSON.stringify(payload)
           });
 
-          if (!response.ok) throw new Error("Message send failed");
+          const result = await response.json().catch(() => ({}));
+          if (!response.ok || result.ok === false) {
+            const fallbackError = response.status === 404
+              ? "The Telegram contact handler is not available on this host yet."
+              : "Message send failed";
+            throw new Error(result.error || fallbackError);
+          }
 
           form.reset();
-          formStatus.textContent = "Message sent successfully. Thank you for reaching out.";
+          formStatus.textContent = result.message || "Message sent successfully. Thank you for reaching out.";
           window.setTimeout(() => {
             formStatus.textContent = "";
             closeModal();
@@ -1132,9 +850,8 @@
     }
 
     function loadProfile() {
-      const rawData = document.getElementById("profile-data")?.textContent?.trim();
-      if (!rawData) throw new Error("Embedded profile data is missing");
-      profileData = JSON.parse(rawData);
+      if (!window.PORTFOLIO_DATA) throw new Error("Portfolio data file is missing");
+      profileData = window.PORTFOLIO_DATA;
       renderHero(profileData);
       renderCertifications();
       renderEducation();

@@ -1,0 +1,283 @@
+window.PORTFOLIO_DATA = {
+  name: "Collins Warutumo",
+  tagline: "Cybersecurity Engineer | Full Stack Developer",
+  about: "Certified cybersecurity and IS audit professional with hands-on experience in full stack development, security audits, and process automation.",
+  location: "Nairobi County, Kenya",
+  contact: {
+    email: "collinswarutumo@gmail.com",
+    linkedin: "https://www.linkedin.com/in/waruts"
+  },
+  skills: [
+    "AWS",
+    "Vulnerability Management",
+    "Internal Controls",
+    "Software Development",
+    "API Development",
+    "Information Security",
+    "Cybersecurity",
+    "Workflow Automation",
+    "Process Automation",
+    "Information Security Audits",
+    "Risk Management",
+    "Governance",
+    "Digital Forensics",
+    "Penetration Testing",
+    "Incident Response",
+    "Security Operations",
+    "Network Security",
+    "Data Protection",
+    "Compliance",
+    "Ethical Hacking",
+    "API Development",
+    "Full Stack Development",
+    "CI/CD"
+  ],
+  certifications: [
+    "Ethical Security Certification",
+    "Certified Information Security Manager (CISM)",
+    "Certified Information Systems Auditor (CISA)"
+  ],
+  projects: [
+    {
+      name: "The Actuarial Society of Kenya",
+      description: "A project focused on managing events and CPDs of the members of the Actuarial Society of Kenya.",
+      url: "https://www.actuarieskenya.or.ke",
+      category: "software",
+      tech: [
+        "Laravel",
+        "WordPress",
+        "MySQL"
+      ]
+    },
+    {
+      name: "Digital Forensics Chain of Custody System",
+      description: "Dissertation study for Preservation of Digital Evidence.",
+      url: "https://opac.library.strathmore.edu/bib/314908",
+      category: "cyber",
+      tech: [
+        "Laravel"
+      ]
+    },
+    {
+      name: "Order Orchestration and Workflow System",
+      description: "Gen AI order orchestration and process automation workflow.",
+      url: "https://business.safaricom.co.ke/marketplace",
+      category: "software",
+      tech: [
+        "Temporal",
+        "Spring Boot",
+        "PostgreSQL",
+        "AWS",
+        "Jenkins",
+        "SonarQube"
+      ]
+    },
+    {
+      name: "Cafe Payment and Customer Management System",
+      description: "Funds Analysis and Customer Details Management System for Cafe.",
+      url: "https://smilescafe.co.ke",
+      category: "software",
+      tech: [
+        "Vue",
+        "Laravel",
+        "Vuex",
+        "Vite",
+        "SQL",
+        "Pusher"
+      ]
+    },
+    {
+      name: "Telegram FastBuddy Bot",
+      description: "Healthy living intermittent fasting bot that tracks fasts and shares guidance about fasting.",
+      url: "https://t.me/i_fast_bot",
+      github: "https://github.com/waruts1/fastbuddy",
+      category: "software",
+      tech: [
+        "Flask",
+        "SQL",
+        "Telegram"
+      ]
+    },
+    {
+      name: "OTP Verification Service",
+      description: "Reusable OTP Verification Service for User Authentication",
+      url: "https://business.safaricom.co.ke/track-order",
+      category: "cyber",
+      tech: [
+        "Spring Boot",
+        "Microservices"
+      ]
+    },
+    {
+      name: "Jiji Vehicle Dataset",
+      description: "An analysis of Vehicles Based on Price, Make , Model and Year of Manufacture",
+      url: "",
+      github: "https://github.com/waruts1/streamlit-jiji-vehicles-visualization",
+      category: "software",
+      tech: [
+        "Flask",
+        "SQL",
+        "Jupyter Notebook"
+      ]
+    }
+  ],
+  experience: [
+    {
+      title: "Cyber Security Engineer",
+      company: "",
+      location: "Nairobi County, Kenya",
+      dates: "January 2026 – Present",
+      responsibilities: [
+        "Conducting information security audits",
+        "Performing risk and vulnerability analysis",
+        "Ensuring compliance and governance"
+      ],
+      skills: [
+        "Information Security",
+        "Vulnerability Management",
+        "Incident Response",
+        "Digital Forensics",
+        "Penetration Testing",
+        "Security Operations",
+        "Network Security",
+        "Risk Management",
+        "Compliance & Governance",
+        "Cloud Security (AWS)",
+        "Automation (CI/CD)"
+      ]
+    },
+    {
+      title: "Full Stack Developer",
+      company: "",
+      location: "Nairobi County, Kenya",
+      dates: "July 2021 – Dec 2025",
+      responsibilities: [
+        "Developed, tested, deployed & documented APIs",
+        "Integrated to core business systems",
+        "Performed continuous API audits"
+      ],
+      achievements: [
+        "Developed reporting capabilities streamlining leadership decisions",
+        "Built APIs for product ordering journey, increasing revenue",
+        "Developed secure customer verification APIs"
+      ],
+      skills: [
+        "Full Stack Development",
+        "API Development (REST)",
+        "Node.js / Express",
+        "Vue.js / React",
+        "Laravel",
+        "SQL & Data Modeling",
+        "Authentication & Authorization",
+        "Testing & Documentation",
+        "CI/CD",
+        "Cloud (AWS)",
+        "Workflow Automation"
+      ]
+    },
+    {
+      title: "Process Automation Engineer",
+      company: "",
+      location: "Nairobi County, Kenya",
+      dates: "November 2020 – October 2021",
+      responsibilities: [
+        "Orchestrated, designed & tested workflows",
+        "Performed continuous audits for workflows"
+      ],
+      achievements: [
+        "Shipped order workflows for Gen AI prompts and SaaS products"
+      ],
+      skills: [
+        "Workflow Automation",
+        "Process Orchestration",
+        "API Integration",
+        "Scripting (Python)",
+        "Orchestration Tools",
+        "Testing & Auditing",
+        "CI/CD"
+      ]
+    },
+    {
+      title: "Full Stack Developer",
+      company: "@iLabAfrica",
+      location: "Nairobi County, Kenya",
+      dates: "August 2018 – October 2020",
+      responsibilities: [
+        "Delivered full stack features with WordPress, Django, Laravel, and Vue.js",
+        "Designed Figma prototypes for rapid development"
+      ],
+      achievements: [
+        "Shipped events membership CMS",
+        "Designed auction site",
+        "Implemented auth for IMLU Website",
+        "QA for KAM Member Portal"
+      ],
+      skills: [
+        "Full Stack Development",
+        "WordPress",
+        "Django",
+        "Laravel",
+        "Vue.js",
+        "Figma (Prototyping)",
+        "Frontend Development (HTML/CSS/JS)",
+        "Backend Development",
+        "Authentication",
+        "SQL",
+        "QA & Testing"
+      ]
+    },
+    {
+      title: "Cyber Security Engineer",
+      company: "",
+      location: "Nairobi County, Kenya",
+      dates: "May 2016 – July 2018",
+      responsibilities: [
+        "Implemented automated security tests",
+        "Conducted Information Security Research",
+        "Performed IS audits",
+        "Implemented Information Governance"
+      ],
+      achievements: [
+        "Research on Digital Forensics Chain of Custody"
+      ],
+      skills: [
+        "Information Security",
+        "Security Testing",
+        "Automated Security Tests",
+        "Information Governance",
+        "IS Audits",
+        "Digital Forensics",
+        "Risk Management",
+        "Incident Response",
+        "Compliance"
+      ]
+    },
+    {
+      title: "ERP Support Engineer",
+      company: "Kenya Power",
+      location: "Nakuru, Kenya",
+      dates: "January 2015 – December 2015",
+      responsibilities: [
+        "SAP ERP & Computer Hardware Configuration"
+      ],
+      skills: [
+        "SAP ERP",
+        "ERP Support & Configuration",
+        "System Troubleshooting",
+        "Hardware Configuration",
+        "User Training & Support",
+        "SQL (Basic)"
+      ]
+    }
+  ],
+  education: [
+    {
+      degree: "Cybersecurity & Software Engineering",
+      institution: "Strathmore University"
+    },
+    {
+      degree: "Security Information & Audit",
+      institution: "ISACA"
+    }
+  ]
+};
