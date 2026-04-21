@@ -257,14 +257,15 @@
 
       <!-- Contact Card -->
       <div class="surface-card rounded-[1.75rem] p-6 text-center shadow-card hover:shadow-card-hover">
+        <!--
         <p class="mb-2 flex justify-center items-center gap-2">
-          <!-- Heroicon Mail -->
           <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round"
               d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25H4.5A2.25 2.25 0 012.25 17.25V6.75M21.75 6.75L12 13.5 2.25 6.75" />
           </svg>
           <a href="#" id="email-link" class="text-primary underline">Email</a>
         </p>
+        -->
         <p class="mb-4 flex justify-center items-center gap-2">
           <!-- Heroicon LinkedIn (custom SVG or use <i> tag if needed) -->
           <svg class="w-5 h-5 text-primary" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
@@ -275,15 +276,16 @@
         </p>
 
         <!-- Trigger Modal -->
+        <!--
         <button id="openModal" class="mt-4 rounded-full bg-primary px-6 py-3 text-white hover:bg-primary/90 transition">
           Contact Me
         </button>
+        -->
       </div>
 
-      <!-- Modal -->
+      <!--
       <div id="contactModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
         <div class="surface-card rounded-[1.5rem] p-6 w-full max-w-md relative shadow-card">
-          <!-- Close button -->
           <button id="closeModal" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -291,10 +293,10 @@
           </button>
 
           <h3 class="text-xl font-semibold mb-4">Send a Message</h3>
-          <form id="contactForm" action="./contact.php" method="POST" class="space-y-4">
-            <input type="text" name="name" required placeholder="Your Name" class="w-full border rounded px-4 py-2" />
-            <input type="email" name="_replyto" required placeholder="Your Email" class="w-full border rounded px-4 py-2" />
-            <textarea name="message" required placeholder="Your Message" class="w-full border rounded px-4 py-2"></textarea>
+          <form id="contactForm" action="https://smilescafe.co.ke/api/v1/contact" method="POST" class="space-y-4">
+            <input type="text" name="name" required placeholder="Your Name" class="w-full rounded border border-slate-300 bg-white px-4 py-2 text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/30 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:placeholder:text-slate-400" />
+            <input type="email" name="email" required placeholder="Your Email" class="w-full rounded border border-slate-300 bg-white px-4 py-2 text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/30 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:placeholder:text-slate-400" />
+            <textarea name="message" required placeholder="Your Message" class="w-full rounded border border-slate-300 bg-white px-4 py-2 text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/30 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:placeholder:text-slate-400"></textarea>
             <input type="text" name="_gotcha" autocomplete="off" tabindex="-1" class="hidden" />
             <button type="submit" class="w-full bg-primary text-white px-4 py-2 rounded hover:bg-primary/90 transition">
               Send Message
@@ -303,6 +305,7 @@
           </form>
         </div>
       </div>
+      -->
     </section>
 
 
@@ -502,10 +505,17 @@
         valueDiv.appendChild(card);
       });
 
-      document.getElementById("email-link").textContent = data.contact.email;
-      document.getElementById("email-link").href = `mailto:${data.contact.email}`;
-      document.getElementById("linkedin-link").textContent = data.contact.linkedin.replace(/^https?:\/\/(www\.)?/, "");
-      document.getElementById("linkedin-link").href = data.contact.linkedin;
+      const emailLink = document.getElementById("email-link");
+      if (emailLink) {
+        emailLink.textContent = data.contact.email;
+        emailLink.href = `mailto:${data.contact.email}`;
+      }
+
+      const linkedinLink = document.getElementById("linkedin-link");
+      if (linkedinLink) {
+        linkedinLink.textContent = data.contact.linkedin.replace(/^https?:\/\/(www\.)?/, "");
+        linkedinLink.href = data.contact.linkedin;
+      }
       document.getElementById("copyright").textContent = `© ${new Date().getFullYear()} ${data.name}. All rights reserved.`;
     }
 
@@ -800,7 +810,12 @@
       contactForm?.addEventListener("submit", async (event) => {
         event.preventDefault();
         const form = event.currentTarget;
-        const payload = Object.fromEntries(new FormData(form).entries());
+        const formData = new FormData(form);
+        const payload = {
+          name: String(formData.get("name") || "").trim(),
+          email: String(formData.get("email") || "").trim(),
+          message: String(formData.get("message") || "").trim()
+        };
         formStatus.textContent = "Sending your message...";
 
         try {
@@ -810,12 +825,21 @@
             body: JSON.stringify(payload)
           });
 
-          const result = await response.json().catch(() => ({}));
-          if (!response.ok || result.ok === false) {
-            const fallbackError = response.status === 404
-              ? "The Telegram contact handler is not available on this host yet."
-              : "Message send failed";
-            throw new Error(result.error || fallbackError);
+          const contentType = response.headers.get("content-type") || "";
+          const isJson = contentType.includes("application/json");
+          const result = isJson ? await response.json().catch(() => null) : null;
+
+          if (!response.ok || !result || result.ok !== true) {
+            let fallbackError = "Message send failed";
+            if (response.status === 404) {
+              fallbackError = "The contact endpoint is not available on this host yet.";
+            } else if (!isJson) {
+              fallbackError = "The contact endpoint returned a non-JSON response.";
+            } else if (result && typeof result.error === "string" && result.error) {
+              fallbackError = result.error;
+            }
+
+            throw new Error(fallbackError);
           }
 
           form.reset();
@@ -826,7 +850,9 @@
           }, 1200);
         } catch (error) {
           console.error("Contact submit failed", error);
-          formStatus.textContent = "There was a problem sending the message. Please try again.";
+          formStatus.textContent = error instanceof Error && error.message
+            ? error.message
+            : "There was a problem sending the message. Please try again.";
         }
       });
     }
