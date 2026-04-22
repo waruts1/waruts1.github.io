@@ -83,8 +83,10 @@ $env = loadDotEnv(__DIR__ . '/.env');
 $botToken = $env['TELEGRAM_BOT_TOKEN'] ?? getenv('TELEGRAM_BOT_TOKEN') ?: '';
 $chatId = $env['TELEGRAM_CHAT_ID'] ?? getenv('TELEGRAM_CHAT_ID') ?: '';
 
-if ($botToken === '' || $chatId === '' ||
-    strpos($botToken, 'replace-with') !== false || strpos($chatId, 'replace-with') !== false) {
+if (
+    $botToken === '' || $chatId === '' ||
+    strpos($botToken, 'replace-with') !== false || strpos($chatId, 'replace-with') !== false
+) {
     respond(500, ['ok' => false, 'error' => 'Telegram bot settings are not configured on the server.']);
 }
 
