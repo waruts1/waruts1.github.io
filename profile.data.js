@@ -235,6 +235,7 @@ window.PORTFOLIO_DATA = {
     {
       title: "Cyber Security Engineer",
       company: "Telco",
+      category: "cyber",
       location: "Nairobi, Kenya",
       dates: "January 2026 – Present",
       responsibilities: [
@@ -269,6 +270,7 @@ window.PORTFOLIO_DATA = {
     {
       title: "Full Stack Developer",
       company: "Telco",
+      category: "software",
       location: "Nairobi, Kenya",
       dates: "July 2021 – December 2025",
       responsibilities: [
@@ -304,6 +306,7 @@ window.PORTFOLIO_DATA = {
     {
       title: "Process Automation Engineer",
       company: "Telco",
+      category: "software",
       location: "Nairobi, Kenya",
       dates: "November 2020 – October 2021",
       responsibilities: [
@@ -331,6 +334,7 @@ window.PORTFOLIO_DATA = {
     {
       title: "Full Stack Developer",
       company: "@iLabAfrica — Strathmore University Research Centre",
+      category: "software",
       location: "Nairobi, Kenya",
       dates: "August 2018 – October 2020",
       responsibilities: [
@@ -361,6 +365,7 @@ window.PORTFOLIO_DATA = {
     {
       title: "Cyber Security Engineer",
       company: "Strathmore University — iLabAfrica Research Centre",
+      category: "cyber",
       location: "Nairobi, Kenya",
       dates: "May 2016 – July 2018",
       responsibilities: [
@@ -389,6 +394,7 @@ window.PORTFOLIO_DATA = {
     {
       title: "ERP Support Engineer",
       company: "Kenya Power",
+      category: "software",
       location: "Nakuru, Kenya",
       dates: "January 2015 – December 2015",
       responsibilities: [
