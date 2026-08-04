@@ -614,7 +614,7 @@
         const card = document.createElement("article");
         card.className = "experience-card surface-card rounded-[1.75rem] p-6 shadow-card hover:shadow-card-hover transition-all";
 
-        const label = isCyber(job) ? "Security" : (isAutomation(job) ? "Automation" : "Engineering");
+        const label = job.category === "cyber" ? "Security" : "Engineering";
         const meta = [job.company, job.location, job.dates].filter(Boolean).join(" • ");
 
         card.appendChild(createBadge(label, "inline-flex rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.24em] text-primary"));
