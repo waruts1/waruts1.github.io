@@ -606,9 +606,7 @@
       const experienceDiv = document.getElementById("experience-container");
       const items = (profileData.experience || []).filter((job) => {
         if (filter === "all") return true;
-        if (filter === "cyber") return isCyber(job);
-        if (filter === "software") return isSoftware(job) || isAutomation(job);
-        return true;
+        return String(job.category || "software").toLowerCase() === filter;
       });
 
       experienceDiv.innerHTML = "";
