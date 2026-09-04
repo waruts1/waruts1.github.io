@@ -9,36 +9,20 @@ permissions:
 
 jobs:
   update:
-    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Update contact form
-        shell: bash
+      - name: Apply contact form improvements
         run: |
-          python3 <<'PY'
+          python3 - <<'PY'
           from pathlib import Path
+          p = Path("index.html")
+          s = p.read_text()
 
-          path = Path('index.html')
-          text = path.read_text(encoding='utf-8')
-
-          text = text.replace(
-              '<input type="text" name="name" required placeholder="Your Name"',
-              '<input type="text" name="name" required minlength="2" maxlength="100" autocomplete="name" placeholder="Your Name"',
-              1,
-          )
-          text = text.replace(
-              '<input type="email" name="email" required placeholder="Your Email"',
-              '<input type="email" name="email" required maxlength="254" autocomplete="email" placeholder="Your Email"',
-              1,
-          )
-          text = text.replace(
-              '<textarea name="message" required placeholder="Your Message"',
-              '<textarea name="message" required minlength="10" maxlength="2000" rows="5" placeholder="Your Message"',
-              1,
-          )
+          s = s.replace('name="name" required placeholder="Your Name"', 'name="name" required minlength="2" maxlength="100" autocomplete="name" placeholder="Your Name"', 1)
+          s = s.replace('name="email" required placeholder="Your Email"', 'name="email" required maxlength="254" autocomplete="email" placeholder="Your Email"', 1)
+          s = s.replace('name="message" required placeholder="Your Message"', 'name="message" required minlength="10" maxlength="2000" rows="5" placeholder="Your Message"', 1)
 
           old = '''        const payload = {
           name: String(formData.get("name") || "").trim(),
@@ -83,24 +67,22 @@ jobs:
 
         formStatus.textContent = "Sending your message...";'''
 
-          if old not in text:
-              raise SystemExit('Contact submit block not found')
-          text = text.replace(old, new, 1)
+          if old not in s:
+              raise SystemExit("Contact submit block not found")
+          s = s.replace(old, new, 1)
 
-          old_success = '          formStatus.textContent = result.message || "Message sent successfully. Thank you for reaching out.";'
-          new_success = '          formStatus.textContent = "Message sent successfully. Thank you for reaching out.";'
-          if old_success not in text:
-              raise SystemExit('Success message block not found')
-          text = text.replace(old_success, new_success, 1)
+          old_success = 'formStatus.textContent = result.message || "Message sent successfully. Thank you for reaching out.";'
+          new_success = 'formStatus.textContent = "Message sent successfully. Thank you for reaching out.";'
+          if old_success not in s:
+              raise SystemExit("Success message block not found")
+          s = s.replace(old_success, new_success, 1)
 
-          path.write_text(text, encoding='utf-8')
+          p.write_text(s)
           PY
 
-      - name: Remove temporary workflow
-        run: rm -f .github/workflows/update-contact-form.yml
-
-      - name: Commit changes
+      - name: Commit and remove temporary workflow
         run: |
+          rm -f .github/workflows/update-contact-form.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html .github/workflows/update-contact-form.yml
