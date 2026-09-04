@@ -16,25 +16,28 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Update contact form
-        shell: python
+        shell: bash
         run: |
+          python3 <<'PY'
           from pathlib import Path
-          import re
 
           path = Path('index.html')
           text = path.read_text(encoding='utf-8')
 
           text = text.replace(
               '<input type="text" name="name" required placeholder="Your Name"',
-              '<input type="text" name="name" required minlength="2" maxlength="100" autocomplete="name" placeholder="Your Name"'
+              '<input type="text" name="name" required minlength="2" maxlength="100" autocomplete="name" placeholder="Your Name"',
+              1,
           )
           text = text.replace(
               '<input type="email" name="email" required placeholder="Your Email"',
-              '<input type="email" name="email" required maxlength="254" autocomplete="email" placeholder="Your Email"'
+              '<input type="email" name="email" required maxlength="254" autocomplete="email" placeholder="Your Email"',
+              1,
           )
           text = text.replace(
               '<textarea name="message" required placeholder="Your Message"',
-              '<textarea name="message" required minlength="10" maxlength="2000" rows="5" placeholder="Your Message"'
+              '<textarea name="message" required minlength="10" maxlength="2000" rows="5" placeholder="Your Message"',
+              1,
           )
 
           old = '''        const payload = {
@@ -91,8 +94,11 @@ jobs:
           text = text.replace(old_success, new_success, 1)
 
           path.write_text(text, encoding='utf-8')
+          PY
+
       - name: Remove temporary workflow
         run: rm -f .github/workflows/update-contact-form.yml
+
       - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"
