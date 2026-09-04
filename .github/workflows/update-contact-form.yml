@@ -2,90 +2,68 @@ name: Update contact form
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 permissions:
   contents: write
 
 jobs:
   update:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Apply contact form improvements
+      - name: Update contact form validation
+        shell: python
         run: |
-          python3 - <<'PY'
           from pathlib import Path
-          p = Path("index.html")
-          s = p.read_text()
+          import re
 
-          s = s.replace('name="name" required placeholder="Your Name"', 'name="name" required minlength="2" maxlength="100" autocomplete="name" placeholder="Your Name"', 1)
-          s = s.replace('name="email" required placeholder="Your Email"', 'name="email" required maxlength="254" autocomplete="email" placeholder="Your Email"', 1)
-          s = s.replace('name="message" required placeholder="Your Message"', 'name="message" required minlength="10" maxlength="2000" rows="5" placeholder="Your Message"', 1)
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+          original = text
 
-          old = '''        const payload = {
-          name: String(formData.get("name") || "").trim(),
-          email: String(formData.get("email") || "").trim(),
-          message: String(formData.get("message") || "").trim()
-        };
-        formStatus.textContent = "Sending your message...";'''
+          text, n1 = re.subn(
+              r'name="name" required(?: minlength="2" maxlength="100" autocomplete="name")? placeholder="Your Name"',
+              'name="name" required minlength="2" maxlength="100" autocomplete="name" placeholder="Your Name"',
+              text, count=1)
+          text, n2 = re.subn(
+              r'name="email" required(?: maxlength="254" autocomplete="email")? placeholder="Your Email"',
+              'name="email" required maxlength="254" autocomplete="email" placeholder="Your Email"',
+              text, count=1)
+          text, n3 = re.subn(
+              r'name="message" required(?: minlength="10" maxlength="2000" rows="5")? placeholder="Your Message"',
+              'name="message" required minlength="10" maxlength="2000" rows="5" placeholder="Your Message"',
+              text, count=1)
 
-          new = '''        const payload = {
-          name: String(formData.get("name") || "").trim(),
-          email: String(formData.get("email") || "").trim(),
-          message: String(formData.get("message") || "").trim()
-        };
+          validation = '''\n        const emailPattern = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;\n        const honeypot = String(formData.get("_gotcha") || "").trim();\n\n        if (honeypot) {\n          formStatus.textContent = "Unable to send this message.";\n          return;\n        }\n\n        if (!payload.name || !payload.email || !payload.message) {\n          formStatus.textContent = "Please complete all fields before sending.";\n          return;\n        }\n\n        if (payload.name.length < 2 || payload.name.length > 100) {\n          formStatus.textContent = "Please enter a valid name.";\n          return;\n        }\n\n        if (!emailPattern.test(payload.email) || payload.email.length > 254) {\n          formStatus.textContent = "Please enter a valid email address.";\n          return;\n        }\n\n        if (payload.message.length < 10 || payload.message.length > 2000) {\n          formStatus.textContent = "Message must be between 10 and 2000 characters.";\n          return;\n        }\n'''
 
-        const emailPattern = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
-        const honeypot = String(formData.get("_gotcha") || "").trim();
+          if 'const emailPattern = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;' not in text:
+              marker = '        formStatus.textContent = "Sending your message...";'
+              if marker not in text:
+                  raise SystemExit('Could not locate contact form submit handler')
+              text = text.replace(marker, validation + '\n' + marker, 1)
 
-        if (honeypot) {
-          formStatus.textContent = "Unable to send this message.";
-          return;
-        }
+          text, success_count = re.subn(
+              r'formStatus\.textContent\s*=\s*result\.message\s*\|\|\s*["\']Message sent successfully\. Thank you for reaching out\.["\'];',
+              'formStatus.textContent = "Message sent successfully. Thank you for reaching out.";',
+              text, count=1)
 
-        if (!payload.name || !payload.email || !payload.message) {
-          formStatus.textContent = "Please complete all fields before sending.";
-          return;
-        }
+          if text == original:
+              raise SystemExit('No changes were made; aborting rather than creating a no-op commit')
+          if n1 + n2 + n3 == 0 and 'const emailPattern = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/' not in text and success_count == 0:
+              raise SystemExit('Contact form markers were not found')
 
-        if (payload.name.length < 2 || payload.name.length > 100) {
-          formStatus.textContent = "Please enter a valid name.";
-          return;
-        }
+          path.write_text(text, encoding='utf-8')
 
-        if (!emailPattern.test(payload.email) || payload.email.length > 254) {
-          formStatus.textContent = "Please enter a valid email address.";
-          return;
-        }
-
-        if (payload.message.length < 10 || payload.message.length > 2000) {
-          formStatus.textContent = "Message must be between 10 and 2000 characters.";
-          return;
-        }
-
-        formStatus.textContent = "Sending your message...";'''
-
-          if old not in s:
-              raise SystemExit("Contact submit block not found")
-          s = s.replace(old, new, 1)
-
-          old_success = 'formStatus.textContent = result.message || "Message sent successfully. Thank you for reaching out.";'
-          new_success = 'formStatus.textContent = "Message sent successfully. Thank you for reaching out.";'
-          if old_success not in s:
-              raise SystemExit("Success message block not found")
-          s = s.replace(old_success, new_success, 1)
-
-          p.write_text(s)
-          PY
-
-      - name: Commit and remove temporary workflow
+      - name: Commit changes
         run: |
-          rm -f .github/workflows/update-contact-form.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html .github/workflows/update-contact-form.yml
-          git diff --cached --quiet && exit 0
-          git commit -m "Strengthen contact form validation"
+          git add index.html
+          git diff --cached --check
+          git commit -m "Strengthen contact form validation [skip ci]"
           git push
