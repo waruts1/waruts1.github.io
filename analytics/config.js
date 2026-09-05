@@ -1,8 +1,7 @@
-// Replace these placeholders with your Supabase project values.
-// The anon/publishable key is safe for browser use when RLS is correctly configured.
-// NEVER put SUPABASE_SERVICE_ROLE_KEY here.
+// Public browser configuration only.
+// NEVER put a Supabase secret/service-role key in this file.
 window.ANALYTICS_CONFIG = {
-  supabaseUrl: 'https://YOUR_PROJECT_REF.supabase.co',
-  supabaseAnonKey: 'YOUR_SUPABASE_ANON_OR_PUBLISHABLE_KEY',
-  ingestionEndpoint: 'https://YOUR_PROJECT_REF.supabase.co/functions/v1/analytics'
+  supabaseUrl: 'https://zndiavepoxhihftpjvcb.supabase.co',
+  supabaseAnonKey: 'sb_publishable_845r8f-_nj-3jA-31Eodtg_n7hZlZdk',
+  ingestionEndpoint: 'https://zndiavepoxhihftpjvcb.supabase.co/functions/v1/analytics'
 };
