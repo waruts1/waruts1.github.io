@@ -1,0 +1,6 @@
+# Supabase project configuration for the portfolio analytics backend.
+# Analytics ingestion is intentionally public because visitors do not authenticate.
+# The Edge Function validates the event payload and uses the service-role key server-side.
+
+[functions.analytics]
+verify_jwt = false
