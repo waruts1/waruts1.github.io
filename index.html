@@ -111,6 +111,7 @@
     .dark .filter-pill { background: rgba(15, 23, 42, 0.88); color: #f8fafc; border-color: rgba(148, 163, 184, 0.18); }
     .dark .focus-chip, .dark .stat-card { background: rgba(15, 23, 42, 0.26); border-color: rgba(148, 163, 184, 0.18); }
   </style>
+  <script src="./analytics/bootstrap.js" defer></script>
 </head>
 
 <body class="bg-background text-gray-900 font-sans antialiased">
@@ -325,42 +326,7 @@
     const allowedFocuses = new Set(["cyber", "software"]);
     let profileData = null;
 
-    function getOrCreateVisitorId() {
-      const existing = localStorage.getItem("visitorId");
-      if (existing) return existing;
-      const id = crypto.randomUUID?.() || Math.random().toString(36).slice(2);
-      localStorage.setItem("visitorId", id);
-      return id;
-    }
-
-    function sendVisitData() {
-      try {
-        const payload = {
-          visitorId: getOrCreateVisitorId(),
-          timestamp: new Date().toISOString(),
-          url: window.location.href,
-          pageTitle: document.title,
-          userAgent: navigator.userAgent,
-          referrer: document.referrer
-        };
-
-        if (navigator.sendBeacon) {
-          const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
-          if (navigator.sendBeacon("https://smilescafe.co.ke/api/v1/telegram", blob)) return;
-        }
-
-        fetch("https://smilescafe.co.ke/api/v1/telegram", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-          keepalive: true
-        }).catch(() => {});
-      } catch (error) {
-        console.debug("Visit tracking skipped", error);
-      }
-    }
-
-    function setupThemeToggle() {
+    function setupThemeToggle() { {
       const sunSVG = '<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364-1.414 1.414M7.05 16.95l-1.414 1.414M18.364 18.364l-1.414-1.414M7.05 7.05 5.636 5.636"/></svg>';
       const moonSVG = '<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>';
       const toggle = document.getElementById("themeToggle");
@@ -906,7 +872,6 @@
     }
 
     window.addEventListener("load", () => {
-      sendVisitData();
       setupThemeToggle();
       setupModal();
 
