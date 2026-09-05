@@ -3,20 +3,28 @@
 
 create extension if not exists pgcrypto;
 
+create table if not exists public.analytics_admins (
+  user_id uuid primary key references auth.users(id) on delete cascade,
+  created_at timestamptz not null default now()
+);
+
+alter table public.analytics_admins enable row level security;
+revoke all on table public.analytics_admins from anon;
+revoke all on table public.analytics_admins from authenticated;
+
+drop policy if exists analytics_admins_self_read on public.analytics_admins;
+create policy analytics_admins_self_read
+on public.analytics_admins
+for select to authenticated
+using (user_id = auth.uid());
+
 create table if not exists public.analytics_events (
   id uuid primary key default gen_random_uuid(),
   visitor_id text not null,
   session_id text not null,
   event_name text not null check (event_name in (
-    'page_view',
-    'section_view',
-    'project_view',
-    'github_click',
-    'cv_view',
-    'cv_download',
-    'contact_open',
-    'contact_submit',
-    'outbound_click'
+    'page_view', 'section_view', 'project_view', 'github_click',
+    'cv_view', 'cv_download', 'contact_open', 'contact_submit', 'outbound_click'
   )),
   path text,
   referrer text,
@@ -38,7 +46,6 @@ create index if not exists analytics_events_event_name_idx on public.analytics_e
 create index if not exists analytics_events_source_idx on public.analytics_events (source, created_at desc);
 create index if not exists analytics_events_path_idx on public.analytics_events (path, created_at desc);
 
--- No direct anonymous access. The tracking Edge Function inserts with the service role.
 alter table public.analytics_events enable row level security;
 revoke all on table public.analytics_events from anon;
 revoke all on table public.analytics_events from authenticated;
@@ -46,11 +53,9 @@ revoke all on table public.analytics_events from authenticated;
 drop policy if exists analytics_events_admin_read on public.analytics_events;
 create policy analytics_events_admin_read
 on public.analytics_events
-for select
-to authenticated
-using (auth.role() = 'authenticated');
+for select to authenticated
+using (exists (select 1 from public.analytics_admins a where a.user_id = auth.uid()));
 
--- Dashboard-friendly aggregate RPC. Authenticated users only.
 create or replace function public.analytics_overview(days integer default 30)
 returns jsonb
 language plpgsql
@@ -61,8 +66,8 @@ declare
   since_at timestamptz := now() - make_interval(days => greatest(days, 1));
   result jsonb;
 begin
-  if auth.role() <> 'authenticated' then
-    raise exception 'not authenticated';
+  if not exists (select 1 from analytics_admins where user_id = auth.uid()) then
+    raise exception 'not authorized';
   end if;
 
   select jsonb_build_object(
@@ -71,6 +76,7 @@ begin
     'github_clicks', (select count(*) from analytics_events where event_name = 'github_click' and created_at >= since_at),
     'contact_submits', (select count(*) from analytics_events where event_name = 'contact_submit' and created_at >= since_at),
     'cv_views', (select count(*) from analytics_events where event_name in ('cv_view','cv_download') and created_at >= since_at),
+    'project_visitors', (select count(distinct visitor_id) from analytics_events where event_name = 'project_view' and created_at >= since_at),
     'sources', coalesce((select jsonb_agg(x order by x.count desc) from (
       select coalesce(nullif(source,''),'direct') as source, count(*)::integer as count
       from analytics_events where created_at >= since_at group by 1 limit 10
@@ -94,3 +100,6 @@ end;
 $$;
 
 grant execute on function public.analytics_overview(integer) to authenticated;
+
+-- After creating the private analytics Auth user, add that user's UUID here:
+-- insert into public.analytics_admins (user_id) values ('AUTH-USER-UUID');
