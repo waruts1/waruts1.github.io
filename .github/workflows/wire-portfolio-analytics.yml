@@ -1,0 +1,75 @@
+name: Wire portfolio analytics
+
+on:
+  push:
+    branches:
+      - feature/private-analytics
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  wire-analytics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout feature branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 1
+
+      - name: Wire analytics bootstrap and remove legacy visitor tracking
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          path = Path("index.html")
+          text = path.read_text(encoding="utf-8")
+
+          bootstrap = '<script src="./analytics/bootstrap.js" defer></script>'
+          changed = False
+
+          if bootstrap not in text:
+              marker = "</head>"
+              if marker not in text:
+                  raise SystemExit("Could not find </head> in index.html")
+              text = text.replace(marker, f"  {bootstrap}\n{marker}", 1)
+              changed = True
+
+          # Remove the legacy Telegram visitor tracker. The function is bounded
+          # by the next application function in the current portfolio script.
+          legacy_pattern = re.compile(
+              r'\n    function getOrCreateVisitorId\(\) \{.*?\n    function setupThemeToggle\(\)',
+              re.DOTALL,
+          )
+          new_text, count = legacy_pattern.subn("\n    function setupThemeToggle() {", text, count=1)
+          if count:
+              text = new_text
+              changed = True
+
+          # The old load handler invoked the Telegram tracker directly.
+          old_call = "      sendVisitData();\n"
+          if old_call in text:
+              text = text.replace(old_call, "", 1)
+              changed = True
+
+          if not changed:
+              print("Analytics already wired; nothing to commit.")
+              raise SystemExit(0)
+
+          path.write_text(text, encoding="utf-8")
+
+      - name: Commit changes
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Wire Supabase portfolio analytics"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
