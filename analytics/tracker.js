@@ -1,7 +1,7 @@
 /*
  * Portfolio analytics client.
  *
- * Configure ANALYTICS_ENDPOINT with the deployed Supabase Edge Function URL.
+ * Configure PORTFOLIO_ANALYTICS_ENDPOINT with the deployed Supabase Edge Function URL.
  * The tracker deliberately sends no name, email, raw IP address, or page contents.
  */
 (function () {
@@ -66,6 +66,7 @@
   }
 
   function send(eventName, data) {
+    const params = new URLSearchParams(location.search);
     const body = JSON.stringify({
       visitor_id: getVisitorId(),
       session_id: getSessionId(),
@@ -73,8 +74,8 @@
       path: location.pathname,
       referrer: document.referrer || null,
       source: sourceFromUrl(),
-      medium: new URLSearchParams(location.search).get('utm_medium'),
-      campaign: new URLSearchParams(location.search).get('utm_campaign'),
+      medium: params.get('utm_medium'),
+      campaign: params.get('utm_campaign'),
       ...data
     });
 
@@ -131,5 +132,21 @@
     } else if (url.origin !== location.origin) {
       send('outbound_click', { target: url.origin });
     }
+
+    // Project cards can expose their title through an article/list-item heading.
+    if (link.closest('#projects')) {
+      const card = link.closest('article, [role="listitem"]');
+      const heading = card && card.querySelector('h3, h4');
+      const project = heading && heading.textContent.trim();
+      if (project) send('project_view', { target: project.slice(0, 160) });
+    }
   }, { passive: true });
+
+  // Track a contact intent without collecting form fields.
+  const contactForm = document.querySelector('#contact form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function () {
+      send('contact_submit');
+    }, { passive: true });
+  }
 })();
