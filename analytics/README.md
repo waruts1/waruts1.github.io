@@ -4,7 +4,7 @@ This implementation is designed for the portfolio hosted on GitHub Pages. GitHub
 
 ## Repository layout
 
-The Supabase GitHub integration is configured with the repository root (`/`) as its working directory. Supabase watches the `supabase/` directory and can deploy migrations and Edge Functions from the configured production branch. citeturn0search0turn0search1
+The Supabase GitHub integration is configured with the repository root (`/`) as its working directory. Supabase watches the `supabase/` directory and can deploy migrations and Edge Functions from the configured production branch.
 
 - `supabase/migrations/001_analytics.sql` — PostgreSQL tables, indexes, RLS, and the authenticated dashboard RPC.
 - `supabase/functions/analytics/index.ts` — anonymous ingestion endpoint.
@@ -23,15 +23,15 @@ Configure the Supabase GitHub integration with:
 - Production branch: `main`
 - Keep **Deploy to production** disabled until the feature branch has been tested and is ready to merge.
 
-Supabase's GitHub integration deploys pending migrations and Edge Functions declared in `config.toml` when production deployment is enabled for the production branch. citeturn0search0
+Supabase's GitHub integration deploys pending migrations and Edge Functions declared in `config.toml` when production deployment is enabled for the production branch.
 
 ## Setup
 
 1. Connect the repository to the Supabase project.
 2. Let the GitHub integration apply `supabase/migrations/001_analytics.sql` when the configured branch is deployed.
 3. Create one private admin user in Supabase Authentication > Users. Do not enable public sign-up for the analytics account.
-4. Keep the Supabase secret/service key server-side. It must never be placed in browser code or committed to GitHub. Supabase recommends publishable keys for browser code and secret keys only for trusted server-side components. citeturn3search9turn3search5
-5. The `analytics` Edge Function is configured with `verify_jwt = false` because anonymous portfolio visitors must be able to send events. The function itself validates the event payload before inserting it. Supabase documents this configuration pattern for genuinely public endpoints. citeturn3search1turn3search3
+4. Keep the Supabase secret/service key server-side. It must never be placed in browser code or committed to GitHub. Publishable keys are intended for browser code; secret keys are for trusted server-side components.
+5. The `analytics` Edge Function is configured with `verify_jwt = false` because anonymous portfolio visitors must be able to send events. The function itself validates the event payload before inserting it.
 6. Keep `analytics/config.js` configured with the project URL and publishable key. Never put a secret/service key in this file.
 7. Add the bootstrap to `index.html` before the existing application script:
 
