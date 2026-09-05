@@ -33,13 +33,7 @@ Supabase's GitHub integration deploys pending migrations and Edge Functions decl
 4. Keep the Supabase secret/service key server-side. It must never be placed in browser code or committed to GitHub. Publishable keys are intended for browser code; secret keys are for trusted server-side components.
 5. The `analytics` Edge Function is configured with `verify_jwt = false` because anonymous portfolio visitors must be able to send events. The function itself validates the event payload before inserting it.
 6. Keep `analytics/config.js` configured with the project URL and publishable key. Never put a secret/service key in this file.
-7. Add the bootstrap to `index.html` before the existing application script:
-
-```html
-<script src="./analytics/bootstrap.js" defer></script>
-```
-
-The bootstrap then loads `analytics/tracker.js` after the DOM is ready. This is the remaining portfolio-page wiring step.
+7. `index.html` is now wired to load `./analytics/bootstrap.js` with `defer`. The bootstrap sets the ingestion endpoint and loads the tracker after the DOM is ready. The legacy Telegram visitor tracker has been removed from the portfolio page.
 
 ## Events
 
