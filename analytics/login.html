@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Analytics Login | Collins Warutumo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./config.js"></script>
+</head>
+<body class="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center p-6">
+  <main class="w-full max-w-md">
+    <div class="mb-8">
+      <p class="text-xs font-bold uppercase tracking-[.28em] text-teal-400">Private console</p>
+      <h1 class="mt-3 text-3xl font-bold">Portfolio Analytics</h1>
+      <p class="mt-2 text-slate-400">Sign in to view visitor and career-funnel analytics.</p>
+    </div>
+    <form id="loginForm" class="rounded-3xl border border-slate-800 bg-slate-900 p-6 shadow-2xl space-y-5">
+      <label class="block"><span class="text-sm text-slate-300">Email</span><input id="email" type="email" autocomplete="username" required class="mt-2 w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 outline-none focus:border-teal-400"></label>
+      <label class="block"><span class="text-sm text-slate-300">Password</span><input id="password" type="password" autocomplete="current-password" required class="mt-2 w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 outline-none focus:border-teal-400"></label>
+      <p id="error" class="hidden rounded-xl bg-red-950/60 px-4 py-3 text-sm text-red-300"></p>
+      <button class="w-full rounded-xl bg-teal-500 px-4 py-3 font-bold text-slate-950 hover:bg-teal-400">Sign in</button>
+    </form>
+  </main>
+<script>
+const config = window.ANALYTICS_CONFIG;
+const client = supabase.createClient(config.supabaseUrl, config.supabaseAnonKey);
+(async () => { const { data } = await client.auth.getSession(); if (data.session) location.replace('./dashboard.html'); })();
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const error = document.getElementById('error'); error.classList.add('hidden');
+  const { error: authError } = await client.auth.signInWithPassword({
+    email: document.getElementById('email').value.trim(),
+    password: document.getElementById('password').value
+  });
+  if (authError) { error.textContent = 'Sign-in failed. Check your credentials.'; error.classList.remove('hidden'); return; }
+  location.replace('./dashboard.html');
+});
+</script>
+</body>
+</html>
