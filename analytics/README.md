@@ -1,16 +1,18 @@
 # Private Portfolio Analytics
 
-This implementation is designed for the portfolio hosted on GitHub Pages. GitHub Pages cannot run a private API, so the analytics backend uses Supabase PostgreSQL + Auth + an Edge Function.
+This implementation is designed for the portfolio hosted on GitHub Pages. GitHub Pages serves the static portfolio, while Supabase provides PostgreSQL, Auth, and the Edge Function used for analytics ingestion.
 
 ## Repository layout
 
-The Supabase GitHub integration is configured with the repository root (`/`) as its working directory. The deployable Supabase assets live under:
+The Supabase GitHub integration is configured with the repository root (`/`) as its working directory. Supabase watches the `supabase/` directory and can deploy migrations and Edge Functions from the configured production branch. citeturn0search0turn0search1
 
 - `supabase/migrations/001_analytics.sql` — PostgreSQL tables, indexes, RLS, and the authenticated dashboard RPC.
 - `supabase/functions/analytics/index.ts` — anonymous ingestion endpoint.
-- `supabase/config.toml` — configures the ingestion function as a public endpoint; the function validates events and uses the service role only server-side.
-
-The `analytics/` directory contains the browser tracker, private login/dashboard, public browser configuration, and setup documentation.
+- `supabase/config.toml` — configures the ingestion function as a public endpoint; the function validates events and uses the service-side secret only inside Supabase.
+- `analytics/bootstrap.js` — browser bootstrap that sets the ingestion endpoint, disables the legacy Telegram visitor call, and loads the tracker.
+- `analytics/tracker.js` — browser event tracker.
+- `analytics/config.js` — Supabase URL/publishable key for the private dashboard.
+- `analytics/login.html` / `analytics/dashboard.html` — private analytics console.
 
 ## Supabase GitHub integration
 
@@ -19,36 +21,40 @@ Configure the Supabase GitHub integration with:
 - Repository: `waruts1/waruts1.github.io`
 - Working directory: `/`
 - Production branch: `main`
-- Keep production deployment disabled until the feature branch has been tested and is ready to merge.
+- Keep **Deploy to production** disabled until the feature branch has been tested and is ready to merge.
+
+Supabase's GitHub integration deploys pending migrations and Edge Functions declared in `config.toml` when production deployment is enabled for the production branch. citeturn0search0
 
 ## Setup
 
 1. Connect the repository to the Supabase project.
-2. Apply the migration in `supabase/migrations/001_analytics.sql`.
+2. Let the GitHub integration apply `supabase/migrations/001_analytics.sql` when the configured branch is deployed.
 3. Create one private admin user in Supabase Authentication > Users. Do not enable public sign-up for the analytics account.
-4. Configure the Edge Function secrets `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`. Never put the service-role key in browser code or GitHub.
-5. Deploy the `analytics` Edge Function from `supabase/functions/analytics/`.
-6. The browser endpoint is `https://<project-ref>.supabase.co/functions/v1/analytics`.
-7. Configure `analytics/config.js` with the Supabase project URL and publishable key. Never put a secret/service-role key in this file.
-8. Load `analytics/tracker.js` from the portfolio page with `window.PORTFOLIO_ANALYTICS_ENDPOINT` set to the deployed function URL.
+4. Keep the Supabase secret/service key server-side. It must never be placed in browser code or committed to GitHub. Supabase recommends publishable keys for browser code and secret keys only for trusted server-side components. citeturn3search9turn3search5
+5. The `analytics` Edge Function is configured with `verify_jwt = false` because anonymous portfolio visitors must be able to send events. The function itself validates the event payload before inserting it. Supabase documents this configuration pattern for genuinely public endpoints. citeturn3search1turn3search3
+6. Keep `analytics/config.js` configured with the project URL and publishable key. Never put a secret/service key in this file.
+7. Add the bootstrap to `index.html` before the existing application script:
 
-## Contact-form event
-
-After a successful contact API response, call:
-
-```js
-window.portfolioAnalytics?.track('contact_submit');
+```html
+<script src="./analytics/bootstrap.js" defer></script>
 ```
 
-For a contact form opening event, call `contact_open`.
+The bootstrap then loads `analytics/tracker.js` after the DOM is ready. This is the remaining portfolio-page wiring step.
 
-## Project event
+## Events
 
-When a project card/detail view is opened:
+The tracker automatically records:
 
-```js
-window.portfolioAnalytics?.track('project_view', { target: project.slug });
-```
+- `page_view`
+- `section_view`
+- `project_view` for project-card links that expose an article/list-item heading
+- `github_click`
+- `cv_view`
+- `cv_download`
+- `outbound_click`
+- `contact_submit` when the contact form is submitted
+
+The tracker does not read or send the contact form's name, email, or message fields.
 
 ## Dashboard authentication
 
