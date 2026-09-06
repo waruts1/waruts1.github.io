@@ -8,6 +8,37 @@ create table if not exists public.analytics_admins (
   created_at timestamptz not null default now()
 );
 
+-- The GitHub/Supabase deployment can encounter a pre-existing analytics_admins
+-- table from an earlier partial attempt. Ensure the column required by the
+-- policies and RPC exists before creating those objects.
+do $$
+begin
+  if not exists (
+    select 1
+    from information_schema.columns
+    where table_schema = 'public'
+      and table_name = 'analytics_admins'
+      and column_name = 'user_id'
+  ) then
+    alter table public.analytics_admins add column user_id uuid;
+  end if;
+
+  if not exists (
+    select 1
+    from pg_constraint
+    where conrelid = 'public.analytics_admins'::regclass
+      and conname = 'analytics_admins_user_id_fkey'
+  ) then
+    alter table public.analytics_admins
+      add constraint analytics_admins_user_id_fkey
+      foreign key (user_id) references auth.users(id) on delete cascade;
+  end if;
+end
+$$;
+
+create unique index if not exists analytics_admins_user_id_uidx
+  on public.analytics_admins (user_id);
+
 alter table public.analytics_admins enable row level security;
 revoke all on table public.analytics_admins from anon;
 revoke all on table public.analytics_admins from authenticated;
