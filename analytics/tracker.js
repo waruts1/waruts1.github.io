@@ -59,7 +59,7 @@
       if (host.includes('linkedin.com')) return 'linkedin';
       if (host.includes('google.')) return 'google';
       if (host.includes('bing.com')) return 'bing';
-      return host.replace(/^www\./, '');
+      return host.replace(/^www\\./, '');
     } catch (_) {
       return 'referral';
     }
@@ -79,27 +79,23 @@
       ...data
     });
 
-    if (navigator.sendBeacon) {
-      try {
-        const blob = new Blob([body], { type: 'application/json' });
-        if (navigator.sendBeacon(ENDPOINT, blob)) return;
-      } catch (_) {}
-    }
-
+    // Use a CORS-safelisted content type. This avoids a browser preflight,
+    // which is important for anonymous analytics from GitHub Pages.
     fetch(ENDPOINT, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
       body,
       keepalive: true,
       credentials: 'omit'
-    }).catch(function () {});
+    }).catch(function (error) {
+      console.debug('Portfolio analytics request failed', error);
+    });
   }
 
   window.portfolioAnalytics = { track: send };
 
   send('page_view');
 
-  // Track important portfolio sections once per page view.
   const seen = new Set();
   const sections = document.querySelectorAll('main section[id]');
   if ('IntersectionObserver' in window) {
@@ -122,7 +118,7 @@
     try { url = new URL(link.href, location.href); } catch (_) { return; }
     const host = url.hostname.toLowerCase();
     const isGitHub = host === 'github.com' || host.endsWith('.github.com');
-    const isCv = /\.(pdf)$/i.test(url.pathname) || /\b(cv|resume)\b/i.test(url.pathname + ' ' + (link.textContent || ''));
+    const isCv = /\\.(pdf)$/i.test(url.pathname) || /\\b(cv|resume)\\b/i.test(url.pathname + ' ' + (link.textContent || ''));
     const target = link.dataset.analyticsTarget || link.getAttribute('aria-label') || link.textContent.trim().slice(0, 120);
 
     if (isGitHub) {
@@ -133,7 +129,6 @@
       send('outbound_click', { target: url.origin });
     }
 
-    // Project cards can expose their title through an article/list-item heading.
     if (link.closest('#projects')) {
       const card = link.closest('article, [role="listitem"]');
       const heading = card && card.querySelector('h3, h4');
@@ -142,7 +137,6 @@
     }
   }, { passive: true });
 
-  // Track a contact intent without collecting form fields.
   const contactForm = document.querySelector('#contact form');
   if (contactForm) {
     contactForm.addEventListener('submit', function () {
