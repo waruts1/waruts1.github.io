@@ -59,7 +59,7 @@
       if (host.includes('linkedin.com')) return 'linkedin';
       if (host.includes('google.')) return 'google';
       if (host.includes('bing.com')) return 'bing';
-      return host.replace(/^www\\./, '');
+      return host.replace(/^www\./, '');
     } catch (_) {
       return 'referral';
     }
@@ -79,16 +79,20 @@
       ...data
     });
 
-    // Use a CORS-safelisted content type. This avoids a browser preflight,
-    // which is important for anonymous analytics from GitHub Pages.
     fetch(ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
       body,
       keepalive: true,
       credentials: 'omit'
+    }).then(function (response) {
+      if (!response.ok) {
+        console.error('Portfolio analytics rejected event', response.status, response.statusText);
+        return;
+      }
+      console.debug('Portfolio analytics event accepted', eventName, response.status);
     }).catch(function (error) {
-      console.debug('Portfolio analytics request failed', error);
+      console.error('Portfolio analytics request failed', error);
     });
   }
 
@@ -118,7 +122,7 @@
     try { url = new URL(link.href, location.href); } catch (_) { return; }
     const host = url.hostname.toLowerCase();
     const isGitHub = host === 'github.com' || host.endsWith('.github.com');
-    const isCv = /\\.(pdf)$/i.test(url.pathname) || /\\b(cv|resume)\\b/i.test(url.pathname + ' ' + (link.textContent || ''));
+    const isCv = /\.(pdf)$/i.test(url.pathname) || /\b(cv|resume)\b/i.test(url.pathname + ' ' + (link.textContent || ''));
     const target = link.dataset.analyticsTarget || link.getAttribute('aria-label') || link.textContent.trim().slice(0, 120);
 
     if (isGitHub) {
