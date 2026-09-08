@@ -11,7 +11,6 @@
   <style>
     body{background:#07111f}
     .card{background:rgba(15,23,42,.78);border:1px solid rgba(148,163,184,.14)}
-    .muted{color:#94a3b8}
   </style>
 </head>
 <body class="min-h-screen text-slate-100">
@@ -44,6 +43,20 @@
     <div class="card rounded-2xl p-5"><p class="text-sm text-slate-400">GitHub clicks</p><p id="github_clicks" class="mt-2 text-3xl font-bold">—</p></div>
     <div class="card rounded-2xl p-5"><p class="text-sm text-slate-400">CV activity</p><p id="cv_views" class="mt-2 text-3xl font-bold">—</p></div>
     <div class="card rounded-2xl p-5"><p class="text-sm text-slate-400">Contact submissions</p><p id="contact_submits" class="mt-2 text-3xl font-bold">—</p></div>
+  </section>
+
+  <section class="card rounded-3xl p-6">
+    <div class="flex flex-wrap items-end justify-between gap-3">
+      <div>
+        <p class="text-xs uppercase tracking-[.2em] text-teal-400">Trend</p>
+        <h2 class="mt-2 text-xl font-bold">Visitors and engagement</h2>
+        <p class="mt-1 text-sm text-slate-500">Daily unique visitors and key portfolio actions.</p>
+      </div>
+      <div class="flex gap-4 text-xs text-slate-400">
+        <span>Visitors</span><span>Page views</span><span>GitHub</span><span>CV</span><span>Contact</span>
+      </div>
+    </div>
+    <div class="mt-5 h-80"><canvas id="trendChart"></canvas></div>
   </section>
 
   <section class="grid gap-6 lg:grid-cols-2">
@@ -84,6 +97,7 @@
       <div class="rounded-2xl bg-slate-900 p-4"><p class="text-xs text-slate-400">CV activity</p><p id="f4" class="mt-2 text-2xl font-bold">—</p></div>
       <div class="rounded-2xl bg-slate-900 p-4"><p class="text-xs text-slate-400">Contact</p><p id="f5" class="mt-2 text-2xl font-bold">—</p></div>
     </div>
+    <div id="conversion" class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4"></div>
   </section>
 
   <p class="text-xs text-slate-500">Privacy-conscious analytics: the tracker does not intentionally store raw IP addresses, names, emails, or page contents.</p>
@@ -95,8 +109,7 @@ const config=window.ANALYTICS_CONFIG;
 const client=supabase.createClient(config.supabaseUrl,config.supabaseAnonKey);
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let sourcesChart=null;
-let countriesChart=null;
+let sourcesChart=null,countriesChart=null,trendChart=null;
 
 function list(id,rows,label){
   $(id).innerHTML=rows.length
@@ -104,14 +117,32 @@ function list(id,rows,label){
     : '<p class="text-slate-500">No data yet.</p>';
 }
 
-function chart(canvasId,rows,label,existing,type='doughnut'){
+function donut(canvasId,rows,label,existing){
   if(existing) existing.destroy();
   const top=rows.slice(0,8);
-  return new Chart($(canvasId),{
-    type,
-    data:{labels:top.map(x=>String(x[label]??'Unknown')),datasets:[{data:top.map(x=>Number(x.count||0))}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#cbd5e1',boxWidth:12}}},scales:type==='bar'?{x:{ticks:{color:'#94a3b8'},grid:{display:false}},y:{ticks:{color:'#94a3b8'},grid:{color:'rgba(148,163,184,.1)'}}}:undefined}
+  return new Chart($(canvasId),{type:'doughnut',data:{labels:top.map(x=>String(x[label]??'Unknown')),datasets:[{data:top.map(x=>Number(x.count||0))}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#cbd5e1',boxWidth:12}}}}});
+}
+
+function trend(rows){
+  if(trendChart) trendChart.destroy();
+  return new Chart($('trendChart'),{
+    type:'line',
+    data:{labels:rows.map(x=>x.day),datasets:[
+      {label:'Visitors',data:rows.map(x=>Number(x.visitors||0)),tension:.3},
+      {label:'Page views',data:rows.map(x=>Number(x.page_views||0)),tension:.3},
+      {label:'GitHub',data:rows.map(x=>Number(x.github_clicks||0)),tension:.3},
+      {label:'CV',data:rows.map(x=>Number(x.cv_views||0)),tension:.3},
+      {label:'Contact',data:rows.map(x=>Number(x.contact_submits||0)),tension:.3}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{position:'bottom',labels:{color:'#cbd5e1'}}},scales:{x:{ticks:{color:'#94a3b8',maxTicksLimit:12},grid:{display:false}},y:{beginAtZero:true,ticks:{color:'#94a3b8'},grid:{color:'rgba(148,163,184,.1)'}}}}
   });
+}
+
+function pct(n,d){return d?Math.round((n/d)*100):0;}
+function renderConversion(data){
+  const visitors=Number(data.visitors||0),projects=Number(data.project_visitors||0),github=Number(data.github_clicks||0),cv=Number(data.cv_views||0),contact=Number(data.contact_submits||0);
+  const steps=[['Project interest',projects,visitors],['GitHub intent',github,visitors],['CV intent',cv,visitors],['Contact conversion',contact,visitors]];
+  $('conversion').innerHTML=steps.map(([label,value,base])=>`<div class="rounded-2xl border border-slate-800 bg-slate-950/60 p-4"><p class="text-xs text-slate-400">${label}</p><p class="mt-2 text-2xl font-bold">${pct(value,base)}%</p><p class="mt-1 text-xs text-slate-500">${value.toLocaleString()} of ${base.toLocaleString()} visitors</p></div>`).join('');
 }
 
 async function load(){
@@ -119,7 +150,6 @@ async function load(){
   $('loading').classList.remove('hidden');
   const {data:{session},error:sessionError}=await client.auth.getSession();
   if(sessionError||!session){location.replace('./login.html');return;}
-
   const {data,error}=await client.rpc('analytics_overview',{days:Number($('days').value)});
   if(error){
     $('error').textContent='Unable to load analytics. '+error.message;
@@ -127,21 +157,19 @@ async function load(){
     $('loading').classList.add('hidden');
     return;
   }
-
   ['visitors','page_views','github_clicks','cv_views','contact_submits'].forEach(k=>$(k).textContent=Number(data[k]||0).toLocaleString());
-  const sources=data.sources||[];
-  const countries=data.countries||[];
-  list('sources',sources,'source');
-  list('countries',countries,'country');
-  list('top_pages',data.top_pages||[],'path');
-  list('top_projects',data.top_projects||[],'project');
+  const sources=data.sources||[],countries=data.countries||[],daily=data.daily||[];
+  list('sources',sources,'source'); list('countries',countries,'country');
+  list('top_pages',data.top_pages||[],'path'); list('top_projects',data.top_projects||[],'project');
   $('f1').textContent=Number(data.visitors||0).toLocaleString();
   $('f2').textContent=Number(data.project_visitors||0).toLocaleString();
   $('f3').textContent=Number(data.github_clicks||0).toLocaleString();
   $('f4').textContent=Number(data.cv_views||0).toLocaleString();
   $('f5').textContent=Number(data.contact_submits||0).toLocaleString();
-  sourcesChart=chart('sourcesChart',sources,'source',sourcesChart);
-  countriesChart=chart('countriesChart',countries,'country',countriesChart);
+  sourcesChart=donut('sourcesChart',sources,'source',sourcesChart);
+  countriesChart=donut('countriesChart',countries,'country',countriesChart);
+  trendChart=trend(daily);
+  renderConversion(data);
   $('updated').textContent='Updated '+new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
   $('loading').classList.add('hidden');
 }
