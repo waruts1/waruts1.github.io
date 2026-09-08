@@ -1,128 +1,18 @@
 window.PORTFOLIO_DATA = {
   name: "Collins Warutumo",
-  tagline: "Software Engineer & Cybersecurity Professional",
-  about: "Software engineer and cybersecurity professional with 10+ years of experience building, securing, and operating enterprise platforms across fintech, telecommunications, and digital services. My career has two complementary tracks: software engineering, with a focus on backend systems, APIs, distributed services, workflow orchestration, cloud platforms, and full-stack delivery; and cybersecurity, spanning application security, cyber assurance, penetration testing, information security audits, digital forensics, and security architecture. I bring the two disciplines together through secure-by-design engineering and production-focused delivery.",
+  tagline: "Cybersecurity Engineer | Full Stack Developer",
+  about: "Certified cybersecurity and IS audit professional with 10+ years of hands-on experience in application security, cyber assurance, penetration testing, full-stack development, and enterprise workflow automation. Holds an MSc in Information Systems Security (Digital Forensics major) with CISA, CISM, and CEH credentials — combining engineering depth with audit-grade rigour across fintech and enterprise platforms.",
   location: "Nairobi, Kenya",
   contact: {
     email: "collinswarutumo@gmail.com",
-    linkedin: "https://www.linkedin.com/in/waruts",
-    github: "https://github.com/waruts1"
+    linkedin: "https://www.linkedin.com/in/waruts"
   },
-
-  // The portfolio intentionally presents two complementary professional tracks.
-  // Software engineering is the primary engineering track; cybersecurity is a
-  // distinct specialist track and a differentiator rather than a replacement.
-  careerTracks: [
-    {
-      id: "software",
-      label: "Software Engineering",
-      title: "Software Engineer",
-      description: "Backend, distributed systems, APIs, workflow orchestration, cloud-native platforms, and full-stack product delivery.",
-      strengths: [
-        "Backend Engineering",
-        "Distributed Systems",
-        "Microservices Architecture",
-        "REST API Design",
-        "Event-Driven Architecture",
-        "Workflow Orchestration",
-        "Cloud-Native Engineering",
-        "CI/CD & GitOps",
-        "System Design",
-        "Software Testing"
-      ]
-    },
-    {
-      id: "cyber",
-      label: "Cybersecurity",
-      title: "Cybersecurity Professional",
-      description: "Application security, cyber assurance, penetration testing, security architecture, governance, risk, and digital forensics.",
-      strengths: [
-        "Application Security",
-        "API Security",
-        "Cloud Security",
-        "Vulnerability Management",
-        "Penetration Testing",
-        "Security Architecture",
-        "Information Security Audits",
-        "Risk & Compliance",
-        "Digital Forensics",
-        "Secure SDLC"
-      ]
-    }
-  ],
-
-  highlights: [
-    "10+ years across software engineering and cybersecurity",
-    "Enterprise backend and API engineering experience in telecom and fintech environments",
-    "Systems and platforms serving 20M+ monthly users",
-    "Reusable OTP authentication service handling 5M+ monthly authentications",
-    "Distributed workflow orchestration using Temporal and Java/Spring Boot",
-    "Event-driven systems using Kafka and Redis",
-    "Production cloud experience with AWS EKS, Kubernetes, GCP, GitOps, and CI/CD",
-    "Enterprise API platform experience with Apigee Hybrid and OAuth 2.0",
-    "Cybersecurity expertise spanning application, API, cloud, data, and enterprise security"
-  ],
-
   skills: [
-    // Software Engineering — core
-    "Java (Spring Boot)",
-    "Python",
-    "JavaScript",
-    "TypeScript",
-    "PHP (Laravel)",
-    "SQL",
-    "API Development (REST)",
-    "Microservices Architecture",
-    "Distributed Systems",
-    "System Design",
-    "Event-Driven Architecture",
-    "Full Stack Development",
-    "Temporal Workflows",
-    "Process Orchestration",
-    "Workflow Automation",
-    "Hibernate / JPA",
-    "Spring Security",
-
-    // Data & Messaging
-    "PostgreSQL",
-    "MySQL",
-    "Redis",
-    "Kafka (Event Streaming)",
-    "Apache Doris",
-    "Data Modelling",
-    "Multi-Tenant Architecture",
-
-    // Cloud, Platform & Delivery
-    "AWS (EKS)",
-    "GCP",
-    "Kubernetes",
-    "Docker",
-    "OpenShift",
-    "CI/CD (Jenkins / FluxCD)",
-    "GitOps",
-    "FluxCD",
-    "Helm",
-    "Linux Administration",
-    "SonarQube",
-    "Apigee Hybrid (GCP)",
-
-    // Frontend & Product Engineering
-    "Vue.js",
-    "Node.js",
-    "Vite",
-    "Pusher",
-    "Streamlit",
-    "Figma",
-    "SAP ERP",
-
-    // Cybersecurity & Assurance
-    "Application Security",
-    "API Security",
+    // Security & Assurance
     "Vulnerability Management",
     "Penetration Testing (VAPT)",
     "Information Security Audits",
     "Risk Management",
-    "Security Architecture",
     "Governance",
     "Compliance",
     "Digital Forensics",
@@ -137,9 +27,49 @@ window.PORTFOLIO_DATA = {
     "Identity & Access Management",
     "Zero Trust Architecture",
     "OWASP",
-    "Secure SDLC",
-
-    // Security Governance & Tooling
+    // Engineering & APIs
+    "Java (Spring Boot)",
+    "Python",
+    "JavaScript",
+    "PHP (Laravel)",
+    "SQL",
+    "API Development (REST)",
+    "Microservices Architecture",
+    "Full Stack Development",
+    "Temporal Workflows",
+    "Apigee Hybrid (GCP)",
+    "Kafka (Event Streaming)",
+    "Redis",
+    "PostgreSQL",
+    "MySQL",
+    "Vue.js",
+    "Node.js",
+    // Cloud, CI/CD & Automation
+    "AWS (EKS)",
+    "Kubernetes",
+    "Docker",
+    "OpenShift",
+    "CI/CD (Jenkins / FluxCD)",
+    "GitOps",
+    "FluxCD",
+    "ArgoCD (Conceptual)",
+    "Helm",
+    "Workflow Automation",
+    "Process Orchestration",
+    "Linux Administration",
+    "SonarQube",
+    "Figma",
+    "Streamlit",
+    "Pusher",
+    "SAP ERP",
+    // ORM & Frameworks
+    "Hibernate / JPA",
+    "Spring Security",
+    // AI & Emerging
+    "Generative AI (Security Automation)",
+    "LLM / Agentic AI (Experimentation)",
+    "MLOps (Conceptual)",
+    // Governance & Risk
     "ISO 27001",
     "NIST CSF",
     "COBIT",
@@ -153,27 +83,20 @@ window.PORTFOLIO_DATA = {
     "Nmap",
     "Nessus",
     "Audit Reporting",
-    "Regulatory Compliance",
-
-    // AI & Emerging Engineering
-    "Generative AI (Security Automation)",
-    "LLM / Agentic AI (Experimentation)"
+    "Regulatory Compliance"
   ],
-
   certifications: [
     "Certified Information Systems Auditor (CISA) — ISACA #1163766",
     "Certified Information Security Manager (CISM) — ISACA #1163766",
     "Certified Ethical Hacker (CEH) — EC-Council #ECC2483150796",
     "Project Management Professional (PMP) — In Progress"
   ],
-
   projects: [
     {
       name: "Order Orchestration & Workflow Automation",
       description: "Designed and delivered an enterprise-grade Gen AI order orchestration engine powering a B2B Marketplace. Built on Temporal (Java) with Spring Boot microservices, GitOps CI/CD on AWS EKS, and SonarQube quality gates. Drove 80% enterprise sales growth and 75% revenue improvement through workflow automation.",
       url: "https://business.safaricom.co.ke/marketplace",
       category: "software",
-      featured: true,
       tech: [
         "Java (Spring Boot)",
         "Temporal",
@@ -187,34 +110,15 @@ window.PORTFOLIO_DATA = {
       ]
     },
     {
-      name: "Multi-Tenant Financial Services APIs",
-      description: "Contributed to building scalable multi-tenant APIs for My One App, My County, and My Sacco — enabling citizens, county residents, and cooperative members to securely access financial and community services through a unified, governed platform architecture.",
-      url: "",
-      category: "software",
-      featured: true,
+      name: "Digital Forensics Chain of Custody System",
+      description: "MSc dissertation research and system implementation for the preservation of integrity of digital evidence. Developed a chain of custody management system ensuring admissibility and integrity of digital evidence — directly applicable to forensic audit and incident investigation workflows.",
+      url: "https://opac.library.strathmore.edu/bib/314908",
+      category: "cyber",
       tech: [
-        "Java (Spring Boot)",
-        "Microservices",
-        "REST APIs",
-        "PostgreSQL",
-        "Kafka",
-        "Redis",
-        "Multi-Tenancy"
-      ]
-    },
-    {
-      name: "OTP Verification Microservice",
-      description: "Reusable OTP verification microservice for secure user authentication across enterprise systems. Handles 5M+ monthly authentications with high availability, fault tolerance, and secure token lifecycle management.",
-      url: "https://business.safaricom.co.ke/track-order",
-      category: "software",
-      featured: true,
-      tech: [
-        "Java (Spring Boot)",
-        "Microservices",
-        "Redis",
-        "REST API",
-        "Authentication",
-        "Security"
+        "Laravel",
+        "Digital Forensics",
+        "Evidence Management",
+        "MySQL"
       ]
     },
     {
@@ -222,7 +126,6 @@ window.PORTFOLIO_DATA = {
       description: "Managed Apigee Hybrid (GCP) deployment with Kubernetes-hosted runtime plane — covering API lifecycle governance, OAuth 2.0 security policies, mTLS configuration, rate limiting, and developer onboarding across enterprise integration surfaces.",
       url: "",
       category: "software",
-      featured: true,
       tech: [
         "Apigee Hybrid (GCP)",
         "Kubernetes",
@@ -233,16 +136,16 @@ window.PORTFOLIO_DATA = {
       ]
     },
     {
-      name: "Digital Forensics Chain of Custody System",
-      description: "MSc dissertation research and system implementation for preservation of the integrity of digital evidence. Developed a chain-of-custody management system focused on evidence integrity, traceability, and auditability for forensic investigation workflows.",
-      url: "https://opac.library.strathmore.edu/bib/314908",
-      category: "cyber",
-      featured: true,
+      name: "Multi-Tenant Financial Services APIs",
+      description: "Contributed to building scalable multi-tenant APIs for My One App, My County, and My Sacco — enabling citizens, county residents, and cooperative members to securely access financial and community services through a unified, governed platform architecture.",
+      url: "",
+      category: "software",
       tech: [
-        "Laravel",
-        "Digital Forensics",
-        "Evidence Management",
-        "MySQL"
+        "Spring Boot",
+        "Microservices",
+        "REST APIs",
+        "PostgreSQL",
+        "Multi-tenancy"
       ]
     },
     {
@@ -250,7 +153,6 @@ window.PORTFOLIO_DATA = {
       description: "Built automated scripts and cron jobs for PII violation detection and encryption standard enforcement across enterprise fintech platforms serving 20M+ monthly users. Leveraged AI tooling to guide developers on secure coding practices at scale.",
       url: "",
       category: "cyber",
-      featured: true,
       tech: [
         "Python",
         "Bash Scripting",
@@ -258,6 +160,33 @@ window.PORTFOLIO_DATA = {
         "Data Protection Act",
         "ISO 27001",
         "AI-Assisted Security"
+      ]
+    },
+    {
+      name: "Reusable OTP & Email Notification Microservices",
+      description: "Suite of reusable microservices adopted cross-team across Safaricom enterprise platforms. OTP verification handles 5M+ monthly authentications for payments, onboarding, and account verification. Reusable email notification microservice adopted across multiple internal and external customer portals for signup flows, transactional notifications, and system alerts — eliminating duplication and accelerating feature delivery across teams.",
+      url: "https://business.safaricom.co.ke/track-order",
+      category: "software",
+      tech: [
+        "Java (Spring Boot)",
+        "Microservices",
+        "REST APIs",
+        "Redis",
+        "PostgreSQL"
+      ]
+    },
+    {
+      name: "Leads Microservices — MySacco & Business Hub",
+      description: "Two lead management microservices driving customer conversion and revenue. MySacco Leads converts Sacco member prospects into active customers — automated lead capture, qualification, and onboarding enabling Saccos to grow membership and drive credit/savings product adoption. Business Hub Leads manages end-to-end lead-to-opportunity-to-revenue pipeline integrated with CRM and commercial systems, contributing directly to enterprise sales growth.",
+      url: "https://business.safaricom.co.ke/marketplace",
+      category: "software",
+      tech: [
+        "Java (Spring Boot)",
+        "Microservices",
+        "REST APIs",
+        "PostgreSQL",
+        "Redis",
+        "CRM Integration"
       ]
     },
     {
@@ -289,7 +218,7 @@ window.PORTFOLIO_DATA = {
     },
     {
       name: "Telegram FastBuddy Bot",
-      description: "Python-based Telegram bot demonstrating API integration, automation, SQL-backed state management, CI/CD deployment, and conversational product design.",
+      description: "Healthy living intermittent fasting bot that tracks fasts and shares personalised guidance. Demonstrates rapid API-integrated developer tooling, CI/CD deployment, and conversational AI-adjacent product design.",
       url: "https://t.me/i_fast_bot",
       github: "https://github.com/waruts1/fastbuddy",
       category: "software",
@@ -299,6 +228,24 @@ window.PORTFOLIO_DATA = {
         "SQL",
         "Telegram API",
         "CI/CD"
+      ]
+    },
+    {
+      name: "MySacco — Safaricom FOSA Admin Platform",
+      description: "Multi-tenant FOSA admin platform empowering 50+ Saccos (Bandari, Ecose, Shirikiana) to manage members, loans, savings, and compliance — serving 10M+ members. Float management integrated with G3 M-PESA system giving Saccos autonomy to refill B2C paybill wallet balances. Reactive microservices publishing scheduled balances via Kafka to Apache Doris for real-time aggregation. Features: automated depletion alerts, transaction management with configurable charges, favourites for frequent transactions, lead generation, and FAQs. Cross-functional delivery with Designers, QA, Data Team, and Product Owner.",
+      url: "https://channels.mysacco.safaricom.co.ke",
+      category: "software",
+      tech: [
+        "Java (Spring Boot)",
+        "Apache Kafka",
+        "Apache Doris",
+        "Kubernetes",
+        "AWS",
+        "PostgreSQL",
+        "Redis",
+        "M-PESA G3 Integration",
+        "Multi-tenancy",
+        "Reactive Microservices"
       ]
     },
     {
@@ -316,7 +263,6 @@ window.PORTFOLIO_DATA = {
       ]
     }
   ],
-
   experience: [
     {
       title: "Cyber Security Engineer",
@@ -325,11 +271,11 @@ window.PORTFOLIO_DATA = {
       location: "Nairobi, Kenya",
       dates: "January 2026 – Present",
       responsibilities: [
-        "Conduct risk-based information security audits and assurance reviews across applications, infrastructure, and operational processes",
-        "Perform vulnerability assessments and penetration tests across web applications, APIs, and cloud environments",
-        "Assess identity and access management (IAM/PAM) controls, encryption standards, and data protection compliance",
-        "Deliver structured assurance reports to leadership and regulators with practical remediation guidance",
-        "Leverage AI tooling and automation to scale security controls across engineering teams"
+        "Conducting risk-based information security audits and assurance reviews across applications, infrastructure, and operational processes",
+        "Performing vulnerability assessments and penetration tests across web applications, APIs, and cloud environments",
+        "Assessing identity and access management (IAM/PAM) controls, encryption standards, and data protection compliance",
+        "Delivering structured assurance reports to leadership and regulators with practical remediation guidance",
+        "Leveraging AI tooling and automation to scale security controls across engineering teams"
       ],
       achievements: [
         "Built automated PII detection scripts enforcing encryption and access standards across platforms serving 20M+ monthly users",
@@ -498,7 +444,6 @@ window.PORTFOLIO_DATA = {
       ]
     }
   ],
-
   education: [
     {
       degree: "MSc Information Systems Security — Digital Forensics Major",
