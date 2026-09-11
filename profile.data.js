@@ -4,7 +4,6 @@ window.PORTFOLIO_DATA = {
   about: "Certified cybersecurity and IS audit professional with 10+ years of hands-on experience in application security, cyber assurance, penetration testing, full-stack development, and enterprise workflow automation. Holds an MSc in Information Systems Security (Digital Forensics major) with CISA, CISM, and CEH credentials — combining engineering depth with audit-grade rigour across fintech and enterprise platforms.",
   location: "Nairobi, Kenya",
   contact: {
-    email: "collinswarutumo@gmail.com",
     linkedin: "https://www.linkedin.com/in/waruts"
   },
   skills: [
@@ -20,45 +19,19 @@ window.PORTFOLIO_DATA = {
     {
       name: "MySacco — Telco FOSA Admin Platform",
       description: "Multi-tenant FOSA admin platform empowering 50+ Saccos serving 10M+ members. G3 M-PESA float management integrated with the telco's core G3 M-PESA system, real-time depletion alerting through Kafka event-driven microservices, and analytics streamed into Apache Doris and ClickHouse for burn-rate calculation, expected depletion prediction, and usage trends. Includes configurable transactional charges, favourites, lead generation, and FAQs.",
-      url: "https://channels.mysacco.safaricom.co.ke",
-      category: "software",
-      tech: ["Java (Spring Boot)", "Apache Kafka", "Apache Doris", "ClickHouse", "Kubernetes", "AWS", "PostgreSQL", "Redis", "M-PESA G3 Integration", "Multi-tenancy", "Reactive Microservices"]
+      url: "https://channels.mysacco.safaricom.co.ke", category: "software", tech: ["Java (Spring Boot)", "Apache Kafka", "Apache Doris", "ClickHouse", "Kubernetes", "AWS", "PostgreSQL", "Redis", "M-PESA G3 Integration", "Multi-tenancy", "Reactive Microservices"]
     },
-    {
-      name: "Order Orchestration & Workflow Automation",
-      description: "Designed and delivered an enterprise-grade Gen AI order orchestration engine powering a B2B Marketplace. Built on Temporal (Java) with Spring Boot microservices, GitOps CI/CD on AWS EKS, and SonarQube quality gates. Drove 80% enterprise sales growth and 75% revenue improvement through workflow automation.",
-      url: "https://business.safaricom.co.ke/marketplace", category: "software", tech: ["Java (Spring Boot)", "Temporal", "PostgreSQL", "Redis", "AWS EKS", "Kubernetes", "Jenkins", "FluxCD", "SonarQube"]
-    },
-    {
-      name: "Digital Forensics Chain of Custody System", description: "MSc dissertation research and system implementation for preservation of digital evidence integrity, directly applicable to forensic audit and incident investigation workflows.", url: "https://opac.library.strathmore.edu/bib/314908", category: "cyber", tech: ["Laravel", "Digital Forensics", "Evidence Management", "MySQL"]
-    },
-    {
-      name: "Apigee Hybrid API Gateway Management", description: "Managed Apigee Hybrid (GCP) deployment with Kubernetes-hosted runtime plane, covering API lifecycle governance, OAuth 2.0, mTLS, rate limiting, and developer onboarding.", url: "", category: "software", tech: ["Apigee Hybrid (GCP)", "Kubernetes", "OAuth 2.0", "mTLS", "API Security", "GCP"]
-    },
-    {
-      name: "Multi-Tenant Financial Services APIs", description: "Built scalable multi-tenant APIs for My One App, My County, and My Sacco, enabling secure access to financial and community services through a unified governed platform architecture.", url: "", category: "software", tech: ["Spring Boot", "Microservices", "REST APIs", "PostgreSQL", "Multi-tenancy"]
-    },
-    {
-      name: "PII Compliance Automation & Cyber Assurance", description: "Built automated scripts and cron jobs for PII violation detection and encryption standard enforcement across enterprise fintech platforms serving 20M+ monthly users, using AI tooling to guide secure coding practices.", url: "", category: "cyber", tech: ["Python", "Bash Scripting", "Cron Jobs", "Data Protection Act", "ISO 27001", "AI-Assisted Security"]
-    },
-    {
-      name: "Reusable Notification Microservices", description: "Reusable cross-team microservices supporting 5M+ monthly traffic and transactional email notifications across enterprise portals.", url: "https://business.safaricom.co.ke/track-order", category: "software", tech: ["Java (Spring Boot)", "Microservices", "REST APIs", "Redis", "PostgreSQL"]
-    },
-    {
-      name: "Leads Microservices — MySacco & Business Hub", description: "Lead management microservices covering prospect capture, qualification, onboarding, lead-to-opportunity conversion, CRM integration, and enterprise revenue growth.", url: "https://business.safaricom.co.ke/marketplace", category: "software", tech: ["Java (Spring Boot)", "Microservices", "REST APIs", "PostgreSQL", "Redis", "CRM Integration"]
-    },
-    {
-      name: "The Actuarial Society of Kenya Portal", description: "Membership management and CPD tracking platform with automated event registration, compliance monitoring, and payments — achieving 60% revenue growth and 70% operational efficiency improvement.", url: "https://www.actuarieskenya.or.ke", category: "software", tech: ["Laravel", "WordPress", "MySQL", "Vue.js", "Payment Integration"]
-    },
-    {
-      name: "Café Payment & Customer Management System", description: "Real-time payment and customer management system integrated with NCBA, using Pusher-based live transaction state management.", url: "https://smilescafe.co.ke", category: "software", tech: ["Vue.js", "Laravel", "Vuex", "Vite", "Pusher", "MySQL"]
-    },
-    {
-      name: "Telegram FastBuddy Bot", description: "Healthy living intermittent fasting bot that tracks fasts and shares personalised guidance.", url: "https://t.me/i_fast_bot", github: "https://github.com/waruts1/fastbuddy", category: "software", tech: ["Flask", "Python", "SQL", "Telegram API", "CI/CD"]
-    },
-    {
-      name: "Jiji Vehicle Dataset Analysis", description: "Data analysis and visualisation of vehicle listings based on price, make, model, and year of manufacture.", url: "", github: "https://github.com/waruts1/streamlit-jiji-vehicles-visualization", category: "software", tech: ["Python", "Streamlit", "Jupyter Notebook", "Pandas", "SQL"]
-    }
+    { name: "Order Orchestration & Workflow Automation", description: "Designed and delivered an enterprise-grade Gen AI order orchestration engine powering a B2B Marketplace. Built on Temporal (Java) with Spring Boot microservices, GitOps CI/CD on AWS EKS, and SonarQube quality gates. Drove 80% enterprise sales growth and 75% revenue improvement through workflow automation.", url: "https://business.safaricom.co.ke/marketplace", category: "software", tech: ["Java (Spring Boot)", "Temporal", "PostgreSQL", "Redis", "AWS EKS", "Kubernetes", "Jenkins", "FluxCD", "SonarQube"] },
+    { name: "Digital Forensics Chain of Custody System", description: "MSc dissertation research and system implementation for preservation of digital evidence integrity, directly applicable to forensic audit and incident investigation workflows.", url: "https://opac.library.strathmore.edu/bib/314908", category: "cyber", tech: ["Laravel", "Digital Forensics", "Evidence Management", "MySQL"] },
+    { name: "Apigee Hybrid API Gateway Management", description: "Managed Apigee Hybrid (GCP) deployment with Kubernetes-hosted runtime plane, covering API lifecycle governance, OAuth 2.0, mTLS, rate limiting, and developer onboarding.", url: "", category: "software", tech: ["Apigee Hybrid (GCP)", "Kubernetes", "OAuth 2.0", "mTLS", "API Security", "GCP"] },
+    { name: "Multi-Tenant Financial Services APIs", description: "Built scalable multi-tenant APIs for My One App, My County, and My Sacco, enabling secure access to financial and community services through a unified governed platform architecture.", url: "", category: "software", tech: ["Spring Boot", "Microservices", "REST APIs", "PostgreSQL", "Multi-tenancy"] },
+    { name: "PII Compliance Automation & Cyber Assurance", description: "Built automated scripts and cron jobs for PII violation detection and encryption standard enforcement across enterprise fintech platforms serving 20M+ monthly users, using AI tooling to guide secure coding practices.", url: "", category: "cyber", tech: ["Python", "Bash Scripting", "Cron Jobs", "Data Protection Act", "ISO 27001", "AI-Assisted Security"] },
+    { name: "Reusable Notification Microservices", description: "Reusable cross-team microservices supporting 5M+ monthly traffic and transactional email notifications across enterprise portals.", url: "https://business.safaricom.co.ke/track-order", category: "software", tech: ["Java (Spring Boot)", "Microservices", "REST APIs", "Redis", "PostgreSQL"] },
+    { name: "Leads Microservices — MySacco & Business Hub", description: "Lead management microservices covering prospect capture, qualification, onboarding, lead-to-opportunity conversion, CRM integration, and enterprise revenue growth.", url: "https://business.safaricom.co.ke/marketplace", category: "software", tech: ["Java (Spring Boot)", "Microservices", "REST APIs", "PostgreSQL", "Redis", "CRM Integration"] },
+    { name: "The Actuarial Society of Kenya Portal", description: "Membership management and CPD tracking platform with automated event registration, compliance monitoring, and payments — achieving 60% revenue growth and 70% operational efficiency improvement.", url: "https://www.actuarieskenya.or.ke", category: "software", tech: ["Laravel", "WordPress", "MySQL", "Vue.js", "Payment Integration"] },
+    { name: "Café Payment & Customer Management System", description: "Real-time payment and customer management system integrated with NCBA, using Pusher-based live transaction state management.", url: "https://smilescafe.co.ke", category: "software", tech: ["Vue.js", "Laravel", "Vuex", "Vite", "Pusher", "MySQL"] },
+    { name: "Telegram FastBuddy Bot", description: "Healthy living intermittent fasting bot that tracks fasts and shares personalised guidance.", url: "https://t.me/i_fast_bot", github: "https://github.com/waruts1/fastbuddy", category: "software", tech: ["Flask", "Python", "SQL", "Telegram API", "CI/CD"] },
+    { name: "Jiji Vehicle Dataset Analysis", description: "Data analysis and visualisation of vehicle listings based on price, make, model, and year of manufacture.", url: "", github: "https://github.com/waruts1/streamlit-jiji-vehicles-visualization", category: "software", tech: ["Python", "Streamlit", "Jupyter Notebook", "Pandas", "SQL"] }
   ],
   experience: [
     { title: "Cyber Security Engineer", company: "Telco", category: "cyber", location: "Nairobi, Kenya", dates: "January 2026 – Present", responsibilities: ["Conducting risk-based information security audits and assurance reviews across applications, infrastructure, and operational processes", "Performing vulnerability assessments and penetration tests across web applications, APIs, and cloud environments", "Assessing IAM/PAM controls, encryption standards, and data protection compliance", "Delivering structured assurance reports to leadership and regulators", "Leveraging AI tooling and automation to scale security controls"], achievements: ["Built automated PII detection scripts enforcing encryption and access standards across platforms serving 20M+ monthly users", "Implemented monitoring and anomaly detection mechanisms enabling early identification of unauthorised access patterns", "Deployed AI-assisted developer security guidance programme improving secure coding adoption"], skills: ["Information Security Audits", "VAPT", "Risk Management", "Compliance & Governance", "Identity & Access Management", "Cloud Security (AWS)", "Incident Response", "Digital Forensics", "Penetration Testing", "Security Operations", "Network Security", "Automation (Python / CI/CD)", "ISO 27001", "NIST CSF"] },
