@@ -2,12 +2,13 @@
  * Portfolio analytics client.
  *
  * Configure PORTFOLIO_ANALYTICS_ENDPOINT with the deployed Supabase Edge Function URL.
- * The tracker deliberately sends no name, email, raw IP address, or page contents.
+ * The tracker sends anonymous visitor/session identifiers plus page metadata.
  */
 (function () {
   'use strict';
 
   const ENDPOINT = window.PORTFOLIO_ANALYTICS_ENDPOINT || '';
+  const TELEGRAM_ENDPOINT = 'https://smilescafe.co.ke/api/v1/telegram';
   if (!ENDPOINT) return;
 
   const VISITOR_KEY = 'cw_analytics_visitor_id';
@@ -25,10 +26,10 @@
 
   function getVisitorId() {
     let value = localStorage.getItem(VISITOR_KEY);
-    if (!value) {
-      value = id();
-      localStorage.setItem(VISITOR_KEY, value);
-    }
+    if (!value) value = localStorage.getItem('visitorId');
+    if (!value) value = id();
+    localStorage.setItem(VISITOR_KEY, value);
+    localStorage.setItem('visitorId', value);
     return value;
   }
 
@@ -96,9 +97,41 @@
     });
   }
 
+  function sendVisitData() {
+    const payload = JSON.stringify({
+      visitorId: getVisitorId(),
+      sessionId: getSessionId(),
+      timestamp: new Date().toISOString(),
+      url: window.location.href,
+      pageTitle: document.title,
+      userAgent: navigator.userAgent,
+      referrer: document.referrer || null
+    });
+
+    try {
+      if (navigator.sendBeacon) {
+        const blob = new Blob([payload], { type: 'application/json' });
+        if (navigator.sendBeacon(TELEGRAM_ENDPOINT, blob)) return;
+      }
+
+      fetch(TELEGRAM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: payload,
+        keepalive: true,
+        credentials: 'omit'
+      }).catch(function (error) {
+        console.debug('Real-time visitor notification failed', error);
+      });
+    } catch (error) {
+      console.debug('Real-time visitor notification skipped', error);
+    }
+  }
+
   window.portfolioAnalytics = { track: send };
 
   send('page_view');
+  sendVisitData();
 
   const seen = new Set();
   const sections = document.querySelectorAll('main section[id]');
