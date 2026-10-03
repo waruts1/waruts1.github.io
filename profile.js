@@ -1,10 +1,20 @@
 (function () {
   'use strict';
 
-  const data = window.PORTFOLIO_DATA;
-  if (!data) {
-    console.error('PORTFOLIO_DATA is not available. profile.data.js must load first.');
-    return;
+  // The profile is published encrypted (profile.data.enc.js) and decrypted here.
+  // This keeps it out of the repository and of scrapers; it is not a secret from
+  // someone running the page. See scripts/profile-crypto.mjs.
+  const PROFILE_KEY = '+5hiQWfMjr+7HnJAFq3xbhWtadXhCJOGzi6Sv95RzpA=';
+  let data = null;
+
+  async function loadProfile() {
+    const sealed = window.PORTFOLIO_DATA_ENC;
+    if (!sealed) throw new Error('profile.data.enc.js must load before profile.js');
+    if (!window.crypto || !crypto.subtle) throw new Error('Web Crypto needs HTTPS or localhost');
+    const bytes = (base64) => Uint8Array.from(atob(base64), (c) => c.charCodeAt(0));
+    const key = await crypto.subtle.importKey('raw', bytes(PROFILE_KEY), 'AES-GCM', false, ['decrypt']);
+    const plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: bytes(sealed.iv) }, key, bytes(sealed.data));
+    return JSON.parse(new TextDecoder().decode(plain));
   }
 
   const $ = (id) => document.getElementById(id);
@@ -108,39 +118,56 @@
   function setupContact() {
     const form = $('contact-form');
     const status = $('contact-status');
+    const button = form?.querySelector('button[type="submit"]');
     form?.addEventListener('submit', async (event) => {
       event.preventDefault();
-      status.textContent = 'Sending…';
+      if (button.disabled) return;
       const payload = {
         name: $('contact-name').value.trim(),
         email: $('contact-email').value.trim(),
-        message: $('contact-message').value.trim()
+        message: $('contact-message').value.trim(),
+        website: $('contact-website').value
       };
+      if (!payload.name || !payload.email || !payload.message) {
+        status.textContent = 'Please fill in your name, email, and message.';
+        return;
+      }
+      status.textContent = 'Sending…';
+      button.disabled = true;
       try {
-        const response = await fetch('https://smilescafe.co.ke/api/v1/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
+        const response = await window.portfolioApi.post('/contact', payload);
+        if (response.status === 429) {
+          status.textContent = 'Too many messages from this connection. Please try again later or use LinkedIn.';
+          return;
+        }
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         status.textContent = 'Message sent successfully.';
         form.reset();
       } catch (error) {
         console.error(error);
-        status.textContent = 'Unable to send the message right now. Please try email instead.';
+        status.textContent = 'Unable to send the message right now. Please reach out on LinkedIn instead.';
+      } finally {
+        button.disabled = false;
       }
     });
   }
 
-  function init() {
+  async function init() {
+    setupTheme();
+    setupContact();
+    try {
+      data = await loadProfile();
+    } catch (error) {
+      console.error('Profile could not be loaded.', error);
+      $('hero-summary').textContent = 'The profile could not be loaded. Please open this page over HTTPS in an up-to-date browser.';
+      return;
+    }
     renderHero();
     renderExperience('all');
     renderProjects('all');
     renderSkills();
     renderCredentials();
     setupFilters();
-    setupTheme();
-    setupContact();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });

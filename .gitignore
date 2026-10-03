@@ -31,3 +31,6 @@
 .env.local
 __pycache__/
 *.pyc
+
+# Readable portfolio source. Published only as profile.data.enc.js (scripts/profile-crypto.mjs)
+/profile.data.js
