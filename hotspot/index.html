@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b1220">
+  <title>Connect to Wi-Fi</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="brand"><span class="brand-mark">W</span><div><strong>Wi-Fi Access</strong><small>Fast, simple, prepaid internet</small></div><span class="status"><i></i> Hotspot</span></header>
+    <section class="hero"><p class="eyebrow">WELCOME ONLINE</p><h1>Good internet.<br><em>On your terms.</em></h1><p>Choose a package, pay via M-Pesa Paybill, and get connected automatically after your payment is confirmed.</p><div class="speed"><span class="speed-icon">↕</span><div><b>1 Mbps</b><small>Download and upload per device</small></div></div></section>
+    <section class="section"><div class="section-head"><div><p class="eyebrow">PICK YOUR PACKAGE</p><h2>Hourly plans</h2></div><span class="tag">Prepaid</span></div><div id="plans" class="plans"><article class="plan"><div class="skeleton"></div></article><article class="plan"><div class="skeleton"></div></article><article class="plan"><div class="skeleton"></div></article></div></section>
+    <section id="checkout" class="checkout hidden"><div class="section-head"><div><p class="eyebrow">YOUR PACKAGE</p><h2 id="selected-name">Selected plan</h2></div><button id="change-plan" class="text-button" type="button">Change</button></div><div class="chosen"><span id="selected-duration"></span><strong id="selected-price"></strong></div>
+      <form id="payment-form"><label for="phone">M-Pesa phone number</label><input id="phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="07XX XXX XXX" maxlength="13" required><label for="receipt">M-Pesa transaction code</label><input id="receipt" name="receipt" autocapitalize="characters" placeholder="e.g. QWE123ABC" maxlength="20" required><p class="hint">Pay to the configured Paybill and use your transaction code. Never share your M-Pesa PIN.</p><button class="primary" type="submit">I've paid — verify payment <span>→</span></button><p id="payment-status" class="message" role="status" aria-live="polite"></p></form>
+    </section>
+    <section id="session" class="session hidden"><div class="success-mark">✓</div><p class="eyebrow">PAYMENT CONFIRMED</p><h2>You're connected</h2><p id="session-copy">Your session is active.</p><div class="timer"><small>TIME REMAINING</small><strong id="countdown">--:--:--</strong></div><p class="hint">The server and router control your actual access. Keep this page open to see your countdown.</p></section>
+    <footer><span>Secure prepaid access</span><span>Need help? Contact support</span></footer>
+  </main>
+  <script src="./app.js"></script>
+</body>
+</html>
