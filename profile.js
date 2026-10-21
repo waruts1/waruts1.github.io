@@ -157,6 +157,16 @@
     setupContact();
     try {
       data = await loadProfile();
+
+      // Keep the public portfolio positioned for platform engineering roles.
+      // The source profile is stored as an encrypted payload in profile.data.enc.js.
+      data.tagline = 'Platform Engineer | Cloud Infrastructure, Automation & Secure Systems';
+      data.about = 'Platform engineer focused on reliable platforms, infrastructure automation, secure system design, and dependable software delivery. Brings a backend engineering foundation across APIs, distributed services, cloud and DevOps tooling, cybersecurity, and technical assurance.';
+      data.careerTracks = [
+        { label: 'Platform Engineering' },
+        { label: 'Cloud & DevOps' },
+        { label: 'Cybersecurity & Assurance' }
+      ];
     } catch (error) {
       console.error('Profile could not be loaded.', error);
       $('hero-summary').textContent = 'The profile could not be loaded. Please open this page over HTTPS in an up-to-date browser.';
