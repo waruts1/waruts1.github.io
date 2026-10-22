@@ -167,6 +167,14 @@
         { label: 'Cloud & DevOps' },
         { label: 'Cybersecurity & Assurance' }
       ];
+      // Populate the "Why Teams Call Me In" section from the profile data.
+      data.highlights = [
+        'Platform reliability: apply SRE principles to improve availability, observability, incident response, and service resilience.',
+        'Business continuity: connect security and risk controls with recovery planning, disaster recovery, and operational readiness.',
+        'Secure delivery: bring security assurance into APIs, backend services, infrastructure, and deployment workflows.',
+        'Automation: reduce repetitive operational work through scripting, CI/CD, and repeatable deployment practices.',
+        'End-to-end ownership: bridge backend engineering, cloud/platform operations, and cybersecurity to deliver dependable systems.'
+      ];
     } catch (error) {
       console.error('Profile could not be loaded.', error);
       $('hero-summary').textContent = 'The profile could not be loaded. Please open this page over HTTPS in an up-to-date browser.';
