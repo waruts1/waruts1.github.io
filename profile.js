@@ -171,7 +171,7 @@
       data.highlights = [
         'Platform operations: support microservices through containerization, FluxCD/GitOps deployments, release operations, and environment configuration.',
         'Monitoring and reliability: support service health through monitoring, observability, troubleshooting, and SRE-aligned practices.',
-        'Microservices leadership — MySacco & Business Hub: lead microservices delivery while supporting containerization, deployment, and day-to-day platform operations.',
+        'Microservices leadership — TelcoSacco & Business Hub: lead microservices delivery while supporting containerization, deployment, and day-to-day platform operations.',
         'Security and business continuity: bring security assurance and recovery readiness into dependable service delivery.',
         'End-to-end platform support: connect backend engineering with platform operations so services are deployed consistently, monitored effectively, and operated reliably.'
       ];
